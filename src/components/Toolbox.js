@@ -11,7 +11,7 @@ function Toolbox(props) {
                     <li onClick={() => props.addNumInput()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Number input</span>
                     </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addDropdownTxt()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Dropdown text</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>

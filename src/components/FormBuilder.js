@@ -15,7 +15,7 @@ function FormBuilder() {
             "type": "string"
         }
         setSchema(newSchema);
-        console.log("schema updated")
+        // console.log("schema updated")
     }   
 
     function addNumInput() {
@@ -26,10 +26,23 @@ function FormBuilder() {
         }
         setSchema(newSchema);
     }
+    function addDropdownTxt() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["TxtSelect" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "type": "string",
+            "title": "Text select",
+            "enum": [
+                    "option 1",
+                    "option 2",
+                    "option 3"
+            ]
+        }
+        setSchema(newSchema);
+    }
     return (
         <div style={{display: 'flex'}}>
             <FormViewer schema={schema}/>
-            <Toolbox addTxtInput={addTxtInput} addNumInput={addNumInput}/>
+            <Toolbox addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt}/>
         </div>
     )
 }
