@@ -14,7 +14,6 @@ function FormBuilder() {
         newSchema['properties']["Text_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Text",
             "type": "string",
-            "default": "default text"
         }
         setSchema(newSchema);
         // console.log("schema updated")
