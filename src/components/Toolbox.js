@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Toolbox() {
+function Toolbox(props) {
     return (
         <div>
             <div>
                 <ul style={{paddingLeft: 0, border: "1px solid gray", width: '350px'}}>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addTxtInput()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Text input</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>

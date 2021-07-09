@@ -3,18 +3,24 @@ import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
 
 function FormBuilder() {
-    const [schema, setSchema] =useState({
-        "properties": {
-            "number": {
-                "title": "Number",
-                "type": "number"
-             },
-        }
+    const [schema, setSchema] = useState({
+        "properties": {}
     })
+
+    function addTxtInput() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']['Text'] = {
+            "title": "Text",
+            "type": "string"
+        }
+
+        setSchema(newSchema);
+        // console.log(JSON.stringify(newSchema));
+    }   
     return (
         <div style={{display: 'flex'}}>
             <FormViewer schema={schema}/>
-            <Toolbox />
+            <Toolbox addTxtInput={addTxtInput}/>
         </div>
     )
 }
