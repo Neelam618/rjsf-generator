@@ -13,7 +13,8 @@ function FormBuilder() {
 
         newSchema['properties']["Text_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Text",
-            "type": "string"
+            "type": "string",
+            "default": "default text"
         }
         setSchema(newSchema);
         // console.log("schema updated")
@@ -23,7 +24,7 @@ function FormBuilder() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         newSchema['properties']["Num_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Number",
-            "type": "number"
+            "type": "number",
         }
         setSchema(newSchema);
     }
@@ -54,14 +55,16 @@ function FormBuilder() {
         newUischema[randomNumKey] = {
                 "ui:widget": "textarea",
                 "ui:options": {
-                    rows: 4
+                    rows: 4,
+                    // "label": true,
                   }
         }
         setUischema(newUischema);
     }
     return (
+        
         <div style={{display: 'flex'}}>
-            <FormViewer schema={schema} uiSchema={uiSchema}/>
+            <FormViewer schema={schema} uiSchema={uiSchema} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             />
