@@ -8,7 +8,7 @@ function Toolbox(props) {
                     <li onClick={() => props.addTxtInput()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Text input</span>
                     </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addNumInput()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Number input</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
@@ -18,19 +18,7 @@ function Toolbox(props) {
                         <span>Text area</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>File Upload</span>
-                    </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Header</span>
-                    </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Checkbox</span>
-                    </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Number</span>
-                    </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Paragraph</span>
+                        <span>Checkbox Group</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Radio Group</span>
@@ -39,7 +27,7 @@ function Toolbox(props) {
                         <span>Select</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Text Field</span>
+                        <span>Text area</span>
                     </li>
                     <li style={{padding: 10, listStyleType: 'none'}}>
                         <span>Date Field</span>
