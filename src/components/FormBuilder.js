@@ -6,6 +6,7 @@ function FormBuilder() {
     const [schema, setSchema] = useState({
         "properties": {}
     })
+    const [uiSchema, setUischema] = useState({})
 
     function addTxtInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
@@ -20,7 +21,7 @@ function FormBuilder() {
 
     function addNumInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["Num" + Math.floor(Math.random() * 899999 + 100000)] = {
+        newSchema['properties']["Num_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Number",
             "type": "number"
         }
@@ -28,7 +29,7 @@ function FormBuilder() {
     }
     function addDropdownTxt() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["TxtSelect" + Math.floor(Math.random() * 899999 + 100000)] = {
+        newSchema['properties']["TxtSelect_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "type": "string",
             "title": "Text select",
             "enum": [
@@ -39,10 +40,31 @@ function FormBuilder() {
         }
         setSchema(newSchema);
     }
+    function addTxtarea() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let randomNumKey = "Textarea_" + Math.floor(Math.random() * 899999 + 100000);
+
+        newSchema['properties'][randomNumKey] = {
+            "title": "Text",
+            "type": "string"
+        }
+        setSchema(newSchema);
+
+        newUischema[randomNumKey] = {
+                "ui:widget": "textarea",
+                "ui:options": {
+                    rows: 4
+                  }
+        }
+        setUischema(newUischema);
+    }
     return (
         <div style={{display: 'flex'}}>
-            <FormViewer schema={schema}/>
-            <Toolbox addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt}/>
+            <FormViewer schema={schema} uiSchema={uiSchema}/>
+            <Toolbox 
+            addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
+            />
         </div>
     )
 }

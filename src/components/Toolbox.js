@@ -14,7 +14,7 @@ function Toolbox(props) {
                     <li onClick={() => props.addDropdownTxt()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Dropdown text</span>
                     </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addTxtarea()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Text area</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
