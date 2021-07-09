@@ -15,7 +15,6 @@ function FormBuilder() {
         }
 
         setSchema(newSchema);
-        // console.log(JSON.stringify(newSchema));
     }   
     return (
         <div style={{display: 'flex'}}>
