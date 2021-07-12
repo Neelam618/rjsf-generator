@@ -105,6 +105,23 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
+    function addIntRangeSteps() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let randomNumKey = "IntRangeSteps_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema['properties'][randomNumKey] = {
+            "title": "Integer range (by steps)",
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 100,
+            "multipleOf": 10
+        }
+        setSchema(newSchema);
+        newUischema[randomNumKey] = {
+            "ui:widget": "range",
+        }
+        setUischema(newUischema);
+    }
 
     return (
         
@@ -112,7 +129,7 @@ function FormBuilder() {
             <FormViewer schema={schema} uiSchema={uiSchema} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
-            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange}
+            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             />
         </div>
     )
