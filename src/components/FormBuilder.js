@@ -124,7 +124,7 @@ function FormBuilder() {
     }
     function addMultipleChoiceList() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["multipleChoiceList" + Math.floor(Math.random() * 899999 + 100000)] = {
+        newSchema['properties']["multipleChoiceList_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "type": "array",
             "title": "Pick max two items",
             "uniqueItems": true,
@@ -140,6 +140,25 @@ function FormBuilder() {
         }
         setSchema(newSchema);
     }
+    function addDate() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "title": "Date",
+            "type": "string",
+            "format": "date"
+        }
+        setSchema(newSchema);
+    }
+    function addDateTime() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "title": "Date & Time",
+            "type": "string",
+            "format": "date-time"
+        }
+        setSchema(newSchema);
+    }
+
     return (
         
         <div style={{display: 'flex'}}>
@@ -147,7 +166,7 @@ function FormBuilder() {
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
-            addMultipleChoiceList={addMultipleChoiceList}
+            addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime}
             />
         </div>
     )

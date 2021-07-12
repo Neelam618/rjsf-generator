@@ -32,8 +32,11 @@ function Toolbox(props) {
                     <li onClick={() => props.addMultipleChoiceList()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Multiple choice list</span>
                     </li>
-                    <li style={{padding: 10, listStyleType: 'none'}}>
+                    <li onClick={() => props.addDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Field</span>
+                    </li>
+                    <li onClick={() => props.addDateTime()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Date Time Field</span>
                     </li>
                     </ul>
                 </div>
