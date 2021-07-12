@@ -6,7 +6,7 @@ import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
 import { Theme as MuiTheme } from 'rjsf-material-ui';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(MuiTheme);
+const Form = withTheme(FluentUITheme);
 
 function FormViewer(props) {
     return (

@@ -77,7 +77,7 @@ function FormBuilder() {
             "title": "string enum",
             "enum": [
                 "yes",
-                "no",
+                "no",   
               ]
         }
         setSchema(newSchema);
@@ -89,6 +89,22 @@ function FormBuilder() {
     }
     setUischema(newUischema);
     }
+    function addIntRange() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let randomNumKey = "IntRange_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema['properties'][randomNumKey] = {
+            "title": "Integer range",
+            "type": "integer",
+            "minimum": 42,
+            "maximum": 100
+        }
+        setSchema(newSchema);
+        newUischema[randomNumKey] = {
+            "ui:widget": "range",
+        }
+        setUischema(newUischema);
+    }
 
     return (
         
@@ -96,7 +112,7 @@ function FormBuilder() {
             <FormViewer schema={schema} uiSchema={uiSchema} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
-            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup}
+            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange}
             />
         </div>
     )

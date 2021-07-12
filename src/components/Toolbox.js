@@ -21,10 +21,10 @@ function Toolbox(props) {
                         <span>Checkbox</span>
                     </li>
                     <li onClick={() => props.addRadioGroup()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Radio</span>
+                        <span>Radio Group</span>
                     </li>
-                    <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Select</span>
+                    <li onClick={() => props.addIntRange()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Integer Range</span>
                     </li>
                     <li style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Text area</span>
