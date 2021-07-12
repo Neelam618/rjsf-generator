@@ -122,7 +122,24 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
-
+    function addMultipleChoiceList() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["multipleChoiceList" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "type": "array",
+            "title": "Pick max two items",
+            "uniqueItems": true,
+            "maxItems": 2,
+            "items": {
+              "type": "string",
+              "enum": [
+                "foo",
+                "bar",
+                "fuzz"
+              ]
+            }
+        }
+        setSchema(newSchema);
+    }
     return (
         
         <div style={{display: 'flex'}}>
@@ -130,6 +147,7 @@ function FormBuilder() {
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
+            addMultipleChoiceList={addMultipleChoiceList}
             />
         </div>
     )

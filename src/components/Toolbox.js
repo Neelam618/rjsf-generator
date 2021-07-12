@@ -29,6 +29,9 @@ function Toolbox(props) {
                     <li onClick={() => props.addIntRangeSteps()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Integer Range by Steps</span>
                     </li>
+                    <li onClick={() => props.addMultipleChoiceList()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Multiple choice list</span>
+                    </li>
                     <li style={{padding: 10, listStyleType: 'none'}}>
                         <span>Date Field</span>
                     </li>
