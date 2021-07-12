@@ -38,6 +38,9 @@ function Toolbox(props) {
                     <li onClick={() => props.addDateTime()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Time Field</span>
                     </li>
+                    <li onClick={() => props.addAltDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Alternative Date Field</span>
+                    </li>
                     </ul>
                 </div>
         </div>

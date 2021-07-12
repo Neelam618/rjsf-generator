@@ -151,11 +151,31 @@ function FormBuilder() {
     }
     function addDateTime() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Date & Time",
             "type": "string",
             "format": "date-time"
         }
+        setSchema(newSchema);
+    }
+    function addAltDate() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        // let randomNumKey = "altDate_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema["properties"]["alt-date"]= {
+            "type": "string",
+            "format": "date"
+        }
+        newUischema["alt-date"] = {
+            "ui:widget": "alt-date",
+            "ui:options": {
+                "yearsRange": [
+                1980,
+                2030
+                ]
+            }
+        }
+        setUischema(newUischema);
         setSchema(newSchema);
     }
 
@@ -166,7 +186,7 @@ function FormBuilder() {
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
-            addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime}
+            addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime} addAltDate={addAltDate}
             />
         </div>
     )
