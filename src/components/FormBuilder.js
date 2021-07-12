@@ -22,8 +22,8 @@ function FormBuilder() {
     function addNumInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         newSchema['properties']["Num_" + Math.floor(Math.random() * 899999 + 100000)] = {
-            "title": "Number",
             "type": "number",
+            "title": "Number",
         }
         setSchema(newSchema);
     }
@@ -46,8 +46,8 @@ function FormBuilder() {
         let randomNumKey = "Textarea_" + Math.floor(Math.random() * 899999 + 100000);
 
         newSchema['properties'][randomNumKey] = {
-            "title": "Text",
-            "type": "string"
+            "type": "string",
+            "title": "Text"
         }
         setSchema(newSchema);
 
@@ -60,12 +60,43 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
+    function addCheckbox() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["Checkbox_" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "type": "boolean",
+            "title": "Done?",
+        }
+        setSchema(newSchema);
+    }
+    function addRadioGroup() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let randomNumKey = "RadioGroup_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema['properties'][randomNumKey] = {
+            "type": "string",
+            "title": "string enum",
+            "enum": [
+                "yes",
+                "no",
+              ]
+        }
+        setSchema(newSchema);
+        newUischema[randomNumKey] = {
+            "ui:widget": "radio",
+            "ui:options": {
+                inline: true,
+              }
+    }
+    setUischema(newUischema);
+    }
+
     return (
         
         <div style={{display: 'flex'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
+            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup}
             />
         </div>
     )
