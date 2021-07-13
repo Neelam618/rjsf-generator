@@ -181,13 +181,26 @@ function FormBuilder() {
     }
     function chooseSingleFile() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["chooseSingleFile" + Math.floor(Math.random() * 899999 + 100000)] = {
+        newSchema['properties']["chooseSingleFile_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "type": "string",
             "format": "data-url",
             "title": "Single file"
         }
         setSchema(newSchema);
     }
+    function chooseMultipleFiles() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["chooseMultipleFiles_" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "type": "array",
+            "title": "Multiple files",
+            "items": {
+              "type": "string",
+              "format": "data-url"
+            }
+        }
+        setSchema(newSchema);
+    }
+
 
     return (
         
@@ -197,7 +210,7 @@ function FormBuilder() {
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime} addAltDate={addAltDate}
-            chooseSingleFile={chooseSingleFile}
+            chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
             />
         </div>
     )

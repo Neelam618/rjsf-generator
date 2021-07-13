@@ -44,6 +44,9 @@ function Toolbox(props) {
                     <li onClick={() => props.chooseSingleFile()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Choose Single File</span>
                     </li>
+                    <li onClick={() => props.chooseMultipleFiles()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Choose Multiple Files</span>
+                    </li>
                     </ul>
                 </div>
         </div>
