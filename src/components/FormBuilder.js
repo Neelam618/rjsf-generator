@@ -161,12 +161,13 @@ function FormBuilder() {
     function addAltDate() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        // let randomNumKey = "altDate_" + Math.floor(Math.random() * 899999 + 100000);
-        newSchema["properties"]["alt-date"]= {
+        let randomNumKey = "altDate_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema["properties"][randomNumKey]= {
+            "title": "Alternative date",
             "type": "string",
             "format": "date"
         }
-        newUischema["alt-date"] = {
+        newUischema[randomNumKey] = {
             "ui:widget": "alt-date",
             "ui:options": {
                 "yearsRange": [
@@ -178,6 +179,15 @@ function FormBuilder() {
         setUischema(newUischema);
         setSchema(newSchema);
     }
+    function chooseSingleFile() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["chooseSingleFile" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "type": "string",
+            "format": "data-url",
+            "title": "Single file"
+        }
+        setSchema(newSchema);
+    }
 
     return (
         
@@ -187,6 +197,7 @@ function FormBuilder() {
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime} addAltDate={addAltDate}
+            chooseSingleFile={chooseSingleFile}
             />
         </div>
     )

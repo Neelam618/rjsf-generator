@@ -41,6 +41,9 @@ function Toolbox(props) {
                     <li onClick={() => props.addAltDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Alternative Date Field</span>
                     </li>
+                    <li onClick={() => props.chooseSingleFile()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Choose Single File</span>
+                    </li>
                     </ul>
                 </div>
         </div>
