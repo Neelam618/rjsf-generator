@@ -1,12 +1,15 @@
 import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
+import EditPanel from './EditPanel'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
         "properties": {}
     })
     const [uiSchema, setUischema] = useState({})
+
+    const [showEditPanel, setShowEditPanel] = useState(false)
 
     function addTxtInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
@@ -207,16 +210,23 @@ function FormBuilder() {
         setSchema(newSchema);
     }
 
+    function displayEditPanel() {
+        setShowEditPanel(true)
+    }
+
     return (
         
         <div style={{display: 'flex', padding: 30}}>
-            <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} />
+            <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} displayEditPanel={displayEditPanel} />
+            {
+            showEditPanel? <EditPanel/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime} addAltDate={addAltDate}
             chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
             />
+            }
         </div>
     )
 }
