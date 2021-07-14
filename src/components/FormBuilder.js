@@ -201,11 +201,16 @@ function FormBuilder() {
         setSchema(newSchema);
     }
 
+    function removeField(keyName) {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        delete newSchema['properties'][keyName];
+        setSchema(newSchema);
+    }
 
     return (
         
         <div style={{display: 'flex', padding: 30}}>
-            <FormViewer schema={schema} uiSchema={uiSchema} />
+            <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}

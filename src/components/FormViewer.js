@@ -19,25 +19,21 @@ function FormViewer(props) {
     //         <Form schema={props.schema} uiSchema={props.uiSchema} />
     //     </div>
     // )
-    function removeField(e) {
-        e.target.parentElement.parentElement.remove()
-        console.log("remove")
-    }
 
     return <div style={{ width: '80%', padding: 30}}>
         {Object.keys(props.schema.properties).map(function(keyName) {
-            let newSchema = {"properties": {}}
-            newSchema.properties[keyName] = props.schema.properties[keyName];
+            let singleFieldSchema = {"properties": {}}                
+            singleFieldSchema.properties[keyName] = props.schema.properties[keyName];
 
-            let newUiSchema = {};
+            let singleFieldUiSchema = {};
             if(props.uiSchema[keyName]) {
-                newUiSchema[keyName] = props.uiSchema[keyName]
+                singleFieldUiSchema[keyName] = props.uiSchema[keyName]
             }
-            console.log(JSON.stringify(newSchema))
+            console.log(JSON.stringify(singleFieldSchema))
             return (
                 <div className="fieldContainer" style={{width: "80%", position: 'relative', padding: 10}}>   
-                    <Form key={keyName} schema={newSchema} uiSchema={newUiSchema} children={true}>
-                        <span onClick={removeField} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
+                    <Form key={keyName} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} children={true}>
+                        <span onClick={() => props.removeField(keyName)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
                         <span className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
                     </Form>
                 </div>
