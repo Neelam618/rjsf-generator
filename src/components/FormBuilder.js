@@ -204,7 +204,7 @@ function FormBuilder() {
 
     return (
         
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', padding: 30}}>
             <FormViewer schema={schema} uiSchema={uiSchema} />
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
