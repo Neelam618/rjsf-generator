@@ -67,7 +67,7 @@ const schema = {
         "labelCheckbox": {
             "type": "boolean",
             "title": "Hide Label",
-        },        
+        },          
 
     }
 }
@@ -75,6 +75,7 @@ const schema = {
 function EditPanel(props) {
     return (
         <div style={{width: '30%'}}>
+            <div onClick={props.closeEditPanel} style={{textAlign: 'end'}}>Close</div>
             {/* {props.editFieldKeyName} */}
             <Form schema={schema} children={true} />
         </div>

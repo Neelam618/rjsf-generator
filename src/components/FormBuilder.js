@@ -212,19 +212,22 @@ function FormBuilder() {
         setSchema(newSchema);
     }
 
-    function displayEditPanel(keyName) {
+    function displayEditPanel(editFieldKeyName) {
         setShowEditPanel(true)
-        setEditFieldKeyName(keyName)
+        setEditFieldKeyName(editFieldKeyName)
+    }
+    function closeEditPanel() {
+        setShowEditPanel(false)
     }
 
     return (
         
         <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
-            displayEditPanel={displayEditPanel}
+            displayEditPanel={displayEditPanel} 
             />
             {
-            showEditPanel? <EditPanel editFieldKeyName={editFieldKeyName}/> :
+            showEditPanel? <EditPanel editFieldKeyName={editFieldKeyName} closeEditPanel={closeEditPanel}/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}

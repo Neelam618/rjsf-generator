@@ -22,6 +22,7 @@ function FormViewer(props) {
             if(props.uiSchema[keyName]) {
                 singleFieldUiSchema[keyName] = props.uiSchema[keyName]
             }
+
             // console.log(JSON.stringify(singleFieldSchema))
             return (
                 <div className="fieldContainer" style={{ position: 'relative', padding: 10}}>   
