@@ -2,9 +2,9 @@ import React from 'react'
 
 function Toolbox(props) {
     return (
-        <div>
+        <div style={{width: '30%'}}>
             <div>
-                <ul style={{paddingLeft: 0, border: "1px solid gray", width: '350px'}}>
+                <ul style={{paddingLeft: 0, border: "1px solid gray"}}>
                     <li onClick={() => props.addTxtInput()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Text input</span>
                     </li>
@@ -32,12 +32,12 @@ function Toolbox(props) {
                     <li onClick={() => props.addMultipleChoiceList()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Multiple choice list</span>
                     </li>
-                    <li onClick={() => props.addDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    {/* <li onClick={() => props.addDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Field</span>
                     </li>
                     <li onClick={() => props.addDateTime()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Time Field</span>
-                    </li>
+                    </li> */}
                     <li onClick={() => props.addAltDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Alternative Date Field</span>
                     </li>

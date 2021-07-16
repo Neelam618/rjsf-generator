@@ -12,15 +12,8 @@ import './FormViewer.css'
 const Form = withTheme(FluentUITheme);
 
 function FormViewer(props) {
-    // console.log(JSON.stringify(props.schema))
-    // console.log(JSON.stringify(props.uiSchema))
-    // return (
-    //     <div style={{ width: '80%', padding: 30}}>
-    //         <Form schema={props.schema} uiSchema={props.uiSchema} />
-    //     </div>
-    // )
 
-    return <div style={{ width: '80%', padding: 30}}>
+    return <div style={{ padding: 30, width: '50%'}}>
         {Object.keys(props.schema.properties).map(function(keyName) {
             let singleFieldSchema = {"properties": {}}                
             singleFieldSchema.properties[keyName] = props.schema.properties[keyName];
@@ -29,12 +22,12 @@ function FormViewer(props) {
             if(props.uiSchema[keyName]) {
                 singleFieldUiSchema[keyName] = props.uiSchema[keyName]
             }
-            console.log(JSON.stringify(singleFieldSchema))
+            // console.log(JSON.stringify(singleFieldSchema))
             return (
-                <div className="fieldContainer" style={{width: "80%", position: 'relative', padding: 10}}>   
-                    <Form key={keyName} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} children={true}>
+                <div className="fieldContainer" style={{ position: 'relative', padding: 10}}>   
+                    <Form key={keyName} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true}>
                         <span onClick={() => props.removeField(keyName)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
-                        <span onClick={props.displayEditPanel} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
+                        <span onClick={() => props.displayEditPanel(keyName)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
                     </Form>
                 </div>
             )

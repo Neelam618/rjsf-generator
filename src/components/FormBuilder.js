@@ -11,6 +11,8 @@ function FormBuilder() {
 
     const [showEditPanel, setShowEditPanel] = useState(false)
 
+    const [editFieldKeyName, setEditFieldKeyName] =useState()
+
     function addTxtInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
 
@@ -143,24 +145,24 @@ function FormBuilder() {
         }
         setSchema(newSchema);
     }
-    function addDate() {
-        let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
-            "title": "Date",
-            "type": "string",
-            "format": "date"
-        }
-        setSchema(newSchema);
-    }
-    function addDateTime() {
-        let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
-            "title": "Date & Time",
-            "type": "string",
-            "format": "date-time"
-        }
-        setSchema(newSchema);
-    }
+    // function addDate() {
+    //     let newSchema= JSON.parse(JSON.stringify(schema));
+    //     newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
+    //         "title": "Date",
+    //         "type": "string",
+    //         "format": "date"
+    //     }
+    //     setSchema(newSchema);
+    // }
+    // function addDateTime() {
+    //     let newSchema= JSON.parse(JSON.stringify(schema));
+    //     newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
+    //         "title": "Date & Time",
+    //         "type": "string",
+    //         "format": "date-time"
+    //     }
+    //     setSchema(newSchema);
+    // }
     function addAltDate() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
@@ -210,20 +212,23 @@ function FormBuilder() {
         setSchema(newSchema);
     }
 
-    function displayEditPanel() {
+    function displayEditPanel(keyName) {
         setShowEditPanel(true)
+        setEditFieldKeyName(keyName)
     }
 
     return (
         
-        <div style={{display: 'flex', padding: 30}}>
-            <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} displayEditPanel={displayEditPanel} />
+        <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
+            <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
+            displayEditPanel={displayEditPanel}
+            />
             {
-            showEditPanel? <EditPanel/> :
+            showEditPanel? <EditPanel editFieldKeyName={editFieldKeyName}/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
-            addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime} addAltDate={addAltDate}
+            addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
             chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
             />
             }
