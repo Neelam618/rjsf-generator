@@ -7,12 +7,13 @@ import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(FluentUITheme);
+const Form = withTheme(MuiTheme);
 const schema = {
     "properties": {
         "label": {
             "title": "Label",
-            "type": "string"
+            "type": "string",
+            "default": "Text"
         },
         "dropdown": {
             "type": "string",
@@ -26,11 +27,13 @@ const schema = {
                     "date",
                     "date-time",
                     "color"
-            ]
+            ],
+            "default": "Text field"
         },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
+            "default": true
         },
         "autofocusCheckbox": {
             "type": "boolean",
