@@ -15,7 +15,7 @@ const schema = {
             "type": "string",
             "default": "Text"
         },
-        "dropdown": {
+        "input type": {
             "type": "string",
             "title": "Type",
             "enum": [
@@ -30,12 +30,12 @@ const schema = {
             ],
             "default": "Text field"
         },
-        "requiredCheckbox": {
+        "required checkbox": {
             "type": "boolean",
             "title": "Required",
             "default": true
         },
-        "autofocusCheckbox": {
+        "autofocus checkbox": {
             "type": "boolean",
             "title": "Autofocus",
         },
@@ -43,7 +43,7 @@ const schema = {
             "title": "Placeholder",
             "type": "string"
         },
-        "number": {
+        "max length": {
             "type": "number",
             "title": "Max length",
         },
@@ -59,15 +59,15 @@ const schema = {
             "title": "Help text",
             "type": "string"
         },
-        "disabledCheckbox": {
+        "disabled checkbox": {
             "type": "boolean",
             "title": "Disabled",
         },
-        "readonlyCheckbox": {
+        "readonly checkbox": {
             "type": "boolean",
             "title": "Read only",
         },
-        "labelCheckbox": {
+        "label checkbox": {
             "type": "boolean",
             "title": "Hide Label",
         },          
@@ -76,11 +76,13 @@ const schema = {
 }
 
 function EditPanel(props) {
+    const onSubmit = ({formData}) => console.log("Data submitted: ",  formData);
+    let yourForm;
     return (
         <div style={{width: '30%'}}>
             <div onClick={props.closeEditPanel} style={{textAlign: 'end'}}>Close</div>
             {/* {props.editFieldKeyName} */}
-            <Form schema={schema} children={true} />
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}} />
         </div>
     )
 }
