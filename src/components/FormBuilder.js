@@ -23,8 +23,9 @@ function FormBuilder() {
         let textFieldKey = "Text_" + Math.floor(Math.random() * 899999 + 100000)
 
         newSchema['properties'][textFieldKey] = {
-            "title": "Texgfgt",
+            "title": "Text",
             "type": "string",
+            "maxLength": 5
         }
         // newSchema['required'].push(textFieldKey)
 

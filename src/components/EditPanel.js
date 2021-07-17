@@ -84,7 +84,8 @@ function EditPanel(props) {
         "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
         "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"]
+        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
+        "max length": props.schema["properties"][props.editFieldKeyName]["maxLength"]
     }
     return (
         <div style={{width: '30%'}}>
