@@ -15,8 +15,12 @@ function FormViewer(props) {
 
     return <div style={{ padding: 30, width: '50%'}}>
         {Object.keys(props.schema.properties).map(function(keyName) {
-            let singleFieldSchema = {"properties": {}}                
-            singleFieldSchema.properties[keyName] = props.schema.properties[keyName];
+            let singleFieldSchema = {
+                "properties": {
+                    [keyName]: props.schema.properties[keyName]
+                },
+                "required": props.schema.required
+            }
 
             let singleFieldUiSchema = {};
             if(props.uiSchema[keyName]) {

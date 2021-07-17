@@ -75,18 +75,22 @@ const schema = {
 function EditPanel(props) {
     const onSubmit = ({formData}) => console.log("Data submitted: ",  formData);
     let yourForm;
+    // if (!props.schema["required"]) {
+    //     props.schema["required"] = []
+    // }
+
+    let formData = {
+        "label":props.schema["properties"][props.editFieldKeyName]["title"],
+        "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
+        "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName)
+        // "autofocus checkbox":
+
+    }
     return (
         <div style={{width: '30%'}}>
             <div onClick={props.closeEditPanel} style={{textAlign: 'end'}}>Close</div>
-            {/* {props.editFieldKeyName} */}
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
-            formData= {{
-                    "label":props.schema["properties"][props.editFieldKeyName]["title"],
-                    "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
-                    "required checkbox": true,
-                    // "autofocus checkbox":
-
-            }}
+            formData= {formData}
             />
         </div>
     )

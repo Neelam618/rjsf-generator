@@ -5,7 +5,10 @@ import EditPanel from './EditPanel'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
-        "properties": {}
+        "title": "A demo form",
+        "type": "object",
+        "properties": {},
+        "required": []
     })
     const [uiSchema, setUischema] = useState({})
 
@@ -20,9 +23,11 @@ function FormBuilder() {
         let textFieldKey = "Text_" + Math.floor(Math.random() * 899999 + 100000)
 
         newSchema['properties'][textFieldKey] = {
-            "title": "Text",
+            "title": "Texgfgt",
             "type": "string",
         }
+        newSchema['required'].push(textFieldKey)
+
         setSchema(newSchema);
         
         newUischema[textFieldKey] = {
