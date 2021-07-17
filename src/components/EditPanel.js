@@ -7,33 +7,30 @@ import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(MuiTheme);
+const Form = withTheme(FluentUITheme);
 const schema = {
     "properties": {
         "label": {
             "title": "Label",
             "type": "string",
-            "default": "Text"
         },
         "input type": {
             "type": "string",
             "title": "Type",
             "enum": [
-                    "Text field",
-                    "Email",
-                    "Password",
+                    "text",
+                    "email",
+                    "password",
                     "tel",
                     "uri",
                     "date",
                     "date-time",
                     "color"
             ],
-            "default": "Text field"
         },
         "required checkbox": {
             "type": "boolean",
             "title": "Required",
-            "default": true
         },
         "autofocus checkbox": {
             "type": "boolean",
@@ -82,7 +79,15 @@ function EditPanel(props) {
         <div style={{width: '30%'}}>
             <div onClick={props.closeEditPanel} style={{textAlign: 'end'}}>Close</div>
             {/* {props.editFieldKeyName} */}
-            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}} />
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
+            formData= {{
+                    "label":props.schema["properties"][props.editFieldKeyName]["title"],
+                    "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
+                    "required checkbox": true,
+                    // "autofocus checkbox":
+
+            }}
+            />
         </div>
     )
 }

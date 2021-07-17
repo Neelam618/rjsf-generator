@@ -15,13 +15,22 @@ function FormBuilder() {
 
     function addTxtInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
 
-        newSchema['properties']["Text_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let textFieldKey = "Text_" + Math.floor(Math.random() * 899999 + 100000)
+
+        newSchema['properties'][textFieldKey] = {
             "title": "Text",
             "type": "string",
         }
         setSchema(newSchema);
-        // console.log("schema updated")
+        
+        newUischema[textFieldKey] = {
+            "ui:options": {
+                "inputType": "text"
+              }
+    }
+    setUischema(newUischema);
     }   
 
     function addNumInput() {
@@ -227,7 +236,7 @@ function FormBuilder() {
             displayEditPanel={displayEditPanel} 
             />
             {
-            showEditPanel? <EditPanel editFieldKeyName={editFieldKeyName} closeEditPanel={closeEditPanel}/> :
+            showEditPanel? <EditPanel schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} closeEditPanel={closeEditPanel}/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
