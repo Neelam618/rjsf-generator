@@ -82,8 +82,8 @@ function EditPanel(props) {
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
-        "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName)
-        // "autofocus checkbox":
+        "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
+        "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"]
 
     }
     return (

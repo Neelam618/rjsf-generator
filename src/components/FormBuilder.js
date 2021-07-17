@@ -31,6 +31,7 @@ function FormBuilder() {
         setSchema(newSchema);
         
         newUischema[textFieldKey] = {
+            "ui:autofocus": false,
             "ui:options": {
                 "inputType": "text"
               }
