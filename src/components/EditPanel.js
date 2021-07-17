@@ -76,15 +76,15 @@ function EditPanel(props) {
     const onSubmit = ({formData}) => console.log("Data submitted: ",  formData);
     let yourForm;
     // if (!props.schema["required"]) {
-    //     props.schema["required"] = []
-    // }
+    // //     props.schema["required"] = []
+    // // }
 
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
         "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
-        "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"]
-
+        "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
+        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"]
     }
     return (
         <div style={{width: '30%'}}>

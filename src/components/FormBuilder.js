@@ -26,17 +26,18 @@ function FormBuilder() {
             "title": "Texgfgt",
             "type": "string",
         }
-        newSchema['required'].push(textFieldKey)
+        // newSchema['required'].push(textFieldKey)
 
         setSchema(newSchema);
         
         newUischema[textFieldKey] = {
-            "ui:autofocus": false,
+            "ui:autofocus": true,
             "ui:options": {
                 "inputType": "text"
-              }
-    }
-    setUischema(newUischema);
+              },
+            "ui:placeholder": "This is a placeholder"
+        }
+        setUischema(newUischema);
     }   
 
     function addNumInput() {
