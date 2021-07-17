@@ -52,10 +52,10 @@ const schema = {
             "title": "Description",
             "type": "string"
         },
-        "helpText": {
-            "title": "Help text",
-            "type": "string"
-        },
+        // "help text": {
+        //     "title": "Help text",
+        //     "type": "string"
+        // },
         "disabled checkbox": {
             "type": "boolean",
             "title": "Disabled",
@@ -85,7 +85,12 @@ function EditPanel(props) {
         "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
-        "max length": props.schema["properties"][props.editFieldKeyName]["maxLength"]
+        "max length": props.schema["properties"][props.editFieldKeyName]["maxLength"],
+        "description":  props.schema["properties"][props.editFieldKeyName]["description"],
+        // "help text": props.uiSchema[props.editFieldKeyName]["ui:help"],
+        "disabled checkbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
+        "readonly checkbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"]
+
     }
     return (
         <div style={{width: '30%'}}>
