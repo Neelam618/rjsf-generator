@@ -1,7 +1,7 @@
 import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
-import EditPanel from './EditPanel'
+import TextFieldPanel from './TextFieldPanel'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
@@ -12,7 +12,7 @@ function FormBuilder() {
     })
     const [uiSchema, setUischema] = useState({})
 
-    const [showEditPanel, setShowEditPanel] = useState(false)
+    const [showTextFieldPanel, setShowTextFieldPanel] = useState(false)
 
     const [editFieldKeyName, setEditFieldKeyName] =useState()
 
@@ -35,12 +35,13 @@ function FormBuilder() {
         newUischema[textFieldKey] = {
             "ui:autofocus": true,
             "ui:options": {
-                "inputType": "text"
+                "inputType": "text",
+                // "label": false
               },
             "ui:placeholder": "This is a placeholder",
             // "ui:help": "Hint: Make it strong!",
             "ui:disabled": false,
-            "ui:readonly": false
+            "ui:readonly": false,
         }
         setUischema(newUischema);
     }   
@@ -233,22 +234,22 @@ function FormBuilder() {
         setSchema(newSchema);
     }
 
-    function displayEditPanel(editFieldKeyName) {
-        setShowEditPanel(true)
+    function displayTextFieldPanel(editFieldKeyName) {
+        setShowTextFieldPanel(true)
         setEditFieldKeyName(editFieldKeyName)
     }
-    function closeEditPanel() {
-        setShowEditPanel(false)
+    function closeTextFieldPanel() {
+        setShowTextFieldPanel(false)
     }
 
     return (
         
         <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
-            displayEditPanel={displayEditPanel} 
+            displayTextFieldPanel={displayTextFieldPanel} 
             />
             {
-            showEditPanel? <EditPanel schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} closeEditPanel={closeEditPanel}/> :
+            showTextFieldPanel? <TextFieldPanel setSchema={setSchema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} closeTextFieldPanel={closeTextFieldPanel}/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}

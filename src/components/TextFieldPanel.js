@@ -64,16 +64,24 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },
-        "label checkbox": {
-            "type": "boolean",
-            "title": "Hide Label",
-        },          
+        // "label checkbox": {
+        //     "type": "boolean",
+        //     "title": "Hide Label",
+        // },          
 
     }
 }
 
-function EditPanel(props) {
-    const onSubmit = ({formData}) => console.log("Data submitted: ",  formData);
+function TextFieldPanel(props) {
+    const onSubmit = ({formData}) => {
+        // console.log("Data submitted: ",  formData)
+        let newSchema= JSON.parse(JSON.stringify(props.schema));
+        let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
+
+        newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
+        // console.log(formData["label"])
+        props.setSchema(newSchema)
+    }
     let yourForm;
     // if (!props.schema["required"]) {
     // //     props.schema["required"] = []
@@ -89,12 +97,12 @@ function EditPanel(props) {
         "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         // "help text": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabled checkbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
-        "readonly checkbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"]
+        "readonly checkbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
 
     }
     return (
         <div style={{width: '30%'}}>
-            <div onClick={props.closeEditPanel} style={{textAlign: 'end'}}>Close</div>
+            <div onClick={props.closeTextFieldPanel} style={{textAlign: 'end'}}>Close</div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             />
@@ -102,4 +110,4 @@ function EditPanel(props) {
     )
 }
 
-export default EditPanel
+export default TextFieldPanel

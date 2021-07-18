@@ -32,7 +32,7 @@ function FormViewer(props) {
                 <div className="fieldContainer" style={{ position: 'relative', padding: 10}}>   
                     <Form key={keyName} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true}>
                         <span onClick={() => props.removeField(keyName)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
-                        <span onClick={() => props.displayEditPanel(keyName)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
+                        <span onClick={() => props.displayTextFieldPanel(keyName)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
                     </Form>
                 </div>
             )
