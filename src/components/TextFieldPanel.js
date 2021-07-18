@@ -7,14 +7,14 @@ import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(FluentUITheme);
+const Form = withTheme(MuiTheme);
 const schema = {
     "properties": {
         "label": {
             "title": "Label",
             "type": "string",
         },
-        "input type": {
+        "inputType": {
             "type": "string",
             "title": "Type",
             "enum": [
@@ -28,11 +28,11 @@ const schema = {
                     "color"
             ],
         },
-        "required checkbox": {
+        "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
         },
-        "autofocus checkbox": {
+        "autofocusCheckbox": {
             "type": "boolean",
             "title": "Autofocus",
         },
@@ -40,7 +40,7 @@ const schema = {
             "title": "Placeholder",
             "type": "string"
         },
-        "max length": {
+        "maxLength": {
             "type": "number",
             "title": "Max length",
         },
@@ -56,11 +56,11 @@ const schema = {
         //     "title": "Help text",
         //     "type": "string"
         // },
-        "disabled checkbox": {
+        "disabledCheckbox": {
             "type": "boolean",
             "title": "Disabled",
         },
-        "readonly checkbox": {
+        "readonlyCheckbox": {
             "type": "boolean",
             "title": "Read only",
         },
@@ -74,30 +74,49 @@ const schema = {
 
 function TextFieldPanel(props) {
     const onSubmit = ({formData}) => {
-        // console.log("Data submitted: ",  formData)
+        console.log("Data submitted: ",  formData)
         let newSchema= JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
 
+        //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
-        // console.log(formData["label"])
         props.setSchema(newSchema)
-    }
-    let yourForm;
-    // if (!props.schema["required"]) {
-    // //     props.schema["required"] = []
-    // // }
 
+        //For required
+        if (formData.requiredCheckbox) {
+            newSchema["required"] = [props.editFieldKeyName]
+        }
+        else {
+            const index =  newSchema["required"].indexOf(props.editFieldKeyName);
+            if (index > -1) {
+                newSchema["required"].splice(index, 1);
+            }
+        }
+        props.setSchema(newSchema)
+
+        //For autofocus
+        if (formData.autofocusCheckbox) {
+            newUischema[props.editFieldKeyName]["ui:autofocus"] = true
+        }
+        else {
+            newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
+        }
+        props.setUischema(newUischema)
+
+    }
+
+    let yourForm;
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "input type": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
-        "required checkbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
-        "autofocus checkbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
+        "inputType": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
+        "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
+        "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
-        "max length": props.schema["properties"][props.editFieldKeyName]["maxLength"],
+        "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
         "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         // "help text": props.uiSchema[props.editFieldKeyName]["ui:help"],
-        "disabled checkbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
-        "readonly checkbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
+        "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
+        "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
 
     }
     return (

@@ -249,7 +249,7 @@ function FormBuilder() {
             displayTextFieldPanel={displayTextFieldPanel} 
             />
             {
-            showTextFieldPanel? <TextFieldPanel setSchema={setSchema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} closeTextFieldPanel={closeTextFieldPanel}/> :
+            showTextFieldPanel? <TextFieldPanel setSchema={setSchema} setUischema={setUischema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} closeTextFieldPanel={closeTextFieldPanel}/> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}

@@ -19,7 +19,7 @@ function FormViewer(props) {
                 "properties": {
                     [keyName]: props.schema.properties[keyName]
                 },
-                "required": props.schema.required
+                "required": props.schema["required"] 
             }
 
             let singleFieldUiSchema = {};
