@@ -75,6 +75,8 @@ const schema = {
 function TextFieldPanel(props) {
     const onSubmit = ({formData}) => {
         console.log("Data submitted: ",  formData)
+        props.closeTextFieldPanel()
+
         let newSchema= JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
 
