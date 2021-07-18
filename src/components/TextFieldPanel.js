@@ -83,8 +83,8 @@ function TextFieldPanel(props) {
         props.setSchema(newSchema)
 
         //For required
-        if (formData.requiredCheckbox) {
-            newSchema["required"] = [props.editFieldKeyName]
+        if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
+            newSchema["required"].push(props.editFieldKeyName)
         }
         else {
             const index =  newSchema["required"].indexOf(props.editFieldKeyName);
