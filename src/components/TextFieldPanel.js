@@ -14,20 +14,20 @@ const schema = {
             "title": "Label",
             "type": "string",
         },
-        "inputType": {
-            "type": "string",
-            "title": "Type",
-            "enum": [
-                    "text",
-                    "email",
-                    "password",
-                    "tel",
-                    "uri",
-                    "date",
-                    "date-time",
-                    "color"
-            ],
-        },
+        // "inputType": {
+        //     "type": "string",
+        //     "title": "Type",
+        //     "enum": [
+        //             "text",
+        //             "email",
+        //             "password",
+        //             "tel",
+        //             "uri",
+        //             "date",
+        //             "date-time",
+        //             "color"
+        //     ],
+        // },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
@@ -82,7 +82,6 @@ function TextFieldPanel(props) {
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
-        props.setSchema(newSchema)
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
@@ -94,7 +93,6 @@ function TextFieldPanel(props) {
                 newSchema["required"].splice(index, 1);
             }
         }
-        props.setSchema(newSchema)
 
         //For autofocus
         if (formData.autofocusCheckbox) {
@@ -103,11 +101,35 @@ function TextFieldPanel(props) {
         else {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
+
+        //For placeholder
+        if(formData.placeholder) {
+            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
+        }
+
+        //For maxLength
+        if(formData.maxLength) {
+            newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
+        }
+
+        //Description
+        if(formData.description) {
+            newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["description"]
+        }
+        props.setSchema(newSchema)
         props.setUischema(newUischema)
 
     }
 
-    let yourForm;
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "inputType": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
@@ -121,6 +143,7 @@ function TextFieldPanel(props) {
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
 
     }
+    let yourForm;
     return (
         <div style={{width: '30%'}}>
             <div onClick={props.closeTextFieldPanel} style={{textAlign: 'end'}}>Close</div>

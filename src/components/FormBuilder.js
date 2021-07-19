@@ -25,8 +25,8 @@ function FormBuilder() {
         newSchema['properties'][textFieldKey] = {
             "title": "Text",
             "type": "string",
-            "maxLength": 5,
-            "description": "This is description"
+            // "maxLength": 5,
+            // "description": ""
         }
         // newSchema['required'].push(textFieldKey)
 
@@ -38,7 +38,7 @@ function FormBuilder() {
                 "inputType": "text",
                 // "label": false
               },
-            "ui:placeholder": "This is a placeholder",
+            // "ui:placeholder": "This is a placeholder",
             // "ui:help": "Hint: Make it strong!",
             "ui:disabled": false,
             "ui:readonly": false,
