@@ -2,7 +2,7 @@ import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
 import TextFieldPanel from './Panels/TextFieldPanel'
-import NumberFieldPanel from './Panels/NumberFieldPanel'
+import EditPanel from './EditPanel'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
@@ -13,9 +13,7 @@ function FormBuilder() {
     })
     const [uiSchema, setUischema] = useState({})
 
-    const [showTextFieldPanel, setShowTextFieldPanel] = useState(false)
-    const [showNumberFieldPanel, setShowNumberFieldPanel] = useState(false)
-
+    const [showEditPanel, setshowEditPanel] = useState(false)
 
     const [editFieldKeyName, setEditFieldKeyName] =useState()
 
@@ -52,7 +50,7 @@ function FormBuilder() {
 
     function addNumInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        numFieldKey = "Num_" + Math.floor(Math.random() * 899999 + 100000)
+        let numFieldKey = "Num_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][numFieldKey] = {
             "type": "number",
             "title": "Number",
@@ -240,30 +238,23 @@ function FormBuilder() {
     }
 
     function displayTextFieldPanel(editFieldKeyName) {
-        setShowTextFieldPanel(true)
+        setshowEditPanel(true)
         setEditFieldKeyName(editFieldKeyName)
     }
     function closeTextFieldPanel() {
-        setShowTextFieldPanel(false)
-    }
-
-    function displayNumberFieldPanel(editFieldKeyName) {
-        setShowNumberFieldPanel(true)
-        setEditFieldKeyName(editFieldKeyName)
-    }
-    function closeNumberFieldPanel() {
-        setShowNumberFieldPanel(false)
+        setshowEditPanel(false)
     }
 
     return (
         
         <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
-            displayTextFieldPanel={displayTextFieldPanel} displayNumberFieldPanel={displayNumberFieldPanel}
+            displayTextFieldPanel={displayTextFieldPanel}
             />
+
             {
-            showTextFieldPanel? 
-            <TextFieldPanel 
+            showEditPanel? 
+            <EditPanel 
             setSchema={setSchema} setUischema={setUischema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} 
             closeTextFieldPanel={closeTextFieldPanel} /> :
             <Toolbox 
@@ -274,18 +265,6 @@ function FormBuilder() {
             />
             }
 
-{
-            showNumberFieldPanel? 
-            <NumberFieldPanel 
-            setSchema={setSchema} setUischema={setUischema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} 
-            closeNumberFieldPanel={closeNumberFieldPanel} /> :
-            <Toolbox 
-            addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
-            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
-            addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
-            chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
-            />
-            }
             
         </div>
     )
