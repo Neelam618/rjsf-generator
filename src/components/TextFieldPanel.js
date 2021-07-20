@@ -52,10 +52,10 @@ const schema = {
             "title": "Description",
             "type": "string"
         },
-        // "help text": {
-        //     "title": "Help text",
-        //     "type": "string"
-        // },
+        "help": {
+            "title": "Help text",
+            "type": "string"
+        },
         "disabledCheckbox": {
             "type": "boolean",
             "title": "Disabled",
@@ -119,11 +119,18 @@ function TextFieldPanel(props) {
         }
 
         //Description
-        if(formData.description) {
-            newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
+        // if(formData.description) {
+        //     newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
+        // }
+        // else {
+        //     delete newSchema["properties"][props.editFieldKeyName]["description"]
+        // }
+        //help text
+        if(formData.help) {
+            newUischema[props.editFieldKeyName]["ui:help"] = formData.help
         }
         else {
-            delete newSchema["properties"][props.editFieldKeyName]["description"]
+            delete newUischema[props.editFieldKeyName]["ui:help"]
         }
 
         //Disabled
@@ -164,8 +171,8 @@ function TextFieldPanel(props) {
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
-        "description":  props.schema["properties"][props.editFieldKeyName]["description"],
-        // "help text": props.uiSchema[props.editFieldKeyName]["ui:help"],
+        // "description":  props.schema["properties"][props.editFieldKeyName]["description"],
+        "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
 

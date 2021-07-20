@@ -33,7 +33,7 @@ function FormBuilder() {
         setSchema(newSchema);
         
         newUischema[textFieldKey] = {
-            classNames: "myClasss",
+            // classNames: "myClass",
             "ui:autofocus": false,
             "ui:options": {
                 "inputType": "text",
