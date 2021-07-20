@@ -44,7 +44,7 @@ const schema = {
             "type": "number",
             "title": "Max length",
         },
-        "classname": {
+        "classNames": {
             "title": "ClassName",
             "type": "string"
         },
@@ -60,10 +60,10 @@ const schema = {
             "type": "boolean",
             "title": "Disabled",
         },
-        "readonlyCheckbox": {
-            "type": "boolean",
-            "title": "Read only",
-        },
+        // "readonlyCheckbox": {
+        //     "type": "boolean",
+        //     "title": "Read only",
+        // },
         // "label checkbox": {
         //     "type": "boolean",
         //     "title": "Hide Label",
@@ -125,6 +125,32 @@ function TextFieldPanel(props) {
         else {
             delete newSchema["properties"][props.editFieldKeyName]["description"]
         }
+
+        //Disabled
+        if(formData.disabledCheckbox) {
+            newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
+            console.log(formData.disabledCheckbox)
+        }
+        else {
+           delete newUischema[props.editFieldKeyName]["ui:disabled"]
+        }
+
+        //readonly
+        if(formData.readonlyCheckbox) {
+            newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:readonly"]
+         }
+         
+         //classNames
+         if(formData.classNames) {
+            newUischema[props.editFieldKeyName].classNames = formData.classNames
+         }
+         else {
+            delete newUischema[props.editFieldKeyName].classNames
+         }
+        
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
@@ -137,6 +163,7 @@ function TextFieldPanel(props) {
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
+        "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         // "help text": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
