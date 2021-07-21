@@ -139,11 +139,11 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
-    function addRadioGroup() {
+    function addRadioSwitch() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let randomNumKey = "RadioGroup_" + Math.floor(Math.random() * 899999 + 100000);
-        newSchema['properties'][randomNumKey] = {
+        let radioKey = "radioSwitch_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema['properties'][radioKey] = {
             "type": "string",
             "title": "string enum",
             "enum": [
@@ -152,7 +152,7 @@ function FormBuilder() {
               ]
         }
         setSchema(newSchema);
-        newUischema[randomNumKey] = {
+        newUischema[radioKey] = {
             "ui:widget": "radio",
             "ui:options": {
                 inline: true,
@@ -300,7 +300,7 @@ function FormBuilder() {
             closePanel={closePanel} /> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
-            addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
+            addCheckbox={addCheckbox} addRadioSwitch={addRadioSwitch} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
             chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
             />
