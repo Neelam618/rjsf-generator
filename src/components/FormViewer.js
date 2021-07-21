@@ -9,7 +9,7 @@ import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 import './FormViewer.css'
 
-const Form = withTheme(FluentUITheme);
+const Form = withTheme(MuiTheme);
 
 function FormViewer(props) {
 

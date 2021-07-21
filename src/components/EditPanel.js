@@ -2,7 +2,8 @@ import React from 'react'
 import TextFieldPanel from './Panels/TextFieldPanel';
 import NumberFieldPanel from './Panels/NumberFieldPanel';
 import SelectFieldPanel from './Panels/SelectFieldPanel';
-import TextareaPanel from './Panels/TextareaPanel'
+import TextareaPanel from './Panels/TextareaPanel';
+import CheckboxPanel from './Panels/CheckboxPanel'
 
 function EditPanel(props) {
     let newSchema = JSON.parse(JSON.stringify(props.schema));
@@ -30,6 +31,11 @@ function EditPanel(props) {
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
+
+            case "Checkbox": return <CheckboxPanel
+            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+            editFieldKeyName={props.editFieldKeyName}
+            closePanel={props.closePanel} />
         }
     }
 

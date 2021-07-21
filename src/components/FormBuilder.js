@@ -126,11 +126,18 @@ function FormBuilder() {
     }
     function addCheckbox() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["Checkbox_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let checkboxKey = "Checkbox_" + Math.floor(Math.random() * 899999 + 100000);
+
+        newSchema['properties'][checkboxKey] = {
             "type": "boolean",
             "title": "Done?",
         }
         setSchema(newSchema);
+        newUischema[checkboxKey] = {
+            
+        }
+        setUischema(newUischema);
     }
     function addRadioGroup() {
         let newSchema= JSON.parse(JSON.stringify(schema));
