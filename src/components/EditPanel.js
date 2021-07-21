@@ -11,7 +11,11 @@ function EditPanel(props) {
             editFieldKeyName={props.editFieldKeyName} 
             closeTextFieldPanel={props.closeTextFieldPanel} />
 
-            case "number": return <NumberFieldPanel />
+            case "number": return <NumberFieldPanel 
+            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema} 
+            editFieldKeyName={props.editFieldKeyName} 
+            closeTextFieldPanel={props.closeTextFieldPanel}
+            />
             // case "blue":  return "#0000FF";
             // default:      return "#FFFFFF";
         }

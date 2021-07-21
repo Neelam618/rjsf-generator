@@ -50,13 +50,30 @@ function FormBuilder() {
 
     function addNumInput() {
         let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+
         let numFieldKey = "Num_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][numFieldKey] = {
             "type": "number",
             "title": "Number",
         }
         setSchema(newSchema);
+
+        newUischema[numFieldKey] = {
+            // classNames: "myClass",
+            "ui:autofocus": false,
+            "ui:options": {
+                "inputType": "text",
+                // "label": false
+              },
+            // "ui:placeholder": "This is a placeholder",
+            // "ui:help": "Hint: Make it strong!",
+            // "ui:disabled": false,
+            // "ui:readonly": false,
+        }
+        setUischema(newUischema);
     }
+
     function addDropdownTxt() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         newSchema['properties']["TxtSelect_" + Math.floor(Math.random() * 899999 + 100000)] = {
