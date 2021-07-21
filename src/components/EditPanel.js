@@ -2,6 +2,7 @@ import React from 'react'
 import TextFieldPanel from './Panels/TextFieldPanel';
 import NumberFieldPanel from './Panels/NumberFieldPanel';
 import SelectFieldPanel from './Panels/SelectFieldPanel';
+import TextareaPanel from './Panels/TextareaPanel'
 
 function EditPanel(props) {
     let newSchema = JSON.parse(JSON.stringify(props.schema));
@@ -18,17 +19,19 @@ function EditPanel(props) {
             case "Num": return <NumberFieldPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
-                closePanel={props.closePanel}
-            />
-            case "select": return <SelectFieldPanel
-            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
-            editFieldKeyName={props.editFieldKeyName}
-            closePanel={props.closePanel}
-        />
+                closePanel={props.closePanel} />
 
+            case "select": return <SelectFieldPanel
+                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+                editFieldKeyName={props.editFieldKeyName}
+                closePanel={props.closePanel} />
+
+            case "Textarea": return <TextareaPanel
+                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+                editFieldKeyName={props.editFieldKeyName}
+                closePanel={props.closePanel} />
         }
     }
-
 
 }
 

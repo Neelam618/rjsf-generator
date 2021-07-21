@@ -120,7 +120,6 @@ function FormBuilder() {
                 "ui:widget": "textarea",
                 "ui:options": {
                     rows: 4,
-                    // "label": true,
                   }
         }
         setUischema(newUischema);
