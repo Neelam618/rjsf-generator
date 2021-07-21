@@ -1,7 +1,6 @@
 import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
-import TextFieldPanel from './Panels/TextFieldPanel'
 import EditPanel from './EditPanel'
 
 function FormBuilder() {
@@ -40,7 +39,7 @@ function FormBuilder() {
                 "inputType": "text",
                 // "label": false
               },
-            // "ui:placeholder": "This is a placeholder",
+            "ui:placeholder": "This is a placeholder",
             // "ui:help": "Hint: Make it strong!",
             // "ui:disabled": false,
             // "ui:readonly": false,
@@ -56,36 +55,55 @@ function FormBuilder() {
         newSchema['properties'][numFieldKey] = {
             "type": "number",
             "title": "Number",
+            "multipleOf": 2,
+            "minimum": 8,
+            "maximum": 10
         }
         setSchema(newSchema);
 
         newUischema[numFieldKey] = {
-            // classNames: "myClass",
             "ui:autofocus": false,
             "ui:options": {
-                "inputType": "text",
+                "inputType": "number",
                 // "label": false
               },
-            // "ui:placeholder": "This is a placeholder",
-            // "ui:help": "Hint: Make it strong!",
-            // "ui:disabled": false,
-            // "ui:readonly": false,
         }
         setUischema(newUischema);
     }
 
-    function addDropdownTxt() {
+    function addSelect() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["TxtSelect_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let selectFieldKey = "select_" + Math.floor(Math.random() * 899999 + 100000)
+
+        newSchema['properties'][selectFieldKey] = {
+            "title": "Custom select widget with options",
             "type": "string",
-            "title": "Text select",
             "enum": [
-                    "option 1",
-                    "option 2",
-                    "option 3"
-            ]
+                "option1",
+                "option2", 
+                "option3"
+              ],
+              "enumNames": [
+                "Option1",
+                "Option2",
+                "Option3"
+              ]
         }
         setSchema(newSchema);
+        newUischema[selectFieldKey] = {
+           // classNames: "myClass",
+           "ui:autofocus": false,
+           "ui:options": {
+               "inputType": "text",
+               // "label": false
+             },
+        //    "ui:placeholder": "This is a placeholder",
+           // "ui:help": "Hint: Make it strong!",
+           // "ui:disabled": false,
+           // "ui:readonly": false,
+        }
+        setUischema(newUischema);
     }
     function addTxtarea() {
         let newSchema= JSON.parse(JSON.stringify(schema));
@@ -258,7 +276,7 @@ function FormBuilder() {
         setshowEditPanel(true)
         setEditFieldKeyName(editFieldKeyName)
     }
-    function closeTextFieldPanel() {
+    function closePanel() {
         setshowEditPanel(false)
     }
 
@@ -273,9 +291,9 @@ function FormBuilder() {
             showEditPanel? 
             <EditPanel 
             setSchema={setSchema} setUischema={setUischema} schema={schema} uiSchema={uiSchema} editFieldKeyName={editFieldKeyName} 
-            closeTextFieldPanel={closeTextFieldPanel} /> :
+            closePanel={closePanel} /> :
             <Toolbox 
-            addTxtInput={addTxtInput} addNumInput={addNumInput} addDropdownTxt={addDropdownTxt} addTxtarea={addTxtarea}
+            addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioGroup={addRadioGroup} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
             addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
             chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}

@@ -1,24 +1,35 @@
 import React from 'react'
 import TextFieldPanel from './Panels/TextFieldPanel';
 import NumberFieldPanel from './Panels/NumberFieldPanel';
+import SelectFieldPanel from './Panels/SelectFieldPanel';
 
 function EditPanel(props) {
     let newSchema = JSON.parse(JSON.stringify(props.schema));
+    let schemaConfigForKey = newSchema['properties'][props.editFieldKeyName];
 
-        switch (newSchema['properties'][props.editFieldKeyName]["type"]) {
-            case "string": return <TextFieldPanel 
-            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema} 
-            editFieldKeyName={props.editFieldKeyName} 
-            closeTextFieldPanel={props.closeTextFieldPanel} />
+    if (schemaConfigForKey) {
 
-            case "number": return <NumberFieldPanel 
-            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema} 
-            editFieldKeyName={props.editFieldKeyName} 
-            closeTextFieldPanel={props.closeTextFieldPanel}
+        switch (props.editFieldKeyName.split("_")[0]) {
+            case "Text": return <TextFieldPanel
+                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+                editFieldKeyName={props.editFieldKeyName}
+                closePanel={props.closePanel} />
+
+            case "Num": return <NumberFieldPanel
+                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+                editFieldKeyName={props.editFieldKeyName}
+                closePanel={props.closePanel}
             />
-            // case "blue":  return "#0000FF";
-            // default:      return "#FFFFFF";
+            case "select": return <SelectFieldPanel
+            setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+            editFieldKeyName={props.editFieldKeyName}
+            closePanel={props.closePanel}
+        />
+
         }
-   }
+    }
+
+
+}
 
 export default EditPanel

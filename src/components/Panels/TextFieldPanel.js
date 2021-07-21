@@ -7,7 +7,7 @@ import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(MuiTheme);
+const Form = withTheme(AntDTheme);
 const schema = {
     "properties": {
         "label": {
@@ -75,7 +75,7 @@ const schema = {
 function TextFieldPanel(props) {
     const onSubmit = ({formData}) => {
         console.log("Data submitted: ",  formData)
-        props.closeTextFieldPanel()
+        props.closePanel()
 
         let newSchema= JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
@@ -102,7 +102,7 @@ function TextFieldPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
 
-        //For placeholder
+        // For placeholder
         if(formData.placeholder) {
             newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
         }
@@ -125,6 +125,7 @@ function TextFieldPanel(props) {
         // else {
         //     delete newSchema["properties"][props.editFieldKeyName]["description"]
         // }
+
         //help text
         if(formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
@@ -150,7 +151,7 @@ function TextFieldPanel(props) {
             delete newUischema[props.editFieldKeyName]["ui:readonly"]
          }
          
-         //classNames
+        //  classNames
          if(formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
          }
@@ -180,7 +181,7 @@ function TextFieldPanel(props) {
     let yourForm;
     return (
         <div style={{width: '30%'}}>
-            <div onClick={props.closeTextFieldPanel} style={{textAlign: 'end'}}>Close</div>
+            <div onClick={props.closePanel} style={{textAlign: 'end'}}>Close</div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             />

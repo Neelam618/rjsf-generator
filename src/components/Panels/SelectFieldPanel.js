@@ -10,6 +10,15 @@ import 'antd/dist/antd.css';
 const Form = withTheme(AntDTheme);
 
 const schema = {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": {
+      "type": "string",
+    },
     "properties": {
         "label": {
             "title": "Label",
@@ -23,52 +32,32 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        "placeholder": {
-            "title": "Placeholder",
-            "type": "string"
-        },
-        "minimum": {
-            "type": "number",
-            "title": "Minimum",
-        },
-        "maximum": {
-            "type": "number",
-            "title": "Maximum",
-        },
-        "multipleOf": {
-            "type": "number",
-            "title": "Multiple of",
-        },
         "classNames": {
             "title": "ClassName",
             "type": "string"
         },
-        "description": {
-            "title": "Description",
-            "type": "string"
-        },
+
         "help": {
             "title": "Help text",
             "type": "string"
-        },
-        "disabledCheckbox": {
-            "type": "boolean",
-            "title": "Disabled",
-        },
-        "readonlyCheckbox": {
-            "type": "boolean",
-            "title": "Read only",
-        },
-        // "label checkbox": {
-        //     "type": "boolean",
-        //     "title": "Hide Label",
-        // },          
-
+        }, 
     }
 }
 
+const uiSchema= {
+    "ui:widget": (props) => {
+        return (
+          <input type="text"
+            className="custom"
+            value={props.value}
+            required={props.required}
+            onChange={(event) => props.onChange(event.target.value)} />
+        );
+      }
+}
 
-function NumberFieldPanel(props) {
+
+function SelectFieldPanel(props) {
     const onSubmit = ({formData}) => {
         console.log("Data submitted: ",  formData)
         props.closePanel()
@@ -98,14 +87,6 @@ function NumberFieldPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
 
-        //For placeholder
-        if(formData.placeholder) {
-            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
-        }
-        else {
-            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        }
-
         //For maxLength
         if(formData.maxLength) {
             newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
@@ -114,37 +95,13 @@ function NumberFieldPanel(props) {
             delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
         }
 
-        //Description
-        // if(formData.description) {
-        //     newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
-        // }
-        // else {
-        //     delete newSchema["properties"][props.editFieldKeyName]["description"]
-        // }
-        //help text
+        // help text
         if(formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:help"]
         }
-
-        //Disabled
-        if(formData.disabledCheckbox) {
-            newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
-            console.log(formData.disabledCheckbox)
-        }
-        else {
-           delete newUischema[props.editFieldKeyName]["ui:disabled"]
-        }
-
-        //readonly
-        if(formData.readonlyCheckbox) {
-            newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
-        }
-        else {
-            delete newUischema[props.editFieldKeyName]["ui:readonly"]
-         }
          
          //classNames
          if(formData.classNames) {
@@ -153,19 +110,6 @@ function NumberFieldPanel(props) {
          else {
             delete newUischema[props.editFieldKeyName].classNames
          }
-
-         //minimum
-         if(formData.minimum) {
-            newSchema["properties"][props.editFieldKeyName]["minimum"] = formData.minimum
-         }
-        //maximum
-        if(formData.maximum) {
-        newSchema["properties"][props.editFieldKeyName]["maximum"] = formData.maximum
-        }
-        //multiple of
-        if(formData.multipleOf) {
-        newSchema["properties"][props.editFieldKeyName]["multipleOf"] = formData.multipleOf
-        }
                         
         props.setSchema(newSchema)
         props.setUischema(newUischema)
@@ -174,29 +118,21 @@ function NumberFieldPanel(props) {
 
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "inputType": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
-        "minimum": props.schema["properties"][props.editFieldKeyName]["minimum"],
-        "maximum": props.schema["properties"][props.editFieldKeyName]["maximum"],
-        "multipleOf": props.schema["properties"][props.editFieldKeyName]["multipleOf"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
-        // "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
-        "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
-        "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
 
     }
     let yourForm;
     return (
         <div style={{width: '30%'}}>
             <div onClick={props.closePanel} style={{textAlign: 'end'}}>Close</div>
-            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
+            <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             />
         </div>
     )
 }
 
-export default NumberFieldPanel
+export default SelectFieldPanel
