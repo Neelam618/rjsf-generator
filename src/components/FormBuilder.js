@@ -157,7 +157,7 @@ function FormBuilder() {
             "ui:options": {
                 inline: true,
               }
-    }
+        }
     setUischema(newUischema);
     }
     function addIntRange() {

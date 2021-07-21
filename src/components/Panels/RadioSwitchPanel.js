@@ -30,6 +30,10 @@ const schema = {
             "type": "string",
             "title": "Enum value 2"
         },
+        "inline": {
+            "type": "boolean",
+            "title": "Inline",
+        },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -89,6 +93,14 @@ function RadioSwitchPanel(props) {
         //Enum value 2
         if(formData.enumValue2) {
             newSchema["properties"][props.editFieldKeyName]["enum"][1] = formData.enumValue2
+        }
+
+        //inline
+        if(formData.inline) {
+            newUischema[props.editFieldKeyName]["ui:options"].inline = formData.inline
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:options"].inline         
         }
 
         // For placeholder
@@ -151,6 +163,7 @@ function RadioSwitchPanel(props) {
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "enumValue1": props.schema["properties"][props.editFieldKeyName]["enum"][0],
         "enumValue2": props.schema["properties"][props.editFieldKeyName]["enum"][1],
+        "inline": props.uiSchema[props.editFieldKeyName]["ui:options"].inline,
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
