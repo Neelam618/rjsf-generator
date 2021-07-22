@@ -163,15 +163,16 @@ function FormBuilder() {
     function addIntRange() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let randomNumKey = "IntRange_" + Math.floor(Math.random() * 899999 + 100000);
-        newSchema['properties'][randomNumKey] = {
+        let intRangeKey = "intRange_" + Math.floor(Math.random() * 899999 + 100000);
+        newSchema['properties'][intRangeKey] = {
             "title": "Integer range",
             "type": "integer",
             "minimum": 42,
-            "maximum": 100
+            "maximum": 100,
+            "multipleOf": 10
         }
         setSchema(newSchema);
-        newUischema[randomNumKey] = {
+        newUischema[intRangeKey] = {
             "ui:widget": "range",
         }
         setUischema(newUischema);
