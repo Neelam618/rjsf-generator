@@ -18,12 +18,12 @@ function EditPanel(props) {
     if (schemaConfigForKey) {
 
         switch (props.editFieldKeyName.split("_")[0]) {
-            case "Text": return <TextFieldPanel
+            case "text": return <TextFieldPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "Num": return <NumberFieldPanel
+            case "num": return <NumberFieldPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
@@ -33,12 +33,12 @@ function EditPanel(props) {
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "Textarea": return <TextareaPanel
+            case "textarea": return <TextareaPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "Checkbox": return <CheckboxPanel
+            case "checkbox": return <CheckboxPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />

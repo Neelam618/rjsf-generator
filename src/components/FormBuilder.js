@@ -20,7 +20,7 @@ function FormBuilder() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
 
-        let textFieldKey = "Text_" + Math.floor(Math.random() * 899999 + 100000)
+        let textFieldKey = "text_" + Math.floor(Math.random() * 899999 + 100000)
 
         newSchema['properties'][textFieldKey] = {
             "title": "Text",
@@ -51,7 +51,7 @@ function FormBuilder() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
 
-        let numFieldKey = "Num_" + Math.floor(Math.random() * 899999 + 100000)
+        let numFieldKey = "num_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][numFieldKey] = {
             "type": "number",
             "title": "Number",
@@ -108,7 +108,7 @@ function FormBuilder() {
     function addTxtarea() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let randomNumKey = "Textarea_" + Math.floor(Math.random() * 899999 + 100000);
+        let randomNumKey = "textarea_" + Math.floor(Math.random() * 899999 + 100000);
 
         newSchema['properties'][randomNumKey] = {
             "type": "string",
@@ -127,7 +127,7 @@ function FormBuilder() {
     function addCheckbox() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let checkboxKey = "Checkbox_" + Math.floor(Math.random() * 899999 + 100000);
+        let checkboxKey = "checkbox_" + Math.floor(Math.random() * 899999 + 100000);
 
         newSchema['properties'][checkboxKey] = {
             "type": "boolean",

@@ -166,7 +166,6 @@ function TextFieldPanel(props) {
 
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "inputType": props.uiSchema[props.editFieldKeyName]["ui:options"]["inputType"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
