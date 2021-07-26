@@ -20,14 +20,11 @@ function Toolbox(props) {
                     <li onClick={() => props.addCheckbox()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Checkbox</span>
                     </li>
-                    <li onClick={() => props.addRadioSwitch()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addRadioButtons()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Radio Buttons</span>
                     </li>
                     <li onClick={() => props.addIntRange()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Integer Range</span>
-                    </li>
-                    <li onClick={() => props.addIntRangeSteps()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Integer Range by Steps</span>
                     </li>
                     <li onClick={() => props.addMultipleChoiceList()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Multiple choice list</span>

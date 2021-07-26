@@ -139,7 +139,7 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
-    function addRadioSwitch() {
+    function addRadioButtons() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
         let radioKey = "radioSwitch_" + Math.floor(Math.random() * 899999 + 100000);
@@ -148,7 +148,8 @@ function FormBuilder() {
             "title": "string enum",
             "enum": [
                 "yes",
-                "no",   
+                "no",
+                "not sure"   
               ]
         }
         setSchema(newSchema);
@@ -177,28 +178,13 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
-    function addIntRangeSteps() {
-        let newSchema= JSON.parse(JSON.stringify(schema));
-        let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let randomNumKey = "IntRangeSteps_" + Math.floor(Math.random() * 899999 + 100000);
-        newSchema['properties'][randomNumKey] = {
-            "title": "Integer range (by steps)",
-            "type": "integer",
-            "minimum": 10,
-            "maximum": 100,
-            "multipleOf": 10
-        }
-        setSchema(newSchema);
-        newUischema[randomNumKey] = {
-            "ui:widget": "range",
-        }
-        setUischema(newUischema);
-    }
     function addMultipleChoiceList() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["multipleChoiceList_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let multipleChoiceListKey = "multipleChoiceList_" + Math.floor(Math.random() * 899999 + 100000)
+        newSchema['properties'][multipleChoiceListKey] = {
             "type": "array",
-            "title": "Pick max two items",
+            "title": "Pick items",
             "uniqueItems": true,
             "maxItems": 2,
             "items": {
@@ -211,6 +197,10 @@ function FormBuilder() {
             }
         }
         setSchema(newSchema);
+        newUischema[multipleChoiceListKey] = {
+
+        }
+        setUischema(newUischema);
     }
     // function addDate() {
     //     let newSchema= JSON.parse(JSON.stringify(schema));
@@ -301,7 +291,7 @@ function FormBuilder() {
             closePanel={closePanel} /> :
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
-            addCheckbox={addCheckbox} addRadioSwitch={addRadioSwitch} addIntRange={addIntRange} addIntRangeSteps={addIntRangeSteps}
+            addCheckbox={addCheckbox} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
             addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
             chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
             />

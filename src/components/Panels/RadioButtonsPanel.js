@@ -22,14 +22,14 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        "enumValue1": {
-            "type": "string",
-            "title": "Enum value 1"
-        },
-        "enumValue2": {
-            "type": "string",
-            "title": "Enum value 2"
-        },
+        "enum": {
+            "type": "array",
+            "title": "List options",
+            "items": {
+              "type": "string",
+              "minLength": 2,
+            }
+          },
         "inline": {
             "type": "boolean",
             "title": "Inline",
@@ -85,14 +85,9 @@ function RadioSwitchPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
 
-        //Enum value 1
-        if(formData.enumValue1) {
-            newSchema["properties"][props.editFieldKeyName]["enum"][0] = formData.enumValue1
-        }
-
-        //Enum value 2
-        if(formData.enumValue2) {
-            newSchema["properties"][props.editFieldKeyName]["enum"][1] = formData.enumValue2
+        //list options
+        if(formData.enum) {
+            newSchema["properties"][props.editFieldKeyName]["enum"] = formData.enum
         }
 
         //inline
@@ -161,8 +156,7 @@ function RadioSwitchPanel(props) {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "enumValue1": props.schema["properties"][props.editFieldKeyName]["enum"][0],
-        "enumValue2": props.schema["properties"][props.editFieldKeyName]["enum"][1],
+        "enum": props.schema["properties"][props.editFieldKeyName]["enum"],
         "inline": props.uiSchema[props.editFieldKeyName]["ui:options"].inline,
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
