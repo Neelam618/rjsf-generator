@@ -316,7 +316,7 @@ function FormBuilder() {
             addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
             addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate} addDate={addDate} addDateTime={addDateTime}
-            chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles}
+            chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles} schema={schema} uiSchema={uiSchema}
             />
             }
 

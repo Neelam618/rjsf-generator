@@ -1,4 +1,5 @@
 import React from 'react'
+import DisplaySchema from './DisplaySchema'
 
 function Toolbox(props) {
     return (
@@ -46,6 +47,7 @@ function Toolbox(props) {
                     </li>
                     </ul>
                 </div>
+                <DisplaySchema schema={props.schema} uiSchema={props.uiSchema} />
         </div>
     )
 }
