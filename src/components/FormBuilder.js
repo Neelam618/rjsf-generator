@@ -202,24 +202,30 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
-    // function addDate() {
-    //     let newSchema= JSON.parse(JSON.stringify(schema));
-    //     newSchema['properties']["date_" + Math.floor(Math.random() * 899999 + 100000)] = {
-    //         "title": "Date",
-    //         "type": "string",
-    //         "format": "date"
-    //     }
-    //     setSchema(newSchema);
-    // }
-    // function addDateTime() {
-    //     let newSchema= JSON.parse(JSON.stringify(schema));
-    //     newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
-    //         "title": "Date & Time",
-    //         "type": "string",
-    //         "format": "date-time"
-    //     }
-    //     setSchema(newSchema);
-    // }
+    function addDate() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let dateKey = "date_" + Math.floor(Math.random() * 899999 + 100000)
+        newSchema['properties'][dateKey] = {
+            "title": "Date",
+            "type": "string",
+            "format": "date"
+        }
+        setSchema(newSchema);
+        newUischema[dateKey] = {
+
+        }
+        setUischema(newUischema);
+    }
+    function addDateTime() {
+        let newSchema= JSON.parse(JSON.stringify(schema));
+        newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
+            "title": "Date & Time",
+            "type": "string",
+            "format": "date-time"
+        }
+        setSchema(newSchema);
+    }
     function addAltDate() {
         let newSchema= JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
@@ -241,18 +247,29 @@ function FormBuilder() {
         setUischema(newUischema);
         setSchema(newSchema);
     }
-    function chooseSingleFile() {
+    function chooseFile() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["chooseSingleFile_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let chooseFileKey = "chooseFile_" + Math.floor(Math.random() * 899999 + 100000)
+        newSchema['properties'][chooseFileKey] = {
+            "title": "Select File/Files",
             "type": "string",
             "format": "data-url",
-            "title": "Single file"
         }
         setSchema(newSchema);
+        newUischema[chooseFileKey] = {
+            "ui:options": {
+                "accept": ".pdf"
+              }
+        }
+        setUischema(newUischema);
+
     }
     function chooseMultipleFiles() {
         let newSchema= JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["chooseMultipleFiles_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let chooseMultipleFilesKey = "chooseMultipleFiles_" + Math.floor(Math.random() * 899999 + 100000)
+        newSchema['properties'][chooseMultipleFilesKey] = {
             "type": "array",
             "title": "Multiple files",
             "items": {
@@ -261,6 +278,12 @@ function FormBuilder() {
             }
         }
         setSchema(newSchema);
+        newUischema[chooseMultipleFilesKey] = {
+            "ui:options": {
+                "accept": ".pdf"
+            }
+        }
+        setUischema(newUischema);
     }
 
     function removeField(keyName) {
@@ -292,8 +315,8 @@ function FormBuilder() {
             <Toolbox 
             addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
             addCheckbox={addCheckbox} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
-            addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate}
-            chooseSingleFile={chooseSingleFile} chooseMultipleFiles={chooseMultipleFiles}
+            addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate} addDate={addDate} addDateTime={addDateTime}
+            chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles}
             />
             }
 

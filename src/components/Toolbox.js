@@ -29,17 +29,17 @@ function Toolbox(props) {
                     <li onClick={() => props.addMultipleChoiceList()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Multiple choice list</span>
                     </li>
-                    {/* <li onClick={() => props.addDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                    <li onClick={() => props.addDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Field</span>
                     </li>
                     <li onClick={() => props.addDateTime()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Date Time Field</span>
-                    </li> */}
-                    <li onClick={() => props.addAltDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Alternative Date Field</span>
                     </li>
-                    <li onClick={() => props.chooseSingleFile()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
-                        <span>Choose Single File</span>
+                    {/* <li onClick={() => props.addAltDate()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Alternative Date Field</span>
+                    </li> */}
+                    <li onClick={() => props.chooseFile()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
+                        <span>Choose File</span>
                     </li>
                     <li onClick={() => props.chooseMultipleFiles()} style={{padding: 10, borderBottom: "1px solid black", listStyleType: 'none'}}>
                         <span>Choose Multiple Files</span>

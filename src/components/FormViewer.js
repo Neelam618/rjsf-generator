@@ -9,30 +9,29 @@ import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 import './FormViewer.css'
 
-const Form = withTheme(FluentUITheme);
+const Form = withTheme(AntDTheme);
 
 function FormViewer(props) {
 
     return <div style={{ padding: 30, width: '50%'}}>
-        {Object.keys(props.schema.properties).map(function(keyName) {
-            let singleFieldSchema = {
+        {Object.entries(props.schema.properties).map(function([key, value]) {
+             let singleFieldSchema = {
                 "properties": {
-                    [keyName]: props.schema.properties[keyName]
+                    [key]: value
                 },
                 "required": props.schema["required"] 
             }
 
             let singleFieldUiSchema = {};
-            if(props.uiSchema[keyName]) {
-                singleFieldUiSchema[keyName] = props.uiSchema[keyName]
-            }
+            if(props.uiSchema[key]) {
+                singleFieldUiSchema[key] = props.uiSchema[key]
+            } 
 
-            // console.log(JSON.stringify(singleFieldSchema))
             return (
                 <div className="fieldContainer" style={{ position: 'relative', padding: 10}}>   
-                    <Form key={keyName} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true}>
-                        <span onClick={() => props.removeField(keyName)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
-                        <span onClick={() => props.displayTextFieldPanel(keyName)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
+                    <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true}>
+                        <span onClick={() => props.removeField(key)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
+                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
                     </Form>
                 </div>
             )
