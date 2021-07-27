@@ -17,7 +17,6 @@ const schema = {
       }
     },
     "additionalProperties": {
-        "title": "options",
         "type": "string",
     },
     "properties": {
@@ -115,7 +114,14 @@ function SelectFieldPanel(props) {
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
-    }
+        //additional properties
+        let enumKeys = Object.keys(formData)
+        .filter(k => !["label", "requiredCheckbox", "autofocusCheckbox", "classNames", "help"].includes(k));
+        let enumValues = enumKeys.map(k => formData[k])
+        newSchema["properties"][props.editFieldKeyName]["enum"] = enumKeys
+        newSchema["properties"][props.editFieldKeyName]["enumNames"] = enumValues
+        console.log( newSchema["properties"][props.editFieldKeyName]);
+     }
 
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
@@ -123,8 +129,16 @@ function SelectFieldPanel(props) {
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
-
     }
+
+    let formDataSchema = JSON.parse(JSON.stringify(props.schema));
+    let formDataEnum = formDataSchema["properties"][props.editFieldKeyName]["enum"] || [];
+    let formDataEnumNames = formDataSchema["properties"][props.editFieldKeyName]["enumNames"] || [];
+
+    for (let i = 0; i < formDataEnum.length; i++) {
+        formData[formDataEnum[i]] = formDataEnumNames[i];
+    }
+
     let yourForm;
     return (
         <div style={{width: '30%'}}>

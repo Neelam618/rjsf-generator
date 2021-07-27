@@ -7,27 +7,13 @@ import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import 'antd/dist/antd.css';
 
-const Form = withTheme(AntDTheme);
+const Form = withTheme(MuiTheme);
 const schema = {
     "properties": {
         "label": {
             "title": "Label",
             "type": "string",
         },
-        // "inputType": {
-        //     "type": "string",
-        //     "title": "Type",
-        //     "enum": [
-        //             "text",
-        //             "email",
-        //             "password",
-        //             "tel",
-        //             "uri",
-        //             "date",
-        //             "date-time",
-        //             "color"
-        //     ],
-        // },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",

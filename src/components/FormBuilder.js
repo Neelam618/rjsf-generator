@@ -81,13 +81,11 @@ function FormBuilder() {
             "type": "string",
             "enum": [
                 "option1",
-                "option2", 
-                "option3"
+                "option2",
               ],
               "enumNames": [
-                "Option1",
-                "Option2",
-                "Option3"
+               "Option 1",
+               "Option 2"
               ]
         }
         setSchema(newSchema);
@@ -98,10 +96,6 @@ function FormBuilder() {
                "inputType": "text",
                // "label": false
              },
-        //    "ui:placeholder": "This is a placeholder",
-           // "ui:help": "Hint: Make it strong!",
-           // "ui:disabled": false,
-           // "ui:readonly": false,
         }
         setUischema(newUischema);
     }
