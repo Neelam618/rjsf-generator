@@ -130,7 +130,8 @@ function SelectFieldPanel(props) {
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
     }
-
+    
+    //additional properties
     let formDataSchema = JSON.parse(JSON.stringify(props.schema));
     let formDataEnum = formDataSchema["properties"][props.editFieldKeyName]["enum"] || [];
     let formDataEnumNames = formDataSchema["properties"][props.editFieldKeyName]["enumNames"] || [];
