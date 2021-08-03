@@ -1,11 +1,11 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-import { Theme as AntDTheme } from '@rjsf/antd';
+// import { Theme as AntDTheme } from '@rjsf/antd';
 import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
 import { Theme as MuiTheme } from 'rjsf-material-ui';
 import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 const Form = withTheme(MuiTheme);
 const schema = {
@@ -85,6 +85,22 @@ function IntRangePanel(props) {
             delete newSchema["properties"][props.editFieldKeyName]["minimum"]
         }
 
+        //maximum
+        if(formData.maximum) {
+            newSchema["properties"][props.editFieldKeyName]["maximum"] = formData.maximum
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["maximum"]
+        }
+
+        //multipleOf
+         if(formData.multipleOf) {
+            newSchema["properties"][props.editFieldKeyName]["multipleOf"] = formData.multipleOf
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["multipleOf"]
+        }
+
         //For autofocus
         if (formData.autofocusCheckbox) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = true
@@ -118,7 +134,7 @@ function IntRangePanel(props) {
             delete newUischema[props.editFieldKeyName]["ui:readonly"]
          }
          
-        //  classNames
+        // classNames
          if(formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
          }

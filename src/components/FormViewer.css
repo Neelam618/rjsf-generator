@@ -10,6 +10,9 @@
 .fieldContainer:hover {
     border: 1px solid rgb(192, 189, 189);
 }
+/* .txtClass input, .textareaClass textarea, .numberClass input, .selectClass select, .multiChoiceClass select {
+    border: 1px solid rgb(196, 196, 196);
+} */
 
 /* *:not(:hover)>.fieldContainer{
     display:inline;

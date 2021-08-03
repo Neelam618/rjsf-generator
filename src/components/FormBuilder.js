@@ -2,6 +2,7 @@ import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
 import EditPanel from './EditPanel'
+import TextWidget from './TextWidget'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
@@ -27,6 +28,7 @@ function FormBuilder() {
             "type": "string",
             // "maxLength": 5,
             // "description": ""
+            
         }
         // newSchema['required'].push(textFieldKey)
 
@@ -34,10 +36,12 @@ function FormBuilder() {
         
         newUischema[textFieldKey] = {
             // classNames: "myClass",
+            inputClass: 'demo', 
             "ui:autofocus": false,
             "ui:options": {
                 "inputType": "text",
                 // "label": false
+            inputClass: 'demo', 
               },
             "ui:placeholder": "This is a placeholder",
             // "ui:help": "Hint: Make it strong!",
@@ -246,7 +250,7 @@ function FormBuilder() {
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
         let chooseFileKey = "chooseFile_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][chooseFileKey] = {
-            "title": "Select File/Files",
+            "title": "Select File",
             "type": "string",
             "format": "data-url",
         }
@@ -294,11 +298,15 @@ function FormBuilder() {
         setshowEditPanel(false)
     }
 
+    const widgets = {
+        BaseInput: TextWidget
+      };
+
     return (
         
         <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
-            displayTextFieldPanel={displayTextFieldPanel}
+            displayTextFieldPanel={displayTextFieldPanel} widgets={widgets}
             />
 
             {
