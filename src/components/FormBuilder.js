@@ -2,7 +2,6 @@ import {React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
 import EditPanel from './EditPanel'
-import TextWidget from './TextWidget'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
@@ -298,15 +297,11 @@ function FormBuilder() {
         setshowEditPanel(false)
     }
 
-    const widgets = {
-        BaseInput: TextWidget
-      };
-
     return (
         
         <div style={{display: 'flex', padding: 30, justifyContent: 'space-evenly'}}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField} 
-            displayTextFieldPanel={displayTextFieldPanel} widgets={widgets}
+            displayTextFieldPanel={displayTextFieldPanel}
             />
 
             {

@@ -24,8 +24,8 @@ function FormViewer(props) {
                 "required": props.schema["required"],
             }
             const widgets = {
-                BaseInput: TextWidget
-              };
+                TextWidget: TextWidget
+            };
 
             let singleFieldUiSchema = {
                 
