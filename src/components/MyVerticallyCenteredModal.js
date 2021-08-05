@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 
-function DisplaySchema(props) {
+function MyVerticallyCenteredModal(props) {
     console.log(props.schema)
     const schemaObj = {
         schema: props.schema
@@ -31,4 +31,4 @@ function DisplaySchema(props) {
     );
 }
 
-export default DisplaySchema
+export default MyVerticallyCenteredModal
