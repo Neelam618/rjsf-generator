@@ -30,7 +30,7 @@ function FormViewer(props) {
             const widgets = {
                 TextWidget: TextWidget,
                 SelectWidget: SelectWidget,
-                MultipleChoiceWidget: MultipleChoiceWidget,
+                // MultipleChoiceWidget: MultipleChoiceWidget,
                 FileWidget: FileWidget,
                 RangeWidget: RangeWidget
             };
