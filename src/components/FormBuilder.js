@@ -317,7 +317,6 @@ function FormBuilder() {
                         chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles} schema={schema} uiSchema={uiSchema}
                     />
             }
-            {/* <SelectWidget selectFieldKey={selectFieldKey} /> */}
 
 
         </div>
