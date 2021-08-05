@@ -1,9 +1,9 @@
 import React from 'react';
 import FormBuilder from "./components/FormBuilder";
 import Button from 'react-bootstrap/Button';
-import DisplaySchema from "./components/DisplaySchema";
+import MyVerticallyCenteredModal from "./components/MyVerticallyCenteredModal";
 
-function App() {
+function App(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -13,7 +13,7 @@ function App() {
                Generate Schema
             </Button>
 
-            <DisplaySchema
+            <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />    </div>

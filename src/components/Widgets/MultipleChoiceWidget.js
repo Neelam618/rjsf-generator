@@ -9,9 +9,9 @@ const MultipleChoiceWidget = (props) => {
           value={props.value}
           required={props.required}
           onChange={(event) => props.onChange(event.target.value)} >
-          <option>{props.schema['items']['enum'][0]}</option>
-          <option>{props.schema['items']['enum'][1]}</option>
-          </select>
+            <option value="">BIG BAD BUG</option>
+          {props.schema.items.enum.map(x => <option>{x}</option>)}
+        </select>
       </>
     );
   };

@@ -32,6 +32,10 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
+        // "placeholder": {
+        //     "title": "Placeholder",
+        //     "type": "string"
+        // },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -102,6 +106,13 @@ function SelectFieldPanel(props) {
         else {
             delete newUischema[props.editFieldKeyName]["ui:help"]
         }
+        // For placeholder
+        // if(formData.placeholder) {
+        //     newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
+        // }
+        // else {
+        //     delete newUischema[props.editFieldKeyName]["ui:placeholder"]
+        // }
          
          //classNames
          if(formData.classNames) {
@@ -127,6 +138,7 @@ function SelectFieldPanel(props) {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
+        // "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
     }

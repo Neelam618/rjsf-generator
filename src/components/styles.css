@@ -1,0 +1,37 @@
+/* Formviewer */
+.fieldContainer:hover .removeField, .fieldContainer:hover .editField {
+    display: inline !important;
+}
+.removeField:hover {
+    background-color: red;
+}
+.removeField:hover .fieldContainer{
+    background-color: pink !important;
+}
+.fieldContainer:hover {
+    border: 1px solid rgb(192, 189, 189);
+}
+/* .txtClass input, .textareaClass textarea, .numberClass input, .selectClass select, .multiChoiceClass select {
+    border: 1px solid rgb(196, 196, 196);
+} */
+
+/* *:not(:hover)>.fieldContainer{
+    display:inline;
+    background-color: red;
+
+} */
+
+/* .fieldContainer:hover span:not(:hover) {
+    display: inline;
+    background-color: red;
+
+} */
+
+.container-fluid .row {
+    margin-bottom: 30px !important;
+}
+
+/* .tools {
+    background: pink;
+    margin: 5px;
+} */
