@@ -1,11 +1,11 @@
 import FormBuilder from "./components/FormBuilder";
-import TextWidget from './components/TextWidget';
+// import TextWidget from './components/TextWidget';
 
 function App() {
   return (
     <div >
       <FormBuilder />
-      <TextWidget />
+      {/* <TextWidget /> */}
     </div>
   );
 }
