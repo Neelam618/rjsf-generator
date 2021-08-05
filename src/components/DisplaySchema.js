@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 
 function DisplaySchema(props) {
+    console.log(props.schema)
     const schemaObj = {
         schema: props.schema
     };
@@ -13,16 +14,15 @@ function DisplaySchema(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Modal heading
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
                 <pre>
-                        {JSON.stringify(schemaObj, null, 2)}
-                    </pre>
+                    {JSON.stringify(schemaObj, null, 2)}
+                </pre>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
