@@ -1,5 +1,5 @@
 const SelectWidget = (props) => {
-    console.log(props)
+    // console.log(props)
     return (
       <>
         <label className='form-label'>{props.label}</label>
@@ -9,7 +9,7 @@ const SelectWidget = (props) => {
           value={props.value}
           required={props.required}
           onChange={(event) => props.onChange(event.target.value)} >
-          <option>{props.schema['enumNames'][0]}</option>
+          <option>{props.schema.enumNames[0]}</option>
           <option>{props.schema['enumNames'][1]}</option>
           </select>
       </>
