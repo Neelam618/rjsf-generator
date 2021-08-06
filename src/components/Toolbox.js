@@ -1,5 +1,4 @@
 import React from 'react'
-import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 
 function Toolbox(props) {
     return (
@@ -47,7 +46,7 @@ function Toolbox(props) {
                     </li>
                     </ul>
                 </div>
-                <MyVerticallyCenteredModal schema={props.schema} uiSchema={props.uiSchema} />
+                {/* <MyVerticallyCenteredModal schema={props.schema} uiSchema={props.uiSchema} /> */}
         </div>
     )
 }

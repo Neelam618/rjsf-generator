@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 // import Form from "@rjsf/core";
 import { withTheme } from '@rjsf/core';
 // import { Theme as AntDTheme } from '@rjsf/antd';
@@ -11,17 +11,22 @@ import SelectWidget from './Widgets/SelectWidget'
 import MultipleChoiceWidget from './Widgets/MultipleChoiceWidget'
 import FileWidget from './Widgets/FileWidget'
 import RangeWidget from './Widgets/RangeWidget'
+import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
+import Button from 'react-bootstrap/Button';
+
 // import 'antd/dist/antd.css';
 import './styles.css'
 
 const Form = withTheme(Bootstrap4Theme);
 
+
 function FormViewer(props) {
     console.log(props.schema.properties)
+    const [modalShow, setModalShow] = useState(false);
 
-    return <div style={{ width: '50%'}}>
-        {Object.entries(props.schema.properties).map(function([key, value]) {
-             let singleFieldSchema = {
+    return <div style={{ width: '50%', padding: "10px 30px 0px 30px" }}>
+        {Object.entries(props.schema.properties).map(function ([key, value]) {
+            let singleFieldSchema = {
                 "properties": {
                     [key]: value,
                 },
@@ -39,46 +44,28 @@ function FormViewer(props) {
                 // "ui:widget": "SelectWidget"
             };
 
-            if(props.uiSchema[key]) {
+            if (props.uiSchema[key]) {
                 singleFieldUiSchema[key] = props.uiSchema[key]
-            } 
-            
-            // let className ="";
-            // if(props.schema["properties"][key]["type"]=="string") {
-            //     className = "txtClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="number") {
-            //     className = "numberClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="string" && props.uiSchema[key]["ui:widget"]=="textarea") {
-            //     className = "textareaClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="string" && props.schema["properties"][key].hasOwnProperty("enum")) {
-            //     className = "selectClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="integer") {
-            //     className = "intrangeClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="boolean") {
-            //     className = "checkboxClass"
-            // }
-            // if(props.uiSchema[key]["ui:widget"]=="radio") {
-            //     className = "radioClass"
-            // }
-            // if(props.schema["properties"][key]["type"]=="array" && props.schema["properties"][key].hasOwnProperty("items")) {
-            //     className = "multiChoiceClass"
-            // }
+            }
 
             return (
-                <div className='fieldContainer' style={{ position: 'relative', padding: "10px 30px 0px 30px"}}>   
+                <div className='fieldContainer' style={{ position: 'relative' }}>
                     <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                        <span onClick={() => props.removeField(key)} className="removeField" style={{display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px"}}>X</span>
-                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField" style={{display: 'none', position: 'absolute', top: 0, right: 80}}>Edit</span>
+                        <span onClick={() => props.removeField(key)} className="removeField" style={{ display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px" }}>X</span>
+                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField" style={{ display: 'none', position: 'absolute', top: 0, right: 80 }}>Edit</span>
                     </Form>
+
+                    <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
                 </div>
             )
         })}
-    </div>
+        <Button variant="primary" onClick={() => setModalShow(true)} style={{marginTop: 10}}>
+            Generate Schema
+        </Button>
+    </div >
 }
-    
+
 export default FormViewer
