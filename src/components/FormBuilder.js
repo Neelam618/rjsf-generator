@@ -94,6 +94,7 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[selectFieldKey] = {
+            "ui:placeholder": "Select options",
             // classNames: "myClass",
             "ui:autofocus": false,
             "ui:options": {
@@ -206,8 +207,9 @@ function FormBuilder() {
         let dateKey = "date_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][dateKey] = {
             "title": "Date",
-            "type": "string",
-            "format": "date"
+            "type": "date",
+            "format": "date",
+            default: new Date().toISOString().slice(0,10)
         }
         setSchema(newSchema);
         newUischema[dateKey] = {

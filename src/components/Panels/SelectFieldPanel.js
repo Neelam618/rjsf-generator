@@ -32,10 +32,10 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        // "placeholder": {
-        //     "title": "Placeholder",
-        //     "type": "string"
-        // },
+        "placeholder": {
+            "title": "Placeholder",
+            "type": "string"
+        },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -44,20 +44,28 @@ const schema = {
         "help": {
             "title": "Help text",
             "type": "string"
-        }, 
+        },
+        "disabledCheckbox": {
+            "type": "boolean",
+            "title": "Disabled",
+        },
+        "readonlyCheckbox": {
+            "type": "boolean",
+            "title": "Read only",
+        },         
     }
 }
 
 const uiSchema= {
-    "ui:widget": (props) => {
-        return (
-          <input type="text"
-            className="custom"
-            value={props.value}
-            required={props.required}
-            onChange={(event) => props.onChange(event.target.value)} />
-        );
-      },
+    // "ui:widget": (props) => {
+    //     return (
+    //       <select type="text"
+    //         className="custom"
+    //         value={props.value}
+    //         required={props.required}
+    //         onChange={(event) => props.onChange(event.target.value)} />
+    //     );
+    //   },
 }
 
 
@@ -76,12 +84,12 @@ function SelectFieldPanel(props) {
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
             newSchema["required"].push(props.editFieldKeyName)
         }
-        else {
-            const index =  newSchema["required"].indexOf(props.editFieldKeyName);
-            if (index > -1) {
-                newSchema["required"].splice(index, 1);
-            }
-        }
+        // else {
+        //     const index =  newSchema["required"].indexOf(props.editFieldKeyName);
+        //     if (index > -1) {
+        //         newSchema["required"].splice(index, 1);
+        //     }
+        // }
 
         //For autofocus
         if (formData.autofocusCheckbox) {
@@ -107,13 +115,12 @@ function SelectFieldPanel(props) {
             delete newUischema[props.editFieldKeyName]["ui:help"]
         }
         // For placeholder
-        // if(formData.placeholder) {
-        //     newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
-        // }
-        // else {
-        //     delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        // }
-         
+        if(formData.placeholder) {
+            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
+        } 
          //classNames
          if(formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
@@ -125,22 +132,41 @@ function SelectFieldPanel(props) {
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
+        //Disabled
+        if(formData.disabledCheckbox) {
+            newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
+            console.log(formData.disabledCheckbox)
+        }
+        else {
+           delete newUischema[props.editFieldKeyName]["ui:disabled"]
+        }
+
+        //readonly
+        if(formData.readonlyCheckbox) {
+            newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:readonly"]
+         }
+
         //additional properties
         let enumKeys = Object.keys(formData)
-        .filter(k => !["label", "requiredCheckbox", "autofocusCheckbox", "classNames", "help"].includes(k));
+        .filter(k => !["label", "requiredCheckbox", "autofocusCheckbox", "classNames", "help", "placeholder"].includes(k));
         let enumValues = enumKeys.map(k => formData[k])
         newSchema["properties"][props.editFieldKeyName]["enum"] = enumKeys
         newSchema["properties"][props.editFieldKeyName]["enumNames"] = enumValues
         console.log( newSchema["properties"][props.editFieldKeyName]);
-     }
-
+    }
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        // "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
+        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
+        "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
+        "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
+
     }
     
     //additional properties

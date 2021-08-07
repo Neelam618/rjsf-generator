@@ -60,39 +60,40 @@ const SelectWidget = (props) => {
     onBlur,
     onFocus,
     placeholder,
+    editFieldKeyName
   } = props;
   const { enumOptions, enumDisabled } = options;
   const emptyValue = multiple ? [] : "";
-    console.log(props)
-    return (
-      <>
-        <label className='form-label'>{typeof label === "undefined" ? schema.title : label}</label>
-        <select type="text" multiple={props.multiple}
-          className='form-select'
-          value={props.value}
-          required={props.required}
-          onChange={(event) => props.onChange(event.target.value)} 
-          
-      onChange={event => {
-        const newValue = getValue(event, multiple);
-        onChange(processValue(schema, newValue));
-      }}
+  console.log(props.schema)
+  return (
+    <>
+      <label className='form-label'>{typeof label === "undefined" ? schema.title : label}{required ? "*" : null}</label>
+      <select type="text" multiple={multiple}
+        className='form-select'
+        value={value}
+        required={required}
+        disabled={disabled}
+        readonly={readonly}
+        onChange={(event) => props.onChange(event.target.value)}
+        onChange={event => {
+          const newValue = getValue(event, multiple);
+          onChange(processValue(schema, newValue));
+        }}
       >
-          {/* {Object.values(props.options.enumOptions).map(v => <option value ={v.value}>{v.label}</option>)} */}
-          {!multiple && schema.default === undefined && (
-        <option value="">{placeholder}</option>
-      )}
-      {enumOptions.map(({ value, label }, i) => {
-        const disabled = enumDisabled && enumDisabled.indexOf(value) !== -1;
-        return (
-          <option key={i} value={value} disabled={disabled}>
-            {label}
-          </option>
-        );
-      })}
-          </select>
-      </>
-    );
-  };
-  
-  export default SelectWidget;
+        {!multiple && schema.default === undefined && (
+          <option value="">{placeholder}</option>
+        )}
+        {enumOptions.map(({ value, label }, i) => {
+          const disabled = enumDisabled && enumDisabled.indexOf(value) !== -1;
+          return (
+            <option key={i} value={value} disabled={disabled}>
+              {label}
+            </option>
+          );
+        })}
+      </select>
+    </>
+  );
+};
+
+export default SelectWidget;
