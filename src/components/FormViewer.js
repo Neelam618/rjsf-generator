@@ -30,10 +30,11 @@ function FormViewer(props) {
                 "properties": {
                     [key]: value,
                 },
-                "required": props.schema["required"],
+                "required": props.schema["required"].filter(k=>k===key),
             }
+            console.log("required array", props.schema["required"]);
             const widgets = {
-                TextWidget: TextWidget,
+                // TextWidget: TextWidget,
                 SelectWidget: SelectWidget,
                 // MultipleChoiceWidget: MultipleChoiceWidget,
                 FileWidget: FileWidget,

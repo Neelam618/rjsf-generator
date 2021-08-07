@@ -1,17 +1,18 @@
-const FileWidget = (props) => {
-    console.log(props)
-    return (
-      <>
-        <label className='form-label'>{props.label}</label>
-        <input type="file"
-          className='form-control'
-          abc='76567'
-          value={props.value}
-          required={props.required}
-          onChange={(event) => props.onChange(event.target.value)} >
-          </input>
-      </>
-    );
-  };
-  
-  export default FileWidget;
+import React from "react";
+import FileWidget from "@rjsf/core/dist/cjs/components/widgets/FileWidget";
+
+const BootstrapFileWidget = (props) => {
+  return (
+    <>
+      <label className={props.rawErrors?.length > 0 ? 'text-danger' : ''}>
+        {props.label || props.schema.title}
+        {(props.label || props.schema.title) && props.required ? '*' : null}
+      </label>
+      <div className="form-control-file">
+        <FileWidget {...props} type="file" />
+      </div>
+    </>
+  );
+};
+
+export default BootstrapFileWidget;
