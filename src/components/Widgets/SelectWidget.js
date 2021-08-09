@@ -72,8 +72,7 @@ const SelectWidget = (props) => {
         className='form-select'
         value={value}
         required={required}
-        disabled={disabled}
-        readonly={readonly}
+        disabled={disabled || readonly}
         onChange={(event) => props.onChange(event.target.value)}
         onChange={event => {
           const newValue = getValue(event, multiple);
@@ -86,7 +85,7 @@ const SelectWidget = (props) => {
         {enumOptions.map(({ value, label }, i) => {
           const disabled = enumDisabled && enumDisabled.indexOf(value) !== -1;
           return (
-            <option key={i} value={value} disabled={disabled}>
+            <option key={i} value={value} disabled={disabled} >
               {label}
             </option>
           );

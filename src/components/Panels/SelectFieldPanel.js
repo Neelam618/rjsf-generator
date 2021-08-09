@@ -151,7 +151,7 @@ function SelectFieldPanel(props) {
 
         //additional properties
         let enumKeys = Object.keys(formData)
-        .filter(k => !["label", "requiredCheckbox", "autofocusCheckbox", "classNames", "help", "placeholder"].includes(k));
+        .filter(k => !["label", "requiredCheckbox", "autofocusCheckbox", "classNames", "help", "placeholder", "disabledCheckbox", "readonlyCheckbox"].includes(k));
         let enumValues = enumKeys.map(k => formData[k])
         newSchema["properties"][props.editFieldKeyName]["enum"] = enumKeys
         newSchema["properties"][props.editFieldKeyName]["enumNames"] = enumValues
