@@ -11,6 +11,7 @@ import SelectWidget from './Widgets/SelectWidget'
 import MultipleChoiceWidget from './Widgets/MultipleChoiceWidget'
 import FileWidget from './Widgets/FileWidget'
 import RangeWidget from './Widgets/RangeWidget'
+import CheckboxGroupWidget from './Widgets/CheckboxGroupWidget'
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 import Button from 'react-bootstrap/Button';
 
@@ -38,11 +39,12 @@ function FormViewer(props) {
                 SelectWidget: SelectWidget,
                 // MultipleChoiceWidget: MultipleChoiceWidget,
                 FileWidget: FileWidget,
-                RangeWidget: RangeWidget
+                RangeWidget: RangeWidget,
+                CheckboxesWidget: CheckboxGroupWidget
             };
 
             let singleFieldUiSchema = {
-                // "ui:widget": "SelectWidget"
+                // "ui:widget": "CheckboxGroupWidget"
             };
 
             if (props.uiSchema[key]) {

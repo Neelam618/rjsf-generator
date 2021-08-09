@@ -138,6 +138,31 @@ function FormBuilder() {
         }
         setUischema(newUischema);
     }
+    function addCheckboxGroup() {
+        let newSchema = JSON.parse(JSON.stringify(schema));
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let checkboxGroupKey = "checkboxGroup_" + Math.floor(Math.random() * 899999 + 100000);
+
+        newSchema['properties'][checkboxGroupKey] = {
+            "type": "array",
+            "title": "A multiple choices list",
+            "items": {
+              "type": "string",
+              "enum": [
+                "foo",
+                "bar",
+                "fuzz",
+                "qux"
+              ]
+            },
+            "uniqueItems": true
+        }
+        setSchema(newSchema);
+        newUischema[checkboxGroupKey] = {
+            "ui:widget": "checkboxes"
+        }
+        setUischema(newUischema);
+    }
     function addRadioButtons() {
         let newSchema = JSON.parse(JSON.stringify(schema));
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
@@ -315,7 +340,7 @@ function FormBuilder() {
                         closePanel={closePanel} /> :
                     <Toolbox
                         addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
-                        addCheckbox={addCheckbox} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
+                        addCheckbox={addCheckbox} addCheckboxGroup={addCheckboxGroup} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
                         addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate} addDate={addDate} addDateTime={addDateTime}
                         chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles} schema={schema} uiSchema={uiSchema}
                     />

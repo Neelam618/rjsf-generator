@@ -12,14 +12,6 @@ const Form = withTheme(Bootstrap4Theme);
 const schema = {
     "type": "object",
     "properties": {
-      "name": {
-        "type": "string"
-      }
-    },
-    "additionalProperties": {
-        "type": "string",
-    },
-    "properties": {
         "label": {
             "title": "Label",
             "type": "string",
@@ -53,7 +45,10 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },         
-    }
+    },
+        "additionalProperties": {
+        "type": "string",
+    },
 }
 
 const uiSchema= {
@@ -156,6 +151,7 @@ function SelectFieldPanel(props) {
         newSchema["properties"][props.editFieldKeyName]["enum"] = enumKeys
         newSchema["properties"][props.editFieldKeyName]["enumNames"] = enumValues
         console.log( newSchema["properties"][props.editFieldKeyName]);
+        console.log("formDatsa",formData);
     }
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
