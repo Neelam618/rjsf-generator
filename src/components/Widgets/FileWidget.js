@@ -89,13 +89,13 @@ class FileWidget extends Component {
     });
   };
 
-  render() {
-    const { multiple, id, readonly, disabled, autofocus, options,title, label } = this.props;
+  render(props) {
+    const { multiple, id, readonly, disabled, autofocus, options,title, label, required } = this.props;
     const { filesInfo } = this.state;
     return (
       <div>
         <p>
-          <label className="form-label">{title || label}</label>
+          <label className='form-label'>{label || title}{(label || title) && required ? '*' : null}</label>
           <input
             ref={ref => (this.inputRef = ref)}
             id={id}
