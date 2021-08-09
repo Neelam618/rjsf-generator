@@ -14,8 +14,6 @@ import RangeWidget from './Widgets/RangeWidget'
 import CheckboxGroupWidget from './Widgets/CheckboxGroupWidget'
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 import Button from 'react-bootstrap/Button';
-
-// import 'antd/dist/antd.css';
 import './styles.css'
 
 const Form = withTheme(Bootstrap4Theme);
