@@ -1,4 +1,5 @@
 const CheckboxGroupWidget = (props) => {
+    console.log(props);
     function selectValue(value, selected, all) {
         const at = all.indexOf(value);
         const updated = selected.slice(0, at).concat(value, selected.slice(at));
@@ -14,6 +15,8 @@ const CheckboxGroupWidget = (props) => {
     const { id, disabled, options, value, autofocus, readonly, onChange } = props;
     const { enumOptions, enumDisabled, inline } = options;
     return (
+        <>
+        <legend class="mt-4">{props.schema.title}</legend>
         <div className="checkboxes" id={id}>
             {enumOptions.map((option, index) => {
                 const checked = value.indexOf(option.value) !== -1;
@@ -53,6 +56,7 @@ const CheckboxGroupWidget = (props) => {
                 );
             })}
         </div>
+        </>
     );
   };
   
