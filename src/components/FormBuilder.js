@@ -207,7 +207,7 @@ function FormBuilder() {
         let dateKey = "date_" + Math.floor(Math.random() * 899999 + 100000)
         newSchema['properties'][dateKey] = {
             "title": "Date",
-            "type": "date",
+            "type": "string",
             "format": "date",
             default: new Date().toISOString().slice(0,10)
         }
@@ -222,7 +222,8 @@ function FormBuilder() {
         newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
             "title": "Date & Time",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            default: new Date().toISOString().slice(0,10)
         }
         setSchema(newSchema);
     }
