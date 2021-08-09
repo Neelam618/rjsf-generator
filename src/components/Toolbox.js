@@ -20,6 +20,9 @@ function Toolbox(props) {
                     <li className="tools" onClick={() => props.addCheckbox()} >
                         <span>Checkbox</span>
                     </li>
+                    <li className="tools" onClick={() => props.addCheckboxGroup()} >
+                        <span>Checkbox Group</span>
+                    </li>
                     <li className="tools" onClick={() => props.addRadioButtons()} >
                         <span>Radio Buttons</span>
                     </li>

@@ -9,15 +9,15 @@ const BootstrapFileWidget = (props) => {
         {props.label || props.schema.title}
         {(props.label || props.schema.title) && props.required ? '*' : null}
       </label>
-      {/* <div className="form-control-file">
+      <div className="form-control-file">
         <FileWidget {...props} type="file" />
-      </div> */}
-      <input type="file"
+      </div>
+      {/* <input type="file"
           className='form-control'
           value={props.value}
           required={props.required}
           onChange={(event) => props.onChange(event.target.value)} >
-      </input>
+      </input> */}
     </>
   );
 };
