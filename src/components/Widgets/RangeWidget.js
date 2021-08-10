@@ -7,6 +7,7 @@ const RangeWidget = (props) => {
           className='form-range'
           value={props.value}
           required={props.required}
+          disabled={props.disabled || props.readonly}
           onChange={(event) => props.onChange(event.target.value)} >
           </input>
       </>
