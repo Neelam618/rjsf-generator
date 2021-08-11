@@ -52,8 +52,8 @@ function FormViewer(props) {
             return (
                 <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
                     <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                        <span onClick={() => props.removeField(key)} className="removeField" style={{ display: 'none', position: 'absolute', top: 0, right: 0, fontWeight: 700, padding: "0 20px" }}>X</span>
-                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField" style={{ display: 'none', position: 'absolute', top: 0, right: 80 }}>Edit</span>
+                        <span onClick={() => props.removeField(key)} className="removeField"><img style={{width: 12}}src="img/close.png" /></span>
+                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{width: 20}} src="img/edit.png" /></span>
                     </Form>
 
                     <MyVerticallyCenteredModal
