@@ -3,11 +3,14 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 
 function MyVerticallyCenteredModal(props) {
-    console.log(props.schema)
     const schemaObj = {
         schema: props.schema
     };
+    const uiSchemaObj = {
+        uiSchema: props.uiSchema
+    };
     return (
+        <>
         <Modal
             {...props}
             size="lg"
@@ -16,18 +19,20 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    Schema
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <pre>
-                    {JSON.stringify(schemaObj, null, 2)}
+                    {JSON.stringify(schemaObj, null, 2)}<br />
+                    {JSON.stringify(uiSchemaObj, null, 2)}
                 </pre>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
+        </>
     );
 }
 
