@@ -59,11 +59,13 @@ function FormViewer(props) {
                     <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
+                        schema={props.schema}
+                        uiSchema={props.uiSchema}
                     />
                 </div>
             )
         })}
-        <Button variant="primary" onClick={() => setModalShow(true)} style={{margin: '10px 0 0 30px'}}>
+        <Button variant="primary" onClick={() => setModalShow(true)} style={{margin: '20px 0 0 30px'}}>
             Generate Schema
         </Button>
     </div >
