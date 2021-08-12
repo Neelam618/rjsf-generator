@@ -22,14 +22,6 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        "enum": {
-            "type": "array",
-            "title": "List options",
-            "items": {
-                "type": "string",
-                "minLength": 2,
-            }
-        },
         "inline": {
             "type": "boolean",
             "title": "Inline",
@@ -50,7 +42,14 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },
-
+        "enum": {
+            "type": "array",
+            "title": "List options",
+            "items": {
+                "type": "string",
+                "minLength": 2,
+            }
+        },
     }
 }
 
