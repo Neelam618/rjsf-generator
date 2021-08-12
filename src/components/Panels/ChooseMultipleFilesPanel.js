@@ -175,7 +175,7 @@ function chooseMultipleFilesPanel(props) {
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             >
-                <div><button type="button" className="btn btn-primary">Save</button></div>
+                <div><button type="submit" className="btn btn-primary">Save</button></div>
             </Form>
         </div>
     )

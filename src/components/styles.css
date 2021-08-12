@@ -1,9 +1,45 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
 /* Formviewer */
 .fieldContainer:hover .removeField, .fieldContainer:hover .editField {
     display: inline !important;
 }
 .removeField:hover {
-        background-color: rgb(219, 170, 170);
+        background-color: rgb(243, 207, 207);
         cursor: pointer;
 }
 .editField {
@@ -24,7 +60,7 @@
     border-radius: 5;
 }
 .editField:hover {
-    background-color: rgba(212, 212, 178, 0.788);
+    background-color: rgba(212, 211, 178, 0.788);
     cursor: pointer;
 }
 .removeField:hover .fieldContainer{
@@ -66,11 +102,16 @@
 }
 .tools:nth-child(odd)
 {
-    background-color: #f4ffde;
+    background-color: #f4f4f4;
 }
 .tools:nth-child(even)
 {
-    background-color: #ffedf0;
+    background-color: #f6f1f2;
+}
+.icons img {
+    margin-right: 2em;
+    width: 32px;
+    opacity: 0.8;
 }
 
 /* Panel */
@@ -88,6 +129,9 @@
     width: 15px;
     /* filter: invert(0.5); */
     cursor: pointer;
+}
+.btn-group-sm>.btn, .btn-sm {
+    font-size: 17px;
 }
 /* .btn .btn-primary{
     background-color: #d81b60;
