@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles.css'
 
 function Toolbox(props) {
     return (
-        <div style={{width: '30%'}}>
+        <div style={{width: '30%'}} id="toolbox">
             <div className="icons">
                 <ul style={{paddingLeft: 0 }}>
                     <li className="tools text" onClick={() => props.addTxtInput()} >
