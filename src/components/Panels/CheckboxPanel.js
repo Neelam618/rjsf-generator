@@ -5,7 +5,7 @@ import { withTheme } from '@rjsf/core';
 // import { Theme as MuiTheme } from 'rjsf-material-ui';
 // import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
-// import 'antd/dist/antd.css';
+import '../styles.css'
 
 const Form = withTheme(Bootstrap4Theme);
 const schema = {
@@ -72,14 +72,6 @@ function Checkbox(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
 
-        // For placeholder
-        if(formData.placeholder) {
-            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
-        }
-        else {
-            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        }
-
         //For maxLength
         if(formData.maxLength) {
             newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
@@ -130,7 +122,6 @@ function Checkbox(props) {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
@@ -140,11 +131,13 @@ function Checkbox(props) {
     }
     let yourForm;
     return (
-        <div style={{width: '30%'}}>
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}>Close</div>
+        <div className="panel">
+            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
-            />
+            >
+                <div><button type="button" className="btn btn-primary">Save</button></div>
+            </Form>
         </div>
     )
 }

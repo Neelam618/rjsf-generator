@@ -133,10 +133,10 @@ function FormBuilder() {
             "title": "Done?",
         }
         setSchema(newSchema);
-        // newUischema[checkboxKey] = {
+        newUischema[checkboxKey] = {
 
-        // }
-        // setUischema(newUischema);
+        }
+        setUischema(newUischema);
     }
     function addCheckboxGroup() {
         let newSchema = JSON.parse(JSON.stringify(schema));
