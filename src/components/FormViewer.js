@@ -20,16 +20,16 @@ const Form = withTheme(Bootstrap4Theme);
 
 
 function FormViewer(props) {
-    console.log(props.schema.properties)
+
     const [modalShow, setModalShow] = useState(false);
 
-    return <div style={{ width: '50%'}}>
+    return <div style={{ width: '50%' }}>
         {Object.entries(props.schema.properties).map(function ([key, value]) {
             let singleFieldSchema = {
                 "properties": {
                     [key]: value,
                 },
-                "required": props.schema["required"].filter(k=>k===key),
+                "required": props.schema["required"].filter(k => k === key),
             }
             console.log("required array", props.schema["required"]);
             const widgets = {
@@ -48,13 +48,17 @@ function FormViewer(props) {
             if (props.uiSchema[key]) {
                 singleFieldUiSchema[key] = props.uiSchema[key]
             }
-
+            console.log(props.schema.properties[key]);
             return (
                 <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
-                    <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                        <span onClick={() => props.removeField(key)} className="removeField"><img style={{width: 12}}src="img/close.png" /></span>
-                        <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{width: 20}} src="img/edit.png" /></span>
-                    </Form>
+                    {!props.schema.properties.hasOwnProperty([key])? 
+                        "ddnejdj" // Object is empty (Would return true in this example)
+                        
+                       : <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
+                            <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
+                            <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
+                        </Form>// Object is NOT empty
+                    }
 
                     <MyVerticallyCenteredModal
                         show={modalShow}
@@ -65,7 +69,7 @@ function FormViewer(props) {
                 </div>
             )
         })}
-        <Button variant="primary" onClick={() => setModalShow(true)} style={{margin: '20px 0 0 30px'}}>
+        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
             Generate Schema
         </Button>
     </div >

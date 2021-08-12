@@ -5,7 +5,7 @@ import { withTheme } from '@rjsf/core';
 // import { Theme as MuiTheme } from 'rjsf-material-ui';
 // import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
-// import 'antd/dist/antd.css';
+import '../styles.css'
 
 const Form = withTheme(Bootstrap4Theme);
 
@@ -190,11 +190,13 @@ function SelectFieldPanel(props) {
 
     let yourForm;
     return (
-        <div style={{width: '30%'}}>
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}>Close</div>
-            <Form schema={schema} uiSchema={uiSchema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
+        <div className="panel">
+            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
-            />
+            >
+                <div><button type="button" className="btn btn-primary">Save</button></div>
+            </Form>
         </div>
     )
 }

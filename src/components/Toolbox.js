@@ -3,9 +3,9 @@ import React from 'react'
 function Toolbox(props) {
     return (
         <div style={{width: '30%'}}>
-            <div>
+            <div className="icons">
                 <ul style={{paddingLeft: 0 }}>
-                    <li className="tools" onClick={() => props.addTxtInput()} >
+                    <li className="tools text" onClick={() => props.addTxtInput()} >
                         <span>Text input</span>
                     </li>
                     <li className="tools" onClick={() => props.addNumInput()} >
