@@ -314,9 +314,11 @@ function FormBuilder() {
 
     function removeField(keyName) {
         let newSchema = JSON.parse(JSON.stringify(schema));
-        let newUischema = JSON.parse(JSON.stringify(uiSchema));
         delete newSchema['properties'][keyName];
+
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
         delete newUischema[keyName];
+        
         setSchema(newSchema);
         setUischema(newUischema);
     }

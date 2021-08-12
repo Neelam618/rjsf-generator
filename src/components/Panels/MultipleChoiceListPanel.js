@@ -30,14 +30,6 @@ const schema = {
             "type": "boolean",
             "title": "Unique Items",
         },
-        "enum": {
-            "type": "array",
-            "title": "List options",
-            "items": {
-              "type": "string",
-              "minLength": 2,
-            }
-          },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -54,7 +46,14 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },         
-
+        "enum": {
+            "type": "array",
+            "title": "List options",
+            "items": {
+              "type": "string",
+              "minLength": 2,
+            }
+        },
     }
 }
 
