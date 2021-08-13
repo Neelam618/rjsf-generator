@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import Toolbox from '../components/Toolbox'
 import FormViewer from '../components/FormViewer'
 import EditPanel from './EditPanel'
-import SelectWidget from './Widgets/SelectWidget'
+import './styles.css'
 
 function FormBuilder() {
     const [schema, setSchema] = useState({
@@ -67,6 +67,7 @@ function FormBuilder() {
 
         newUischema[numFieldKey] = {
             "ui:autofocus": false,
+            "ui:placeholder": "Select Number",
             "ui:options": {
                 "inputType": "number",
                 // "label": false
@@ -117,24 +118,10 @@ function FormBuilder() {
 
         newUischema[randomNumKey] = {
             "ui:widget": "textarea",
+            "ui:placeholder": "Write Something...",
             "ui:options": {
                 rows: 4,
             }
-        }
-        setUischema(newUischema);
-    }
-    function addCheckbox() {
-        let newSchema = JSON.parse(JSON.stringify(schema));
-        let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let checkboxKey = "checkbox_" + Math.floor(Math.random() * 899999 + 100000);
-
-        newSchema['properties'][checkboxKey] = {
-            "type": "boolean",
-            "title": "Done?",
-        }
-        setSchema(newSchema);
-        newUischema[checkboxKey] = {
-
         }
         setUischema(newUischema);
     }
@@ -313,12 +300,15 @@ function FormBuilder() {
     }
 
     function removeField(keyName) {
+        
         let newSchema = JSON.parse(JSON.stringify(schema));
-        delete newSchema['properties'][keyName];
 
         let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        delete newUischema[keyName];
         
+        console.log(keyName, newSchema['properties'][keyName], newUischema[keyName] );
+        delete newSchema['properties'][keyName];
+        delete newUischema[keyName];
+        console.log(newSchema);
         setSchema(newSchema);
         setUischema(newUischema);
     }
@@ -345,7 +335,7 @@ function FormBuilder() {
                         closePanel={closePanel} /> :
                     <Toolbox
                         addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
-                        addCheckbox={addCheckbox} addCheckboxGroup={addCheckboxGroup} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
+                        addCheckboxGroup={addCheckboxGroup} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
                         addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate} addDate={addDate} addDateTime={addDateTime}
                         chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles} schema={schema} uiSchema={uiSchema}
                     />

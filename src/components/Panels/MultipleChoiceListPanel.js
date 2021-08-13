@@ -26,10 +26,10 @@ const schema = {
             "type": "integer",
             "title": "Maximum items"
         },
-        "uniqueItems": {
-            "type": "boolean",
-            "title": "Unique Items",
-        },
+        // "uniqueItems": {
+        //     "type": "boolean",
+        //     "title": "Unique Items",
+        // },
         "classNames": {
             "title": "ClassName",
             "type": "string"

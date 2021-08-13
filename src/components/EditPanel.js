@@ -3,7 +3,6 @@ import TextFieldPanel from './Panels/TextFieldPanel';
 import NumberFieldPanel from './Panels/NumberFieldPanel';
 import SelectFieldPanel from './Panels/SelectFieldPanel';
 import TextareaPanel from './Panels/TextareaPanel';
-import CheckboxPanel from './Panels/CheckboxPanel'
 import CheckboxGroupPanel from './Panels/CheckboxGroupPanel'
 import RadioButtonsPanel from './Panels/RadioButtonsPanel';
 import IntRangePanel from './Panels/IntRangePanel'
@@ -36,11 +35,6 @@ function EditPanel(props) {
                 closePanel={props.closePanel} />
 
             case "textarea": return <TextareaPanel
-                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
-                editFieldKeyName={props.editFieldKeyName}
-                closePanel={props.closePanel} />
-
-            case "checkbox": return <CheckboxPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />

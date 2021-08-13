@@ -18,11 +18,8 @@ function Toolbox(props) {
                     <li className="tools" onClick={() => props.addTxtarea()} >
                         <span><img src="img/crop_landscape_black_24dp.svg" />Text area</span>
                     </li>
-                    <li className="tools" onClick={() => props.addCheckbox()} >
-                        <span><img src="img/check_box_black_24dp.svg" />Checkbox</span>
-                    </li>
                     <li className="tools" onClick={() => props.addCheckboxGroup()} >
-                        <span><img src="img/checklist_black_24dp.svg" />Checkbox Group</span>
+                        <span><img src="img/check_box_black_24dp.svg" />Checkbox</span>
                     </li>
                     <li className="tools" onClick={() => props.addRadioButtons()} >
                         <span><img src="img/radio_button_checked_black_24dp.svg" />Radio Buttons</span>
