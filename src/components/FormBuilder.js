@@ -40,8 +40,8 @@ function FormBuilder() {
             labelClass: 'labelClass',
             "ui:autofocus": false,
             "ui:options": {
-                "inputType": "text",
-                // "label": false
+                "label": false,
+                "inputType": "text"
             },
             "ui:placeholder": "This is a placeholder",
             // "ui:help": "Hint: Make it strong!",
@@ -70,7 +70,7 @@ function FormBuilder() {
             "ui:placeholder": "Select Number",
             "ui:options": {
                 "inputType": "number",
-                // "label": false
+                "label": false
             },
         }
         setUischema(newUischema);
@@ -100,7 +100,7 @@ function FormBuilder() {
             "ui:autofocus": false,
             "ui:options": {
                 "inputType": "text",
-                // "label": false
+                "label": false
             },
         }
         setUischema(newUischema);
@@ -120,6 +120,7 @@ function FormBuilder() {
             "ui:widget": "textarea",
             "ui:placeholder": "Write Something...",
             "ui:options": {
+                "label": false,
                 rows: 4,
             }
         }
@@ -146,6 +147,9 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[checkboxGroupKey] = {
+            "ui:options": {
+                "label": false
+            },
             "ui:widget": "checkboxes"
         }
         setUischema(newUischema);
@@ -167,6 +171,7 @@ function FormBuilder() {
         newUischema[radioKey] = {
             "ui:widget": "radio",
             "ui:options": {
+                "label": false,
                 inline: true,
             }
         }
@@ -185,6 +190,9 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[intRangeKey] = {
+            "ui:options": {
+                "label": false
+            },
             "ui:widget": "range",
         }
         setUischema(newUischema);
@@ -209,7 +217,9 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[multipleChoiceListKey] = {
-
+            "ui:options": {
+                "label": false
+            }
         }
         setUischema(newUischema);
     }
@@ -225,7 +235,9 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[dateKey] = {
-
+            "ui:options": {
+                "label": false
+            }
         }
         setUischema(newUischema);
     }
@@ -237,27 +249,6 @@ function FormBuilder() {
             "format": "date-time",
             default: new Date().toISOString().slice(0,10)
         }
-        setSchema(newSchema);
-    }
-    function addAltDate() {
-        let newSchema = JSON.parse(JSON.stringify(schema));
-        let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        let randomNumKey = "altDate_" + Math.floor(Math.random() * 899999 + 100000);
-        newSchema["properties"][randomNumKey] = {
-            "title": "Alternative date",
-            "type": "string",
-            "format": "date"
-        }
-        newUischema[randomNumKey] = {
-            "ui:widget": "alt-date",
-            "ui:options": {
-                "yearsRange": [
-                    1980,
-                    2030
-                ]
-            }
-        }
-        setUischema(newUischema);
         setSchema(newSchema);
     }
     function chooseFile() {
@@ -272,6 +263,7 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[chooseFileKey] = {
             "ui:options": {
+                "label": false,
                 "accept": ".pdf"
             }
         }
@@ -293,6 +285,7 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[chooseMultipleFilesKey] = {
             "ui:options": {
+                "label": false,
                 "accept": ".pdf"
             }
         }
@@ -336,7 +329,7 @@ function FormBuilder() {
                     <Toolbox
                         addTxtInput={addTxtInput} addNumInput={addNumInput} addSelect={addSelect} addTxtarea={addTxtarea}
                         addCheckboxGroup={addCheckboxGroup} addRadioButtons={addRadioButtons} addIntRange={addIntRange}
-                        addMultipleChoiceList={addMultipleChoiceList} addAltDate={addAltDate} addDate={addDate} addDateTime={addDateTime}
+                        addMultipleChoiceList={addMultipleChoiceList} addDate={addDate} addDateTime={addDateTime}
                         chooseFile={chooseFile} chooseMultipleFiles={chooseMultipleFiles} schema={schema} uiSchema={uiSchema}
                     />
             }
