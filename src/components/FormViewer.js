@@ -6,7 +6,6 @@ import { withTheme } from '@rjsf/core';
 // import { Theme as MuiTheme } from 'rjsf-material-ui';
 // import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
-import TextWidget from './Widgets/TextWidget'
 import SelectWidget from './Widgets/SelectWidget'
 import MultipleChoiceWidget from './Widgets/MultipleChoiceWidget'
 import FileWidget from './Widgets/FileWidget'

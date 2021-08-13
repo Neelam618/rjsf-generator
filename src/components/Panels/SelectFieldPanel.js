@@ -16,6 +16,10 @@ const schema = {
             "title": "Label",
             "type": "string",
         },
+        "hideLabel": {
+            "type": "boolean",
+            "title": "Hide Label"
+        },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
@@ -77,7 +81,7 @@ const uiSchema= {
 
 function SelectFieldPanel(props) {
     const onSubmit = ({formData}) => {
-        console.log("Data submitted: ",  formData)
+        // console.log("Data submitted: ",  formData)
         props.closePanel()
 
         let newSchema= JSON.parse(JSON.stringify(props.schema));
@@ -85,6 +89,14 @@ function SelectFieldPanel(props) {
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
+
+        //hide label
+        if(formData.hideLabel == false) {
+            newUischema[props.editFieldKeyName]["ui:options"]["label"] = true;
+        } 
+        else {
+            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;  
+        }   
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
@@ -169,6 +181,7 @@ function SelectFieldPanel(props) {
     }
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
+        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"]   ,
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],

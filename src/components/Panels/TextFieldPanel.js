@@ -45,11 +45,7 @@ const schema = {
         "readonlyCheckbox": {
             "type": "boolean",
             "title": "Read only",
-        },
-        // "label checkbox": {
-        //     "type": "boolean",
-        //     "title": "Hide Label",
-        // },          
+        }        
 
     }
 }

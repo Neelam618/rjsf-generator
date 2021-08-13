@@ -64,10 +64,13 @@ const SelectWidget = (props) => {
   } = props;
   const { enumOptions, enumDisabled } = options;
   const emptyValue = multiple ? [] : "";
-  console.log(props.schema)
+  console.log(options)
   return (
     <>
-      <label className='form-label'>{typeof label === "undefined" ? schema.title : label}{required ? "*" : null}</label>
+    {
+    options.label? <label className='form-label'>{typeof label === "undefined" ? schema.title : label}{required ? "*" : null}</label>: null
+    }
+      
       <select type="text" multiple={multiple}
         className='form-select'
         value={value}

@@ -16,7 +16,9 @@ const CheckboxGroupWidget = (props) => {
     const { enumOptions, enumDisabled, inline } = options;
     return (
         <>
-        <label class="mt-4">{props.schema.title}{props.schema.title && required ? '*' : null}</label>
+        {
+            options.label? <label class="mt-4">{props.schema.title}{props.schema.title && required ? '*' : null}</label>: null
+        }
         <div className="checkboxes" id={id}>
             {enumOptions.map((option, index) => {
                 const checked = value.indexOf(option.value) !== -1;

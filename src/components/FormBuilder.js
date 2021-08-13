@@ -28,7 +28,6 @@ function FormBuilder() {
             "type": "string",
             // "maxLength": 5,
             // "description": ""
-
         }
         // newSchema['required'].push(textFieldKey)
 
