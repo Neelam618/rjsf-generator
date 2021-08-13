@@ -30,6 +30,10 @@ const schema = {
             "type": "number",
             "title": "Max length",
         },
+        "rows": {
+            "type": "number",
+            "title": "Number of rows"
+        },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -99,6 +103,13 @@ function TextareaPanel(props) {
         else {
             delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
         }
+        //rows
+        if(formData.rows) {
+            newUischema[props.editFieldKeyName]["ui:options"].rows = formData.rows
+        }
+        else {
+            delete newUischema[props.editFieldKeyName]["ui:options"].rows
+        }
 
         //help text
         if(formData.help) {
@@ -144,11 +155,11 @@ function TextareaPanel(props) {
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "maxLength": props.schema["properties"][props.editFieldKeyName]["maxLength"],
+        "rows": props.uiSchema[props.editFieldKeyName]["ui:options"].rows,
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
-
     }
     let yourForm;
     return (
