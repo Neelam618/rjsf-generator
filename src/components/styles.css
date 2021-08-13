@@ -37,6 +37,11 @@ body {
     border: 2px solid rgb(218, 214, 214);
     border-radius: 5px;
 }
+.formViewer {
+    border: 1px solid rgb(214, 212, 212);
+    padding: 2em;
+    border-radius: 5px;
+}
 /* .txtClass input, .textareaClass textarea, .numberClass input, .selectClass select, .multiChoiceClass select {
     border: 1px solid rgb(196, 196, 196);
 } */
@@ -88,9 +93,9 @@ body {
     padding: 2em;
     /* background-color: rgb(63, 17, 17); */
     /* color: white; */
-    -webkit-box-shadow: 10px 10px 35px -12px rgba(156,153,156,1);
-    -moz-box-shadow: 10px 10px 35px -12px rgba(156,153,156,1);
-    box-shadow: 10px 10px 35px -12px rgba(156,153,156,1);
+    -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
+    -moz-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
+    box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
 }
 .panel img {
     width: 15px;

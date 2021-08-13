@@ -23,7 +23,7 @@ function FormViewer(props) {
 
     const [modalShow, setModalShow] = useState(false);
 
-    return <div style={{ width: '50%' }}>
+    return <div className="formViewer" style={{ width: '50%' }}>
         {Object.entries(props.schema.properties).map(function ([key, value]) {
             let singleFieldSchema = {
                 "properties": {
@@ -72,7 +72,7 @@ function FormViewer(props) {
         <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
             Generate Schema
         </Button>
-    </div >
+    </div>
 }
 
 export default FormViewer
