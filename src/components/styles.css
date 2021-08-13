@@ -72,6 +72,9 @@ body {
     cursor: pointer;
     font-weight: 500;
 }
+.tools:hover {
+    border: 1px solid rgb(214, 212, 212);
+}
 .tools:nth-child(odd)
 {
     background-color: #f4f4f4;
