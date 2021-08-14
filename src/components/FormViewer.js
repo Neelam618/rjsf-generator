@@ -69,9 +69,14 @@ function FormViewer(props) {
                 </div>
             )
         })}
-        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
-            Generate Schema
-        </Button>
+        {Object.keys(props.schema['properties']).length > 0 ?
+            <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
+                Generate Schema
+            </Button>
+            : <div>
+                Select a form element from the list
+            </div>
+        }
     </div>
 }
 
