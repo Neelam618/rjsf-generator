@@ -293,17 +293,17 @@ function FormBuilder() {
     }
 
     function removeField(keyName) {
-        
-        let newSchema = JSON.parse(JSON.stringify(schema));
+        setSchema(schema => {
+            let newSchema = JSON.parse(JSON.stringify(schema));
+            delete newSchema['properties'][keyName];
+            return newSchema
+        })
 
-        let newUischema = JSON.parse(JSON.stringify(uiSchema));
-        
-        console.log(keyName, newSchema['properties'][keyName], newUischema[keyName] );
-        delete newSchema['properties'][keyName];
-        delete newUischema[keyName];
-        console.log(newSchema);
-        setSchema(newSchema);
-        setUischema(newUischema);
+        setUischema(uiSchema => {
+            let newUischema = JSON.parse(JSON.stringify(uiSchema));
+            delete newUischema[keyName];
+            return newUischema;
+        });
     }
 
     function displayTextFieldPanel(editFieldKeyName) {

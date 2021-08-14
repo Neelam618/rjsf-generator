@@ -50,11 +50,11 @@ function FormViewer(props) {
             }
             console.log(props.schema.properties[key]);
             return (
-                <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
+                <div key={key} className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
                     {!props.schema.properties.hasOwnProperty([key])? 
                         "ddnejdj" // Object is empty (Would return true in this example)
                         
-                       : <Form key={key} schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
+                       : <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
                             <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
                             <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
                         </Form>// Object is NOT empty
