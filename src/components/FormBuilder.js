@@ -94,7 +94,7 @@ function FormBuilder() {
             "ui:autofocus": false,
             "ui:options": {
                 "inputType": "text",
-                "label": false
+                "label": true
             },
         }
         setUischema(newUischema);
@@ -265,7 +265,6 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[chooseFileKey] = {
             "ui:options": {
-                "label": false,
                 "accept": ".pdf"
             }
         }
@@ -287,7 +286,6 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[chooseMultipleFilesKey] = {
             "ui:options": {
-                "label": false,
                 "accept": ".pdf"
             }
         }

@@ -1,12 +1,14 @@
 body {
     font-weight: 400;
+    background: #ccbecf96;
+    color: black;
 }
 /* Formviewer */
 .fieldContainer:hover .removeField, .fieldContainer:hover .editField {
     display: inline !important;
 }
 .removeField:hover {
-        background-color: rgb(243, 207, 207);
+        background-color: rgb(253, 129, 129);
         cursor: pointer;
 }
 .editField {
@@ -24,39 +26,25 @@ body {
     right: 0;
     font-weight: 700;
     padding: 5px 20px;
-    border-radius: 5;
+    border-radius: 5px;
 }
 .editField:hover {
-    background-color: rgba(212, 211, 178, 0.788);
+    background-color: #ccbecf96;
+    border-radius: 5px;
     cursor: pointer;
 }
 .removeField:hover .fieldContainer{
     background-color: pink !important;
 }
 .fieldContainer:hover {
-    border: 2px solid rgb(218, 214, 214);
-    border-radius: 5px;
+    border: 2px solid rgb(170, 165, 165);
+    border-radius: 10px;
 }
 .formViewer {
-    border: 1px solid rgb(214, 212, 212);
+    border: 1px solid rgb(151, 147, 147);
     padding: 2em;
-    border-radius: 5px;
+    border-radius: 20px;
 }
-/* .txtClass input, .textareaClass textarea, .numberClass input, .selectClass select, .multiChoiceClass select {
-    border: 1px solid rgb(196, 196, 196);
-} */
-
-/* *:not(:hover)>.fieldContainer{
-    display:inline;
-    background-color: red;
-
-} */
-
-/* .fieldContainer:hover span:not(:hover) {
-    display: inline;
-    background-color: red;
-
-} */
 
 .container-fluid .row {
     margin-bottom: 30px !important;
@@ -64,7 +52,6 @@ body {
 
 /* Toolbox */
 .tools {
-    /* background: rgb(243, 240, 240); */
     margin: 5px;
     list-style-type: none;
     padding: 1em;
@@ -73,7 +60,7 @@ body {
     font-weight: 500;
 }
 .tools:hover {
-    border: 1px solid rgb(214, 212, 212);
+    border: 1px solid black;
 }
 .tools:nth-child(odd)
 {
@@ -86,19 +73,19 @@ body {
 .icons img {
     margin-right: 2em;
     width: 32px;
-    /* opacity: 0.8; */
 }
 
 /* Panel */
 .panel {
     width: 30%;
-    /* border: 1px solid gray; */
+    /* border: 1px solid black; */
+    border-radius: 20px;
     padding: 2em;
-    /* background-color: rgb(63, 17, 17); */
+    background-color: #ccbecf96;
     /* color: white; */
-    -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
+    /* -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
     -moz-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
-    box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
+    box-shadow: 6px 6px 30px -12px rgba(156,153,156,1); */
 }
 .panel img {
     width: 15px;

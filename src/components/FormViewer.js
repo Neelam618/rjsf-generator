@@ -68,7 +68,7 @@ function FormViewer(props) {
             <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
                 Generate Schema
             </Button>
-            : <div>
+            : <div style={{margin: '2em 1em'}}>
                 Select a form element from the list
             </div>
         }
