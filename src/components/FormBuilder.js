@@ -34,18 +34,13 @@ function FormBuilder() {
         setSchema(newSchema);
 
         newUischema[textFieldKey] = {
+            // "ui:options": {
+                'ui:label': false,
+                // "inputType": "text"
+            // },
             // classNames: "myClass",
-            inputClass: 'demo',
-            labelClass: 'labelClass',
             "ui:autofocus": false,
-            "ui:options": {
-                "label": false,
-                "inputType": "text"
-            },
             "ui:placeholder": "This is a placeholder",
-            // "ui:help": "Hint: Make it strong!",
-            // "ui:disabled": false,
-            // "ui:readonly": false,
         }
         setUischema(newUischema);
     }
@@ -65,12 +60,12 @@ function FormBuilder() {
         setSchema(newSchema);
 
         newUischema[numFieldKey] = {
-            "ui:autofocus": false,
-            "ui:placeholder": "Select Number",
             "ui:options": {
                 "inputType": "number",
                 "label": false
             },
+            "ui:autofocus": false,
+            "ui:placeholder": "Select Number",
         }
         setUischema(newUischema);
     }
@@ -116,12 +111,12 @@ function FormBuilder() {
         setSchema(newSchema);
 
         newUischema[randomNumKey] = {
-            "ui:widget": "textarea",
-            "ui:placeholder": "Write Something...",
             "ui:options": {
                 "label": false,
                 rows: 4,
-            }
+            },
+            "ui:widget": "textarea",
+            "ui:placeholder": "Write Something...",
         }
         setUischema(newUischema);
     }
@@ -168,11 +163,11 @@ function FormBuilder() {
         }
         setSchema(newSchema);
         newUischema[radioKey] = {
-            "ui:widget": "radio",
             "ui:options": {
                 "label": false,
                 inline: true,
-            }
+            },
+            "ui:widget": "radio",
         }
         setUischema(newUischema);
     }
@@ -217,7 +212,7 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[multipleChoiceListKey] = {
             "ui:options": {
-                "label": true
+                "label": false
             }
         }
         setUischema(newUischema);
@@ -242,13 +237,21 @@ function FormBuilder() {
     }
     function addDateTime() {
         let newSchema = JSON.parse(JSON.stringify(schema));
-        newSchema['properties']["dateTime_" + Math.floor(Math.random() * 899999 + 100000)] = {
+        let newUischema = JSON.parse(JSON.stringify(uiSchema));
+        let datetimeKey = "dateTime_" + Math.floor(Math.random() * 899999 + 100000)
+        newSchema['properties'][datetimeKey] = {
             "title": "Date & Time",
             "type": "string",
             "format": "date-time",
             default: new Date().toISOString().slice(0,10)
         }
         setSchema(newSchema);
+        newUischema[datetimeKey] = {
+            "ui:options": {
+                "label": false
+            }
+        }
+        setUischema(newUischema);
     }
     function chooseFile() {
         let newSchema = JSON.parse(JSON.stringify(schema));

@@ -8,6 +8,7 @@ import RadioButtonsPanel from './Panels/RadioButtonsPanel';
 import IntRangePanel from './Panels/IntRangePanel'
 import MultipleChoiceListPanel from './Panels/MultipleChoiceListPanel';
 import DateFieldPanel from './Panels/DateFieldPanel'
+import DateTimeFieldPanel from './Panels/DateTimeFieldPanel' 
 import ChooseFilePanel from './Panels/ChooseFilePanel';
 import ChooseMultipleFilesPanel from './Panels/ChooseMultipleFilesPanel'
 
@@ -59,17 +60,15 @@ function EditPanel(props) {
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "multipleChoiceList": return <MultipleChoiceListPanel
+            case "dateTime": return <DateTimeFieldPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-                // case "altDate": return <Toolbox 
-                // addTxtInput={props.addTxtInput} addNumInput={props.addNumInput} addSelect={props.addSelect} addTxtarea={props.addTxtarea}
-                // addCheckbox={props.addCheckbox} addRadioButtons={props.addRadioButtons} addIntRange={props.addIntRange}
-                // addMultipleChoiceList={props.addMultipleChoiceList} addAltDate={props.addAltDate}
-                // chooseSingleFile={props.chooseSingleFile} chooseMultipleFiles={props.chooseMultipleFiles}
-                // />
+            case "multipleChoiceList": return <MultipleChoiceListPanel
+                setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
+                editFieldKeyName={props.editFieldKeyName}
+                closePanel={props.closePanel} />
 
             case "chooseFile": return <ChooseFilePanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}

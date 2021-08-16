@@ -22,16 +22,8 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        "placeholder": {
-            "title": "Placeholder",
-            "type": "string"
-        },
         "classNames": {
             "title": "ClassName",
-            "type": "string"
-        },
-        "description": {
-            "title": "Description",
             "type": "string"
         },
         "help": {
@@ -46,11 +38,6 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },
-        // "label checkbox": {
-        //     "type": "boolean",
-        //     "title": "Hide Label",
-        // },          
-
     }
 }
 
@@ -83,22 +70,6 @@ function DateFieldPanel(props) {
         else {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
         }
-
-        // For placeholder
-        if(formData.placeholder) {
-            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
-        }
-        else {
-            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        }
-
-        //Description
-        // if(formData.description) {
-        //     newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
-        // }
-        // else {
-        //     delete newSchema["properties"][props.editFieldKeyName]["description"]
-        // }
 
         //help text
         if(formData.help) {
@@ -142,9 +113,7 @@ function DateFieldPanel(props) {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
-        // "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],

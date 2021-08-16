@@ -14,10 +14,6 @@ const schema = {
             "title": "Label",
             "type": "string",
         },
-        "hideLabel": {
-            "type": "boolean",
-            "title": "Hide Label"
-        },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
@@ -26,14 +22,6 @@ const schema = {
             "type": "boolean",
             "title": "Autofocus",
         },
-        "maxItems": {
-            "type": "integer",
-            "title": "Maximum items"
-        },
-        // "uniqueItems": {
-        //     "type": "boolean",
-        //     "title": "Unique Items",
-        // },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -50,19 +38,10 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },         
-        "enum": {
-            "type": "array",
-            "title": "List options",
-            "items": {
-              "type": "string",
-              "minLength": 2,
-            }
-        },
     }
 }
 
-function MultipleChoiceListPanel(props) {
-    
+function DateTimeFieldPanel(props) {
     const onSubmit = ({formData}) => {
         console.log("Data submitted: ",  formData)
         props.closePanel()
@@ -72,15 +51,6 @@ function MultipleChoiceListPanel(props) {
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
-
-        //hide label
-        if(formData.hideLabel == false) {
-            newUischema[props.editFieldKeyName]["ui:options"]["label"] = true;
-        } 
-        else {
-            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;  
-        }   
-        
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
@@ -99,44 +69,6 @@ function MultipleChoiceListPanel(props) {
         }
         else {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
-        }
-
-        //maxItems
-        if(formData.maxItems) {
-            newSchema["properties"][props.editFieldKeyName]["maxItems"] = formData.maxItems
-        }
-        else {
-            delete newSchema["properties"][props.editFieldKeyName]["maxItems"]
-        }
-
-        //list options
-        if(formData.enum) {
-            newSchema["properties"][props.editFieldKeyName]["items"]["enum"] = formData.enum
-        }
-
-        //uniqueItems
-        if(formData.uniqueItems) {
-            newSchema["properties"][props.editFieldKeyName]["uniqueItems"] = formData.uniqueItems
-        }
-        else {
-           delete newSchema["properties"][props.editFieldKeyName]["uniqueItems"]
-        }
-
-
-        // For placeholder
-        if(formData.placeholder) {
-            newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
-        }
-        else {
-            delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        }
-
-        //For maxLength
-        if(formData.maxLength) {
-            newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
-        }
-        else {
-            delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
         }
 
         //help text
@@ -179,14 +111,8 @@ function MultipleChoiceListPanel(props) {
 
     let formData = {
         "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"]   ,
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
-        "maxItems": props.schema["properties"][props.editFieldKeyName]["maxItems"],
-        "enum": props.schema["properties"][props.editFieldKeyName]["items"]["enum"],
-        // "enumValue2": props.schema["properties"][props.editFieldKeyName]["enum"][1],
-        // "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
-        "uniqueItems": props.schema["properties"][props.editFieldKeyName]["uniqueItems"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
@@ -206,4 +132,4 @@ function MultipleChoiceListPanel(props) {
     )
 }
 
-export default MultipleChoiceListPanel
+export default DateTimeFieldPanel
