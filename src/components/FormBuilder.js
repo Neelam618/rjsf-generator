@@ -217,7 +217,7 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[multipleChoiceListKey] = {
             "ui:options": {
-                "label": false
+                "label": true
             }
         }
         setUischema(newUischema);
