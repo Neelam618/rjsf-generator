@@ -117,7 +117,6 @@ function DateTimeFieldPanel(props) {
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
-
     }
     let yourForm;
     return (

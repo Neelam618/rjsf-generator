@@ -12,7 +12,6 @@ import DateTimeFieldPanel from './Panels/DateTimeFieldPanel'
 import ChooseFilePanel from './Panels/ChooseFilePanel';
 import ChooseMultipleFilesPanel from './Panels/ChooseMultipleFilesPanel'
 
-
 function EditPanel(props) {
     let newSchema = JSON.parse(JSON.stringify(props.schema));
     let schemaConfigForKey = newSchema['properties'][props.editFieldKeyName];
