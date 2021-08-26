@@ -48,35 +48,35 @@ const SelectWidget = (props) => {
   const {
     schema,
     label,
-    id,
+    // id,
     options,
     value,
     required,
     disabled,
     readonly,
     multiple,
-    autofocus,
+    // autofocus,
     onChange,
-    onBlur,
-    onFocus,
+    // onBlur,
+    // onFocus,
     placeholder,
-    editFieldKeyName
+    // editFieldKeyName
   } = props;
   const { enumOptions, enumDisabled } = options;
-  const emptyValue = multiple ? [] : "";
+  // const emptyValue = multiple ? [] : "";
   console.log(options)
   return (
     <>
-    {
-    options.label? <label className='form-label'>{typeof label === "undefined" ? schema.title : label}{required ? "*" : null}</label>: null
-    }
-      
+      {
+        options.label ? <label className='form-label'>{typeof label === "undefined" ? schema.title : label}{required ? "*" : null}</label> : null
+      }
+
       <select type="text" multiple={multiple}
         className='form-select'
         value={value}
         required={required}
         disabled={disabled || readonly}
-        onChange={(event) => props.onChange(event.target.value)}
+        // onChange={(event) => props.onChange(event.target.value)}
         onChange={event => {
           const newValue = getValue(event, multiple);
           onChange(processValue(schema, newValue));

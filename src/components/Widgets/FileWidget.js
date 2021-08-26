@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import { dataURItoBlob, shouldRender } from "@rjsf/core/lib/utils";
 
@@ -90,7 +89,7 @@ class FileWidget extends Component {
   };
 
   render(props) {
-    const { multiple, id, readonly, disabled, autofocus, options,title, label, required } = this.props;
+    const { multiple, id, readonly, disabled, autofocus, options, title, label, required } = this.props;
     const { filesInfo } = this.state;
     return (
       <div>

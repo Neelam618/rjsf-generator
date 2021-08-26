@@ -1,9 +1,5 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-// import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
-// import { Theme as MuiTheme } from 'rjsf-material-ui';
-// import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import '../styles.css'
 
@@ -14,27 +10,21 @@ const schema = {
             "title": "Label",
             "type": "string",
         },
-        "acceptFileFormat": {
-            "title": "Accepts File format",
-            "type": "string",
-            "enum": [
-                ".pdf",
-                ".txt", 
-                ".jpg",
-                ".png",
-                "all files"
-              ],
-              "enumNames": [
-                "pdf",
-                "txt",
-                "jpg",
-                "png",
-                "all files"
-              ],
-        },
         "requiredCheckbox": {
             "type": "boolean",
             "title": "Required",
+        },
+        "minimum": {
+            "type": "number",
+            "title": "Minimum value"
+        },
+        "maximum": {
+            "type": "number",
+            "title": "Maximum value"
+        },
+        "multipleOf": {
+            "type": "number",
+            "title": "Steps"
         },
         "autofocusCheckbox": {
             "type": "boolean",
@@ -42,10 +32,6 @@ const schema = {
         },
         "classNames": {
             "title": "ClassName",
-            "type": "string"
-        },
-        "description": {
-            "title": "Description",
             "type": "string"
         },
         "help": {
@@ -60,39 +46,55 @@ const schema = {
             "type": "boolean",
             "title": "Read only",
         },
-        // "label checkbox": {
-        //     "type": "boolean",
-        //     "title": "Hide Label",
-        // },          
 
     }
 }
 
-function chooseMultipleFilesPanel(props) {
-    const onSubmit = ({formData}) => {
-        console.log("Data submitted: ",  formData)
+function IntRangePanel(props) {
+
+    const onSubmit = ({ formData }) => {
+        console.log("Data submitted: ", formData)
         props.closePanel()
 
-        let newSchema= JSON.parse(JSON.stringify(props.schema));
+        let newSchema = JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
-
-        //accept file format
-        if(formData.acceptFileFormat && newUischema[props.editFieldKeyName]["ui:options"]["accept"] !== "all files") {
-            newUischema[props.editFieldKeyName]["ui:options"]["accept"] = formData["acceptFileFormat"]
-        }
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
             newSchema["required"].push(props.editFieldKeyName)
         }
         else {
-            const index =  newSchema["required"].indexOf(props.editFieldKeyName);
+            const index = newSchema["required"].indexOf(props.editFieldKeyName);
             if (index > -1) {
                 newSchema["required"].splice(index, 1);
             }
+        }
+
+        //minimum
+        if (formData.minimum) {
+            newSchema["properties"][props.editFieldKeyName]["minimum"] = formData.minimum
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["minimum"]
+        }
+
+        //maximum
+        if (formData.maximum) {
+            newSchema["properties"][props.editFieldKeyName]["maximum"] = formData.maximum
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["maximum"]
+        }
+
+        //multipleOf
+        if (formData.multipleOf) {
+            newSchema["properties"][props.editFieldKeyName]["multipleOf"] = formData.multipleOf
+        }
+        else {
+            delete newSchema["properties"][props.editFieldKeyName]["multipleOf"]
         }
 
         //For autofocus
@@ -100,27 +102,11 @@ function chooseMultipleFilesPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = true
         }
         else {
-            newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
+            newUischema[props.editFieldKeyName]["ui:autofocus"] = false
         }
-
-        //For maxLength
-        if(formData.maxLength) {
-            newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
-        }
-        else {
-            delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
-        }
-
-        //Description
-        // if(formData.description) {
-        //     newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
-        // }
-        // else {
-        //     delete newSchema["properties"][props.editFieldKeyName]["description"]
-        // }
 
         //help text
-        if(formData.help) {
+        if (formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
         }
         else {
@@ -128,52 +114,54 @@ function chooseMultipleFilesPanel(props) {
         }
 
         //Disabled
-        if(formData.disabledCheckbox) {
+        if (formData.disabledCheckbox) {
             newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
             console.log(formData.disabledCheckbox)
         }
         else {
-           delete newUischema[props.editFieldKeyName]["ui:disabled"]
+            delete newUischema[props.editFieldKeyName]["ui:disabled"]
         }
 
         //readonly
-        if(formData.readonlyCheckbox) {
+        if (formData.readonlyCheckbox) {
             newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:readonly"]
-         }
-         
-        //  classNames
-         if(formData.classNames) {
+        }
+
+        // classNames
+        if (formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
-         }
-         else {
+        }
+        else {
             delete newUischema[props.editFieldKeyName].classNames
-         }
-        
+        }
+
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
     }
 
     let formData = {
-        "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "acceptFileFormat": props.uiSchema[props.editFieldKeyName]["ui:options"]["accept"],
+        "label": props.schema["properties"][props.editFieldKeyName]["title"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
+        "minimum": props.schema["properties"][props.editFieldKeyName]["minimum"],
+        "maximum": props.schema["properties"][props.editFieldKeyName]["maximum"],
+        "multipleOf": props.schema["properties"][props.editFieldKeyName]["multipleOf"],
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
-        // "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
+
     }
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
-            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
-            formData= {formData}
+            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" alt="" /></div>
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => { yourForm = form; }}
+                formData={formData}
             >
                 <div><button type="submit" className="btn btn-primary">Save</button></div>
             </Form>
@@ -181,4 +169,4 @@ function chooseMultipleFilesPanel(props) {
     )
 }
 
-export default chooseMultipleFilesPanel
+export default IntRangePanel

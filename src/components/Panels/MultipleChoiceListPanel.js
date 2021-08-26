@@ -1,9 +1,5 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
-import { Theme as MuiTheme } from 'rjsf-material-ui';
-import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import '../styles.css'
 
@@ -30,10 +26,6 @@ const schema = {
             "type": "integer",
             "title": "Maximum items"
         },
-        // "uniqueItems": {
-        //     "type": "boolean",
-        //     "title": "Unique Items",
-        // },
         "classNames": {
             "title": "ClassName",
             "type": "string"
@@ -49,45 +41,45 @@ const schema = {
         "readonlyCheckbox": {
             "type": "boolean",
             "title": "Read only",
-        },         
+        },
         "enum": {
             "type": "array",
             "title": "List options",
             "items": {
-              "type": "string",
-              "minLength": 2,
+                "type": "string",
+                "minLength": 2,
             }
         },
     }
 }
 
 function MultipleChoiceListPanel(props) {
-    
-    const onSubmit = ({formData}) => {
-        console.log("Data submitted: ",  formData)
+
+    const onSubmit = ({ formData }) => {
+        console.log("Data submitted: ", formData)
         props.closePanel()
 
-        let newSchema= JSON.parse(JSON.stringify(props.schema));
+        let newSchema = JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
 
         //hide label
-        if(formData.hideLabel == false) {
+        if (formData.hideLabel === false) {
             newUischema[props.editFieldKeyName]["ui:options"]["label"] = true;
-        } 
+        }
         else {
-            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;  
-        }   
-        
+            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;
+        }
+
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
             newSchema["required"].push(props.editFieldKeyName)
         }
         else {
-            const index =  newSchema["required"].indexOf(props.editFieldKeyName);
+            const index = newSchema["required"].indexOf(props.editFieldKeyName);
             if (index > -1) {
                 newSchema["required"].splice(index, 1);
             }
@@ -98,11 +90,11 @@ function MultipleChoiceListPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = true
         }
         else {
-            newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
+            newUischema[props.editFieldKeyName]["ui:autofocus"] = false
         }
 
         //maxItems
-        if(formData.maxItems) {
+        if (formData.maxItems) {
             newSchema["properties"][props.editFieldKeyName]["maxItems"] = formData.maxItems
         }
         else {
@@ -110,21 +102,21 @@ function MultipleChoiceListPanel(props) {
         }
 
         //list options
-        if(formData.enum) {
+        if (formData.enum) {
             newSchema["properties"][props.editFieldKeyName]["items"]["enum"] = formData.enum
         }
 
         //uniqueItems
-        if(formData.uniqueItems) {
+        if (formData.uniqueItems) {
             newSchema["properties"][props.editFieldKeyName]["uniqueItems"] = formData.uniqueItems
         }
         else {
-           delete newSchema["properties"][props.editFieldKeyName]["uniqueItems"]
+            delete newSchema["properties"][props.editFieldKeyName]["uniqueItems"]
         }
 
 
         // For placeholder
-        if(formData.placeholder) {
+        if (formData.placeholder) {
             newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
         }
         else {
@@ -132,7 +124,7 @@ function MultipleChoiceListPanel(props) {
         }
 
         //For maxLength
-        if(formData.maxLength) {
+        if (formData.maxLength) {
             newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
         }
         else {
@@ -140,7 +132,7 @@ function MultipleChoiceListPanel(props) {
         }
 
         //help text
-        if(formData.help) {
+        if (formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
         }
         else {
@@ -148,44 +140,42 @@ function MultipleChoiceListPanel(props) {
         }
 
         //Disabled
-        if(formData.disabledCheckbox) {
+        if (formData.disabledCheckbox) {
             newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
             console.log(formData.disabledCheckbox)
         }
         else {
-           delete newUischema[props.editFieldKeyName]["ui:disabled"]
+            delete newUischema[props.editFieldKeyName]["ui:disabled"]
         }
 
         //readonly
-        if(formData.readonlyCheckbox) {
+        if (formData.readonlyCheckbox) {
             newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:readonly"]
-         }
-         
+        }
+
         //  classNames
-         if(formData.classNames) {
+        if (formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
-         }
-         else {
+        }
+        else {
             delete newUischema[props.editFieldKeyName].classNames
-         }
-        
+        }
+
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
     }
 
     let formData = {
-        "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"]   ,
+        "label": props.schema["properties"][props.editFieldKeyName]["title"],
+        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "maxItems": props.schema["properties"][props.editFieldKeyName]["maxItems"],
         "enum": props.schema["properties"][props.editFieldKeyName]["items"]["enum"],
-        // "enumValue2": props.schema["properties"][props.editFieldKeyName]["enum"][1],
-        // "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
         "uniqueItems": props.schema["properties"][props.editFieldKeyName]["uniqueItems"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
@@ -196,9 +186,9 @@ function MultipleChoiceListPanel(props) {
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
-            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
-            formData= {formData}
+            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" alt="" /></div>
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => { yourForm = form; }}
+                formData={formData}
             >
                 <div><button type="submit" className="btn btn-primary">Save</button></div>
             </Form>

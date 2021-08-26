@@ -1,9 +1,5 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-// import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
-// import { Theme as MuiTheme } from 'rjsf-material-ui';
-// import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import '../styles.css'
 
@@ -48,7 +44,7 @@ const schema = {
         "readonlyCheckbox": {
             "type": "boolean",
             "title": "Read only",
-        },         
+        },
     },
     "additionalProperties": {
         type: "array",
@@ -66,37 +62,24 @@ const schema = {
     },
 }
 
-const uiSchema= {
-    // "ui:widget": (props) => {
-    //     return (
-    //       <select type="text"
-    //         className="custom"
-    //         value={props.value}
-    //         required={props.required}
-    //         onChange={(event) => props.onChange(event.target.value)} />
-    //     );
-    //   },
-}
-
-
 function SelectFieldPanel(props) {
-    const onSubmit = ({formData}) => {
+    const onSubmit = ({ formData }) => {
         // console.log("Data submitted: ",  formData)
         props.closePanel()
 
-        let newSchema= JSON.parse(JSON.stringify(props.schema));
+        let newSchema = JSON.parse(JSON.stringify(props.schema));
         let newUischema = JSON.parse(JSON.stringify(props.uiSchema));
 
         //For Label
         newSchema["properties"][props.editFieldKeyName]["title"] = formData["label"]
 
         //hide label
-        if(formData.hideLabel == false) {
+        if (formData.hideLabel === false) {
             newUischema[props.editFieldKeyName]["ui:options"]["label"] = true;
-        } 
+        }
         else {
-            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;  
-        }   
+            newUischema[props.editFieldKeyName]["ui:options"]["label"] = false;
+        }
 
         //For required
         if (formData.requiredCheckbox && !newSchema["required"].includes(props.editFieldKeyName)) {
@@ -114,11 +97,11 @@ function SelectFieldPanel(props) {
             newUischema[props.editFieldKeyName]["ui:autofocus"] = true
         }
         else {
-            newUischema[props.editFieldKeyName]["ui:autofocus"] = false   
+            newUischema[props.editFieldKeyName]["ui:autofocus"] = false
         }
 
         //For maxLength
-        if(formData.maxLength) {
+        if (formData.maxLength) {
             newSchema["properties"][props.editFieldKeyName]["maxLength"] = formData.maxLength
         }
         else {
@@ -126,51 +109,51 @@ function SelectFieldPanel(props) {
         }
 
         // help text
-        if(formData.help) {
+        if (formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:help"]
         }
         // For placeholder
-        if(formData.placeholder) {
+        if (formData.placeholder) {
             newUischema[props.editFieldKeyName]["ui:placeholder"] = formData.placeholder
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:placeholder"]
-        } 
-         //classNames
-         if(formData.classNames) {
+        }
+        //classNames
+        if (formData.classNames) {
             newUischema[props.editFieldKeyName].classNames = formData.classNames
-         }
-         else {
+        }
+        else {
             delete newUischema[props.editFieldKeyName].classNames
-         }
-                        
+        }
+
         props.setSchema(newSchema)
         props.setUischema(newUischema)
 
         //Disabled
-        if(formData.disabledCheckbox) {
+        if (formData.disabledCheckbox) {
             newUischema[props.editFieldKeyName]["ui:disabled"] = formData.disabledCheckbox
             console.log(formData.disabledCheckbox)
         }
         else {
-           delete newUischema[props.editFieldKeyName]["ui:disabled"]
+            delete newUischema[props.editFieldKeyName]["ui:disabled"]
         }
 
         //readonly
-        if(formData.readonlyCheckbox) {
+        if (formData.readonlyCheckbox) {
             newUischema[props.editFieldKeyName]["ui:readonly"] = formData.readonlyCheckbox
         }
         else {
             delete newUischema[props.editFieldKeyName]["ui:readonly"]
-         }
+        }
 
         //additional properties
         // console.log(Object.values(formData.options));
-        let enumKeys =[];
-        let enumNames =[];
+        let enumKeys = [];
+        let enumNames = [];
         Object.values(formData.options).forEach(option => {
             enumKeys.push(option.key)
             enumNames.push(option.value)
@@ -180,8 +163,8 @@ function SelectFieldPanel(props) {
         newSchema["properties"][props.editFieldKeyName]["enumNames"] = enumNames
     }
     let formData = {
-        "label":props.schema["properties"][props.editFieldKeyName]["title"],
-        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"]   ,
+        "label": props.schema["properties"][props.editFieldKeyName]["title"],
+        "hideLabel": !props.uiSchema[props.editFieldKeyName]["ui:options"]["label"],
         "requiredCheckbox": props.schema["required"] && props.schema["required"].includes(props.editFieldKeyName),
         "autofocusCheckbox": props.uiSchema[props.editFieldKeyName] && props.uiSchema[props.editFieldKeyName]["ui:autofocus"],
         "placeholder": props.uiSchema[props.editFieldKeyName]["ui:placeholder"],
@@ -190,23 +173,23 @@ function SelectFieldPanel(props) {
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
     }
-    
+
     //additional properties
     let formDataSchema = JSON.parse(JSON.stringify(props.schema));
     // console.log(formDataSchema["properties"][props.editFieldKeyName]);
     let formDataEnum = formDataSchema["properties"][props.editFieldKeyName]["enum"] || [];
     let formDataEnumNames = formDataSchema["properties"][props.editFieldKeyName]["enumNames"] || [];
-    formData.options=[]
+    formData.options = []
     for (let i = 0; i < formDataEnum.length; i++) {
-        formData.options.push({key: formDataEnum[i],value: formDataEnumNames[i]});
+        formData.options.push({ key: formDataEnum[i], value: formDataEnumNames[i] });
     }
 
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
-            <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
-            formData= {formData}
+            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" alt="" /></div>
+            <Form schema={schema} onSubmit={onSubmit} ref={(form) => { yourForm = form; }}
+                formData={formData}
             >
                 <div><button type="submit" className="btn btn-primary">Save</button></div>
             </Form>

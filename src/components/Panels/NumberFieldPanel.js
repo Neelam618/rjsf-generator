@@ -1,9 +1,5 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
-import { Theme as MuiTheme } from 'rjsf-material-ui';
-import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import '../styles.css'
 
@@ -114,13 +110,6 @@ function NumberFieldPanel(props) {
             delete newSchema["properties"][props.editFieldKeyName]["maxLength"]
         }
 
-        //Description
-        // if(formData.description) {
-        //     newSchema["properties"][props.editFieldKeyName]["description"] = formData.description
-        // }
-        // else {
-        //     delete newSchema["properties"][props.editFieldKeyName]["description"]
-        // }
         //help text
         if(formData.help) {
             newUischema[props.editFieldKeyName]["ui:help"] = formData.help
@@ -182,7 +171,6 @@ function NumberFieldPanel(props) {
         "maximum": props.schema["properties"][props.editFieldKeyName]["maximum"],
         "multipleOf": props.schema["properties"][props.editFieldKeyName]["multipleOf"],
         "classNames": props.uiSchema[props.editFieldKeyName].classNames,
-        // "description":  props.schema["properties"][props.editFieldKeyName]["description"],
         "help": props.uiSchema[props.editFieldKeyName]["ui:help"],
         "disabledCheckbox": props.uiSchema[props.editFieldKeyName]["ui:disabled"],
         "readonlyCheckbox": props.uiSchema[props.editFieldKeyName]["ui:readonly"],
@@ -191,7 +179,7 @@ function NumberFieldPanel(props) {
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" /></div>
+            <div onClick={props.closePanel} style={{textAlign: 'end'}}><img src="img/close.png" alt="" /></div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             >

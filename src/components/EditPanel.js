@@ -5,12 +5,12 @@ import SelectFieldPanel from './Panels/SelectFieldPanel';
 import TextareaPanel from './Panels/TextareaPanel';
 import CheckboxGroupPanel from './Panels/CheckboxGroupPanel'
 import RadioButtonsPanel from './Panels/RadioButtonsPanel';
-import IntRangePanel from './Panels/IntRangePanel'
+import RangePanel from './Panels/RangePanel'
 import MultipleChoiceListPanel from './Panels/MultipleChoiceListPanel';
 import DateFieldPanel from './Panels/DateFieldPanel'
-import DateTimeFieldPanel from './Panels/DateTimeFieldPanel' 
-import ChooseFilePanel from './Panels/ChooseFilePanel';
-import ChooseMultipleFilesPanel from './Panels/ChooseMultipleFilesPanel'
+import DateTimeFieldPanel from './Panels/DateTimeFieldPanel'
+import FilePanel from './Panels/FilePanel';
+import MultipleFilesPanel from './Panels/MultipleFilesPanel';
 
 function EditPanel(props) {
     let newSchema = JSON.parse(JSON.stringify(props.schema));
@@ -49,7 +49,7 @@ function EditPanel(props) {
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "intRange": return <IntRangePanel
+            case "intRange": return <RangePanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
@@ -69,16 +69,17 @@ function EditPanel(props) {
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "chooseFile": return <ChooseFilePanel
+            case "chooseFile": return <FilePanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
 
-            case "chooseMultipleFiles": return <ChooseMultipleFilesPanel
+            case "chooseMultipleFiles": return <MultipleFilesPanel
                 setSchema={props.setSchema} setUischema={props.setUischema} schema={props.schema} uiSchema={props.uiSchema}
                 editFieldKeyName={props.editFieldKeyName}
                 closePanel={props.closePanel} />
-
+                
+            // skip default case
         }
     }
 

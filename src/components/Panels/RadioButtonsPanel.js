@@ -1,9 +1,5 @@
 import React from 'react'
 import { withTheme } from '@rjsf/core';
-// import { Theme as AntDTheme } from '@rjsf/antd';
-import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
-import { Theme as MuiTheme } from 'rjsf-material-ui';
-import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
 import { Theme as Bootstrap4Theme } from '@rjsf/bootstrap-4';
 import '../styles.css'
 
@@ -168,7 +164,7 @@ function RadioSwitchPanel(props) {
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" /></div>
+            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" alt="" /></div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => {yourForm = form;}}
             formData= {formData}
             >
