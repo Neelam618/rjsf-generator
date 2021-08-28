@@ -331,11 +331,24 @@ function FormBuilder() {
         setshowEditPanel(false)
     }
 
-    return (
+    function changeOrder(sourceIndex, destinationIndex) {
+        setUischema(uiSchema => {
+            let newUischema = JSON.parse(JSON.stringify(uiSchema));
+            newUischema['ui:order'] = arrayMove(newUischema['ui:order'], sourceIndex, destinationIndex)
+            return newUischema;
+        });
+    }
 
+    function arrayMove(array, from, to) {
+        array.splice(to, 0, array.splice(from, 1)[0]);
+        return array;
+    }
+
+    return (
         <div style={{ display: 'flex', padding: 30, justifyContent: 'space-evenly' }}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField}
                 displayTextFieldPanel={displayTextFieldPanel}
+                changeOrder={changeOrder}
             />
 
             {

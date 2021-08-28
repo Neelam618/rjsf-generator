@@ -26,6 +26,7 @@ function FormViewer(props) {
 
     const onDragEnd = (result) => {
         console.log(`source: ${result.source.index}, destination: ${result.destination.index}`)
+        props.changeOrder(result.source.index, result.destination.index)
     }
 
     return <><DragDropContext onDragEnd={onDragEnd}>
@@ -34,14 +35,14 @@ function FormViewer(props) {
                 <div className="formViewer" style={{ width: '50%' }} {...provided.droppableProps} ref={provided.innerRef}>
                     {provided.placeholder}
                     {
-                        Object.entries(props.schema.properties).map(function ([key, value], index) {
+                        props.uiSchema['ui:order'].map(function (key, index) {
                             let singleFieldSchema = {
                                 "properties": {
-                                    [key]: value,
+                                    [key]: props.schema.properties[key],
                                 },
                                 "required": props.schema["required"].filter(k => k === key),
                             }
-                            console.log("required array", props.schema["required"]);
+
                             const widgets = {
                                 // TextWidget: TextWidget,
                                 SelectWidget: SelectWidget,
