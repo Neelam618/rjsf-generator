@@ -11,7 +11,9 @@ function FormBuilder() {
         "properties": {},
         "required": []
     })
-    const [uiSchema, setUischema] = useState({})
+    const [uiSchema, setUischema] = useState({
+        "ui:order": []
+    })
 
     const [showEditPanel, setshowEditPanel] = useState(false)
 
@@ -40,8 +42,9 @@ function FormBuilder() {
             // },
             // classNames: "myClass",
             "ui:autofocus": false,
-            "ui:placeholder": "This is a placeholder",
+            "ui:placeholder": "This is a placeholder"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(textFieldKey)
         setUischema(newUischema);
     }
 
@@ -65,8 +68,9 @@ function FormBuilder() {
                 "label": false
             },
             "ui:autofocus": false,
-            "ui:placeholder": "Select Number",
+            "ui:placeholder": "Select Number"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(numFieldKey)
         setUischema(newUischema);
     }
 
@@ -95,8 +99,9 @@ function FormBuilder() {
             "ui:options": {
                 "inputType": "text",
                 "label": true
-            },
+            }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(selectFieldKey)
         setUischema(newUischema);
     }
     function addTxtarea() {
@@ -116,8 +121,9 @@ function FormBuilder() {
                 rows: 4,
             },
             "ui:widget": "textarea",
-            "ui:placeholder": "Write Something...",
+            "ui:placeholder": "Write Something..."
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(randomNumKey)
         setUischema(newUischema);
     }
     function addCheckboxGroup() {
@@ -146,6 +152,7 @@ function FormBuilder() {
             },
             "ui:widget": "checkboxes"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(checkboxGroupKey)
         setUischema(newUischema);
     }
     function addRadioButtons() {
@@ -167,8 +174,9 @@ function FormBuilder() {
                 "label": false,
                 inline: true,
             },
-            "ui:widget": "radio",
+            "ui:widget": "radio"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(radioKey)
         setUischema(newUischema);
     }
     function addIntRange() {
@@ -187,8 +195,9 @@ function FormBuilder() {
             "ui:options": {
                 "label": false
             },
-            "ui:widget": "range",
+            "ui:widget": "range"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(intRangeKey)
         setUischema(newUischema);
     }
     function addMultipleChoiceList() {
@@ -215,6 +224,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(multipleChoiceListKey)
         setUischema(newUischema);
     }
     function addDate() {
@@ -233,6 +243,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(dateKey)
         setUischema(newUischema);
     }
     function addDateTime() {
@@ -251,6 +262,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(datetimeKey)
         setUischema(newUischema);
     }
     function chooseFile() {
@@ -268,6 +280,7 @@ function FormBuilder() {
                 "accept": ".pdf"
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(chooseFileKey)
         setUischema(newUischema);
 
     }
@@ -289,6 +302,7 @@ function FormBuilder() {
                 "accept": ".pdf"
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(chooseMultipleFilesKey)
         setUischema(newUischema);
     }
 
@@ -302,7 +316,9 @@ function FormBuilder() {
 
         setUischema(uiSchema => {
             let newUischema = JSON.parse(JSON.stringify(uiSchema));
-            delete newUischema[keyName];
+
+            let orderKeyToDelete = uiSchema['ui:order'].indexOf(keyName)
+            newUischema['ui:order'].splice(orderKeyToDelete, 1)
             return newUischema;
         });
     }
