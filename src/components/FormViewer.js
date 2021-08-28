@@ -23,10 +23,16 @@ function FormViewer(props) {
 
     const [modalShow, setModalShow] = useState(false);
 
-    return <DragDropContext>
+
+    const onDragEnd = (result) => {
+        console.log(`source: ${result.source.index}, destination: ${result.destination.index}`)
+    }
+
+    return <><DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="fieldWrapper">
             {(provided) => (
                 <div className="formViewer" style={{ width: '50%' }} {...provided.droppableProps} ref={provided.innerRef}>
+                    {provided.placeholder}
                     {
                         Object.entries(props.schema.properties).map(function ([key, value], index) {
                             let singleFieldSchema = {
@@ -52,58 +58,41 @@ function FormViewer(props) {
                             if (props.uiSchema[key]) {
                                 singleFieldUiSchema[key] = props.uiSchema[key]
                             }
-                            console.log(props.schema.properties[key]);
-                            console.log(key);
 
-                            const onEnd = (result) => {
-                                console.log(result)
-                            }
-                            return (
-                                <>
-                                    {/* <DragDropContext onDragEnd={onEnd}> */}
-                                    {/* <Droppable droppableId="fieldWrapper"> */}
-                                    {/* {(provided) => ( */}
-                                    {/* <div {...provided.droppableProps} ref={provided.innerRef}> */}
-                                    <Draggable key={key} dragggableId={key} index={index}>
-                                        {(provided) => (
-                                            <div className='fieldContainer' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
-                                                <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                                                    <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
-                                                    <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
-                                                </Form>
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                    {/* </div> */}
-                                    {/* )} */}
-                                    {/* </Droppable> */}
-
-                                    {/* </DragDropContext> */}
-
-                                    <MyVerticallyCenteredModal
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                        schema={props.schema}
-                                        uiSchema={props.uiSchema}
-                                    />
-                                </>
-                            )
-
+                            return <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
+                                {(provided) => (
+                                    <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
+                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                            <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
+                                                <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
+                                                <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
+                                            </Form>
+                                        </div>
+                                    </div>
+                                )}
+                            </Draggable>
                         })
-                    }
-
-                    {Object.keys(props.schema['properties']).length > 0 ?
-                        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
-                            Generate Schema
-                        </Button>
-                        : <div style={{ margin: '2em 1em' }}>
-                            Select a form element from the list
-                        </div>
                     }
                 </div>
             )}
         </Droppable>
     </DragDropContext>
+    {Object.keys(props.schema['properties']).length > 0 ?
+        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
+            Generate Schema
+        </Button>
+        : <div style={{ margin: '2em 1em' }}>
+            Select a form element from the list
+        </div>
+    }
+    <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        schema={props.schema}
+        uiSchema={props.uiSchema}
+    />
+    </>
+
 }
 
 export default FormViewer
