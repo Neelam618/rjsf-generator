@@ -19,6 +19,7 @@ function FormViewer(props) {
 
 
     const onDragEnd = (result) => {
+        // if (!result.destination) return;
         console.log(`source: ${result.source.index}, destination: ${result.destination.index}`)
         props.changeOrder(result.source.index, result.destination.index)
     }

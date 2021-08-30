@@ -17,13 +17,13 @@ function MyVerticallyCenteredModal(props) {
                 centered
             >
 
-                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                    <Tab eventKey="home" title="schema">
+                <Tabs defaultActiveKey="schema" id="uncontrolled-tab-example" className="mb-3">
+                    <Tab eventKey="schema" title="schema">
                         <pre>
                             {JSON.stringify(schemaObj, null, 2)}
                         </pre>
                     </Tab>
-                    <Tab eventKey="profile" title="uiSchema">
+                    <Tab eventKey="uiSchema" title="uiSchema">
                         <pre>
                             {JSON.stringify(uiSchemaObj, null, 2)}
                         </pre>
