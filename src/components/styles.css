@@ -37,7 +37,7 @@ body {
     background-color: pink !important;
 }
 .fieldContainer:hover {
-    border: 2px solid rgb(170, 165, 165);
+    /* border: 2px solid rgb(170, 165, 165); */
     border-radius: 10px;
 }
 .formViewer {
