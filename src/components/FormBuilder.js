@@ -11,7 +11,9 @@ function FormBuilder() {
         "properties": {},
         "required": []
     })
-    const [uiSchema, setUischema] = useState({})
+    const [uiSchema, setUischema] = useState({
+        "ui:order": []
+    })
 
     const [showEditPanel, setshowEditPanel] = useState(false)
 
@@ -29,18 +31,20 @@ function FormBuilder() {
             // "maxLength": 5,
             // "description": ""
         }
+        // newSchema['required'].push(textFieldKey)
 
         setSchema(newSchema);
 
         newUischema[textFieldKey] = {
             // "ui:options": {
-            'ui:label': false,
-            // "inputType": "text"
+                'ui:label': false,
+                // "inputType": "text"
             // },
             // classNames: "myClass",
             "ui:autofocus": false,
-            "ui:placeholder": "This is a placeholder",
+            "ui:placeholder": "This is a placeholder"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(textFieldKey)
         setUischema(newUischema);
     }
 
@@ -64,8 +68,9 @@ function FormBuilder() {
                 "label": false
             },
             "ui:autofocus": false,
-            "ui:placeholder": "Select Number",
+            "ui:placeholder": "Select Number"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(numFieldKey)
         setUischema(newUischema);
     }
 
@@ -94,8 +99,9 @@ function FormBuilder() {
             "ui:options": {
                 "inputType": "text",
                 "label": true
-            },
+            }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(selectFieldKey)
         setUischema(newUischema);
     }
     function addTxtarea() {
@@ -115,8 +121,9 @@ function FormBuilder() {
                 rows: 4,
             },
             "ui:widget": "textarea",
-            "ui:placeholder": "Write Something...",
+            "ui:placeholder": "Write Something..."
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(randomNumKey)
         setUischema(newUischema);
     }
     function addCheckboxGroup() {
@@ -128,13 +135,13 @@ function FormBuilder() {
             "type": "array",
             "title": "A multiple choices list",
             "items": {
-                "type": "string",
-                "enum": [
-                    "foo",
-                    "bar",
-                    "fuzz",
-                    "qux"
-                ]
+              "type": "string",
+              "enum": [
+                "foo",
+                "bar",
+                "fuzz",
+                "qux"
+              ]
             },
             "uniqueItems": true
         }
@@ -145,6 +152,7 @@ function FormBuilder() {
             },
             "ui:widget": "checkboxes"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(checkboxGroupKey)
         setUischema(newUischema);
     }
     function addRadioButtons() {
@@ -166,8 +174,9 @@ function FormBuilder() {
                 "label": false,
                 inline: true,
             },
-            "ui:widget": "radio",
+            "ui:widget": "radio"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(radioKey)
         setUischema(newUischema);
     }
     function addIntRange() {
@@ -186,8 +195,9 @@ function FormBuilder() {
             "ui:options": {
                 "label": false
             },
-            "ui:widget": "range",
+            "ui:widget": "range"
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(intRangeKey)
         setUischema(newUischema);
     }
     function addMultipleChoiceList() {
@@ -214,6 +224,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(multipleChoiceListKey)
         setUischema(newUischema);
     }
     function addDate() {
@@ -224,7 +235,7 @@ function FormBuilder() {
             "title": "Date",
             "type": "string",
             "format": "date",
-            default: new Date().toISOString().slice(0, 10)
+            default: new Date().toISOString().slice(0,10)
         }
         setSchema(newSchema);
         newUischema[dateKey] = {
@@ -232,6 +243,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(dateKey)
         setUischema(newUischema);
     }
     function addDateTime() {
@@ -242,7 +254,7 @@ function FormBuilder() {
             "title": "Date & Time",
             "type": "string",
             "format": "date-time",
-            default: new Date().toISOString().slice(0, 10)
+            default: new Date().toISOString().slice(0,10)
         }
         setSchema(newSchema);
         newUischema[datetimeKey] = {
@@ -250,6 +262,7 @@ function FormBuilder() {
                 "label": false
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(datetimeKey)
         setUischema(newUischema);
     }
     function chooseFile() {
@@ -267,6 +280,7 @@ function FormBuilder() {
                 "accept": ".pdf"
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(chooseFileKey)
         setUischema(newUischema);
 
     }
@@ -288,11 +302,12 @@ function FormBuilder() {
                 "accept": ".pdf"
             }
         }
+        newUischema["ui:order"] = uiSchema['ui:order'].concat(chooseMultipleFilesKey)
         setUischema(newUischema);
     }
 
     function removeField(keyName) {
-
+        
         setSchema(schema => {
             let newSchema = JSON.parse(JSON.stringify(schema));
             delete newSchema['properties'][keyName];
@@ -301,7 +316,9 @@ function FormBuilder() {
 
         setUischema(uiSchema => {
             let newUischema = JSON.parse(JSON.stringify(uiSchema));
-            delete newUischema[keyName];
+
+            let orderKeyToDelete = uiSchema['ui:order'].indexOf(keyName)
+            newUischema['ui:order'].splice(orderKeyToDelete, 1)
             return newUischema;
         });
     }
@@ -314,11 +331,24 @@ function FormBuilder() {
         setshowEditPanel(false)
     }
 
-    return (
+    function changeOrder(sourceIndex, destinationIndex) {
+        setUischema(uiSchema => {
+            let newUischema = JSON.parse(JSON.stringify(uiSchema));
+            newUischema['ui:order'] = arrayMove(newUischema['ui:order'], sourceIndex, destinationIndex)
+            return newUischema;
+        });
+    }
 
+    function arrayMove(array, from, to) {
+        array.splice(to, 0, array.splice(from, 1)[0]);
+        return array;
+    }
+
+    return (
         <div style={{ display: 'flex', padding: 30, justifyContent: 'space-evenly' }}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField}
                 displayTextFieldPanel={displayTextFieldPanel}
+                changeOrder={changeOrder}
             />
 
             {
