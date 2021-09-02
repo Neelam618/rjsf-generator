@@ -59,13 +59,13 @@ function FormViewer(props) {
                                 <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
                                     {(provided) => (
                                         <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
-                                            <div {...provided.draggableProps} ref={provided.innerRef}>
+                                            <div {...provided.draggableProps} ref={provided.innerRef} className="field">
                                                 <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                                                    <>
-                                                        <span className="drag" {...provided.dragHandleProps} ref={provided.innerRef}>Drag</span>
-                                                        <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
-                                                        {/* <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span> */}
-                                                    </>
+                                                    <div className="hover-options">
+                                                        <div className="dragField" {...provided.dragHandleProps} ref={provided.innerRef}><img src="img/scrolling.png"/></div>
+                                                        <div onClick={() => props.displayTextFieldPanel(key)} className="editField"><img src="img/edit.png" /></div>
+                                                        <div onClick={() => props.removeField(key)} className="removeField"><img src="img/close.png" /></div>                                                    
+                                                    </div>
                                                 </Form>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@ function FormViewer(props) {
                     }
                     {provided.placeholder}
                     {Object.keys(props.schema['properties']).length > 0 ?
-                        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
+                        <Button variant="primary" onClick={() => setModalShow(true)} className="schema-btn">
                             Generate Schema
                         </Button>
                         : <div style={{ margin: '2em 1em' }}>

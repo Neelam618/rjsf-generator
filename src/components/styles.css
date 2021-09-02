@@ -1,46 +1,54 @@
 body {
-    font-weight: 400;
-    background: #ccbecf96;
+    font-weight: 500;
+    /* background: #ccbecf96; */
     color: black;
 }
 /* Formviewer */
-.fieldContainer:hover .removeField, .fieldContainer:hover .editField, .fieldContainer:hover .drag{
-    display: inline !important;
+
+.hover-options {
+    display: none;
+    align-items: center;
+    position: absolute;
+    right: 30px;
+    top: 0;
+}
+.fieldContainer:hover .hover-options {
+    display: flex;
 }
 .removeField:hover {
-        background-color: rgb(253, 129, 129);
-        cursor: pointer;
+    background-color: rgb(253, 129, 129);
+    cursor: pointer;
 }
-.drag {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 80px;
+.dragField {
+    width: 280px;
+    padding: 5px;
+    margin-right: 3px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #eceff1;
+}
+.dragField img {
+    width: 22px;
 }
 .editField {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 60px;
     padding: 5px 20px;
-    border-radius: 5;
+    border-radius: 5px;
+}
+.editField img {
+    width: 20px;
 }
 .removeField {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
     font-weight: 700;
     padding: 5px 20px;
     border-radius: 5px;
 }
+.removeField img {
+    width: 12px;
+}
 .editField:hover {
-    background-color: #ccbecf96;
+    background-color: #c0eee1;
     border-radius: 5px;
     cursor: pointer;
-}
-.removeField:hover .fieldContainer{
-    background-color: pink !important;
 }
 .fieldContainer:hover {
     /* border: 2px solid rgb(170, 165, 165); */
@@ -49,49 +57,51 @@ body {
 .formViewer {
     border: 1px solid rgb(151, 147, 147);
     padding: 2em;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
 .container-fluid .row {
     margin-bottom: 30px !important;
 }
 
+.schema-btn {
+    margin: 40px 0 0 30px;
+}
+
 /* Toolbox */
 .tools {
     margin: 5px;
     list-style-type: none;
-    padding: 1em;
-    border-radius: 20px;
+    padding: 0.8em;
+    border: 1px solid lightgray;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
 }
 .tools:hover {
-    border: 1px solid black;
-}
-.tools:nth-child(odd)
-{
-    background-color: #f4f4f4;
-}
-.tools:nth-child(even)
-{
-    background-color: #f6f1f2;
+    /* border: 1px solid black; */
+    background-color: #78c2ad;
+    color: white;
 }
 .icons img {
     margin-right: 2em;
     width: 32px;
+}
+.tools:hover .symbol {
+    filter: invert(1);
 }
 
 /* Panel */
 .panel {
     width: 30%;
     /* border: 1px solid black; */
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 2em;
-    background-color: #ccbecf96;
+    /* background-color: #d7f0e9; */
     /* color: white; */
-    /* -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
+    -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
     -moz-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
-    box-shadow: 6px 6px 30px -12px rgba(156,153,156,1); */
+    box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
 }
 .panel img {
     width: 15px;
@@ -114,5 +124,5 @@ body {
     font-size: 1.1rem;
 }
 .btn {
-    letter-spacing: inherit;
+    font-weight: 500;
 }
