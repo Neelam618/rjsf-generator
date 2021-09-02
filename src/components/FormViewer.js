@@ -55,18 +55,23 @@ function FormViewer(props) {
                                 singleFieldUiSchema[key] = props.uiSchema[key]
                             }
 
-                            return <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
-                                {(provided) => (
-                                    <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
-                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                            <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                                                <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
-                                                <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
-                                            </Form>
+                            return <>
+                                <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
+                                    {(provided) => (
+                                        <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
+                                            <div {...provided.draggableProps} ref={provided.innerRef}>
+                                                <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
+                                                    <>
+                                                        <span className="drag" {...provided.dragHandleProps} ref={provided.innerRef}>Drag</span>
+                                                        <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
+                                                        {/* <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span> */}
+                                                    </>
+                                                </Form>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </Draggable>
+                                    )}
+                                </Draggable>
+                            </>
                         })
                     }
                     {provided.placeholder}

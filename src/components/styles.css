@@ -4,12 +4,18 @@ body {
     color: black;
 }
 /* Formviewer */
-.fieldContainer:hover .removeField, .fieldContainer:hover .editField {
+.fieldContainer:hover .removeField, .fieldContainer:hover .editField, .fieldContainer:hover .drag{
     display: inline !important;
 }
 .removeField:hover {
         background-color: rgb(253, 129, 129);
         cursor: pointer;
+}
+.drag {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 80px;
 }
 .editField {
     display: none;
