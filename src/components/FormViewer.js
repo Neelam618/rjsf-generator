@@ -88,12 +88,12 @@ function FormViewer(props) {
         </Droppable>
     </DragDropContext>
 
-        <Modal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            schema={props.schema}
-            uiSchema={props.uiSchema}
-        />
+    <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        schema={props.schema}
+        uiSchema={props.uiSchema}
+    />
     </>
 
 }
