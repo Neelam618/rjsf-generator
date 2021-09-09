@@ -86,6 +86,7 @@ body {
 .icons img {
     margin-right: 2em;
     width: 32px;
+    display: inline;
 }
 .tools:hover .symbol {
     filter: invert(1);
