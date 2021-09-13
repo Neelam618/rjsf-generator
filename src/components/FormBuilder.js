@@ -319,7 +319,10 @@ function FormBuilder() {
 
             let orderKeyToDelete = uiSchema['ui:order'].indexOf(keyName)
             newUischema['ui:order'].splice(orderKeyToDelete, 1)
+            delete newUischema[keyName]
+            console.log(newUischema)
             return newUischema;
+            
         });
     }
 
@@ -345,7 +348,7 @@ function FormBuilder() {
     }
 
     return (
-        <div style={{ display: 'flex', padding: 30, justifyContent: 'space-evenly' }}>
+        <div style={{ display: 'flex', padding: "110px 30px", justifyContent: 'space-evenly' }}>
             <FormViewer schema={schema} uiSchema={uiSchema} removeField={removeField}
                 displayTextFieldPanel={displayTextFieldPanel}
                 changeOrder={changeOrder}

@@ -159,7 +159,7 @@ function IntRangePanel(props) {
     let yourForm;
     return (
         <div className="panel">
-            <div onClick={props.closePanel} style={{ textAlign: 'end' }}><img src="img/close.png" alt="" /></div>
+            <div onClick={props.closePanel} style={{ textAlign: '-webkit-right' }}><img src="img/close.png" alt="" /></div>
             <Form schema={schema} onSubmit={onSubmit} ref={(form) => { yourForm = form; }}
                 formData={formData}
             >
