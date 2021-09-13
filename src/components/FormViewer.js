@@ -55,23 +55,28 @@ function FormViewer(props) {
                                 singleFieldUiSchema[key] = props.uiSchema[key]
                             }
 
-                            return <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
-                                {(provided) => (
-                                    <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
-                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                            <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
-                                                <span onClick={() => props.removeField(key)} className="removeField"><img style={{ width: 12 }} src="img/close.png" /></span>
-                                                <span onClick={() => props.displayTextFieldPanel(key)} className="editField"><img style={{ width: 20 }} src="img/edit.png" /></span>
-                                            </Form>
+                            return <>
+                                <Draggable key={key} draggableId={key} index={index} disableInteractiveElementBlocking={true}>
+                                    {(provided) => (
+                                        <div className='fieldContainer' style={{ position: 'relative', padding: '10px 30px 0px 30px' }}>
+                                            <div {...provided.draggableProps} ref={provided.innerRef} className="field">
+                                                <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
+                                                    <div className="hover-options">
+                                                        <div className="dragField" {...provided.dragHandleProps} ref={provided.innerRef}><img src="img/scrolling.png"/></div>
+                                                        <div onClick={() => props.displayTextFieldPanel(key)} className="editField"><img src="img/edit.png" /></div>
+                                                        <div onClick={() => props.removeField(key)} className="removeField"><img src="img/close.png" /></div>                                                    
+                                                    </div>
+                                                </Form>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </Draggable>
+                                    )}
+                                </Draggable>
+                            </>
                         })
                     }
                     {provided.placeholder}
                     {Object.keys(props.schema['properties']).length > 0 ?
-                        <Button variant="primary" onClick={() => setModalShow(true)} style={{ margin: '40px 0 0 30px' }}>
+                        <Button variant="primary" onClick={() => setModalShow(true)} className="schema-btn">
                             Generate Schema
                         </Button>
                         : <div style={{ margin: '2em 1em' }}>
@@ -83,12 +88,12 @@ function FormViewer(props) {
         </Droppable>
     </DragDropContext>
 
-        <Modal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            schema={props.schema}
-            uiSchema={props.uiSchema}
-        />
+    <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        schema={props.schema}
+        uiSchema={props.uiSchema}
+    />
     </>
 
 }

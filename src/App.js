@@ -1,22 +1,18 @@
 import React from 'react';
 import FormBuilder from "./components/FormBuilder";
-// import Button from 'react-bootstrap/Button';
-// import MyVerticallyCenteredModal from "./components/MyVerticallyCenteredModal";
+import Navbar from 'navbar-innerkore'
+import 'navbar-innerkore/dist/index.css'
+import Footer from 'footer-innerkore'
+import 'footer-innerkore/dist/index.css'
+
 
 function App() {
-  // const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div >
+      <Navbar />
       <FormBuilder />
-      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-        Generate Schema
-      </Button>
-
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />     */}
+      <Footer />
     </div>
   );
 }

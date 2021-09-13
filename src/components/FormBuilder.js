@@ -221,7 +221,7 @@ function FormBuilder() {
         setSchema(newSchema);
         newUischema[multipleChoiceListKey] = {
             "ui:options": {
-                "label": false
+                "label": true
             }
         }
         newUischema["ui:order"] = uiSchema['ui:order'].concat(multipleChoiceListKey)
