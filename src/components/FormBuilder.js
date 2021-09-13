@@ -65,7 +65,6 @@ function FormBuilder() {
         newUischema[numFieldKey] = {
             "ui:options": {
                 "inputType": "number",
-                "label": false
             },
             "ui:autofocus": false,
             "ui:placeholder": "Select Number"
