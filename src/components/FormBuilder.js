@@ -28,19 +28,11 @@ function FormBuilder() {
         newSchema['properties'][textFieldKey] = {
             "title": "Text",
             "type": "string",
-            // "maxLength": 5,
-            // "description": ""
         }
-        // newSchema['required'].push(textFieldKey)
-
         setSchema(newSchema);
 
         newUischema[textFieldKey] = {
-            // "ui:options": {
-                'ui:label': false,
-                // "inputType": "text"
-            // },
-            // classNames: "myClass",
+            'ui:label': false,
             "ui:autofocus": false,
             "ui:placeholder": "This is a placeholder"
         }
@@ -134,13 +126,13 @@ function FormBuilder() {
             "type": "array",
             "title": "A multiple choices list",
             "items": {
-              "type": "string",
-              "enum": [
-                "foo",
-                "bar",
-                "fuzz",
-                "qux"
-              ]
+                "type": "string",
+                "enum": [
+                    "foo",
+                    "bar",
+                    "fuzz",
+                    "qux"
+                ]
             },
             "uniqueItems": true
         }
@@ -234,7 +226,7 @@ function FormBuilder() {
             "title": "Date",
             "type": "string",
             "format": "date",
-            default: new Date().toISOString().slice(0,10)
+            default: new Date().toISOString().slice(0, 10)
         }
         setSchema(newSchema);
         newUischema[dateKey] = {
@@ -253,7 +245,7 @@ function FormBuilder() {
             "title": "Date & Time",
             "type": "string",
             "format": "date-time",
-            default: new Date().toISOString().slice(0,10)
+            default: new Date().toISOString().slice(0, 10)
         }
         setSchema(newSchema);
         newUischema[datetimeKey] = {
@@ -306,7 +298,7 @@ function FormBuilder() {
     }
 
     function removeField(keyName) {
-        
+
         setSchema(schema => {
             let newSchema = JSON.parse(JSON.stringify(schema));
             delete newSchema['properties'][keyName];
@@ -321,7 +313,7 @@ function FormBuilder() {
             delete newUischema[keyName]
             console.log(newUischema)
             return newUischema;
-            
+
         });
     }
 

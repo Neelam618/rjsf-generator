@@ -10,9 +10,9 @@ function App() {
 
   return (
     <div >
-      <Navbar />
+      {/* <Navbar /> */}
       <FormBuilder />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
