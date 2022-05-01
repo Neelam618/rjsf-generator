@@ -62,9 +62,9 @@ function FormViewer(props) {
                                             <div {...provided.draggableProps} ref={provided.innerRef} className="field">
                                                 <Form schema={singleFieldSchema} uiSchema={singleFieldUiSchema} liveValidate children={true} widgets={widgets} >
                                                     <div className="hover-options">
-                                                        <div className="dragField" {...provided.dragHandleProps} ref={provided.innerRef}><img src="img/scrolling.png"/></div>
+                                                        <div className="dragField" {...provided.dragHandleProps} ref={provided.innerRef}><img src="img/scrolling.png" /></div>
                                                         <div onClick={() => props.displayTextFieldPanel(key)} className="editField"><img src="img/edit.png" /></div>
-                                                        <div onClick={() => props.removeField(key)} className="removeField"><img src="img/close.png" /></div>                                                    
+                                                        <div onClick={() => props.removeField(key)} className="removeField"><img src="img/close.png" /></div>
                                                     </div>
                                                 </Form>
                                             </div>
@@ -79,7 +79,7 @@ function FormViewer(props) {
                         <Button variant="primary" onClick={() => setModalShow(true)} className="schema-btn">
                             Generate Schema
                         </Button>
-                        : <div style={{ margin: '2em 1em' }}>
+                        : <div style={{ margin: '2em 1em', fontWeight: 400 }}>
                             Select a form element from the list
                         </div>
                     }
@@ -88,12 +88,12 @@ function FormViewer(props) {
         </Droppable>
     </DragDropContext>
 
-    <Modal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        schema={props.schema}
-        uiSchema={props.uiSchema}
-    />
+        <Modal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            schema={props.schema}
+            uiSchema={props.uiSchema}
+        />
     </>
 
 }

@@ -3,6 +3,7 @@ body {
     /* background: #ccbecf96; */
     color: black;
 }
+
 /* Formviewer */
 
 .hover-options {
@@ -12,13 +13,16 @@ body {
     right: 30px;
     top: 0;
 }
+
 .fieldContainer:hover .hover-options {
     display: flex;
 }
+
 .removeField:hover {
     background-color: rgb(253, 129, 129);
     cursor: pointer;
 }
+
 .dragField {
     width: 280px;
     padding: 5px;
@@ -27,41 +31,49 @@ body {
     text-align: center;
     background-color: #eceff1;
 }
+
 .dragField img {
     width: 22px;
     margin: 0 auto;
 }
+
 .editField {
     padding: 6px 20px;
     border-radius: 5px;
 }
+
 .editField img {
     width: 20px;
 }
+
 .removeField {
     font-weight: 700;
     padding: 9px 20px;
     border-radius: 5px;
 }
+
 .removeField img {
     width: 13px;
 }
+
 .editField:hover {
     background-color: #c0eee1;
     border-radius: 5px;
     cursor: pointer;
 }
+
 .fieldContainer:hover {
     /* border: 2px solid rgb(170, 165, 165); */
     border-radius: 10px;
 }
+
 .formViewer {
     border: 1px solid rgb(151, 147, 147);
     padding: 2em;
     border-radius: 8px;
 }
 
-.col-12{
+.col-12 {
     margin-bottom: 30px;
 }
 
@@ -77,18 +89,21 @@ body {
     border: 1px solid lightgray;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 400;
 }
+
 .tools:hover {
     /* border: 1px solid black; */
     background-color: #78c2ad;
     color: white;
 }
+
 .icons img {
     margin-right: 2em;
     width: 32px;
     display: inline;
 }
+
 .tools:hover .symbol {
     filter: invert(1);
 }
@@ -99,24 +114,30 @@ body {
     /* border: 1px solid black; */
     border-radius: 8px;
     padding: 2em;
-    -webkit-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
-    -moz-box-shadow: 6px 6px 30px -12px rgba(156,153,156,1);
-    box-shadow: 0px 0px 30px -12px rgba(156,153,156,1);
+    -webkit-box-shadow: 6px 6px 30px -12px rgba(156, 153, 156, 1);
+    -moz-box-shadow: 6px 6px 30px -12px rgba(156, 153, 156, 1);
+    box-shadow: 0px 0px 30px -12px rgba(156, 153, 156, 1);
 }
+
 .panel img {
     width: 15px;
     /* filter: invert(0.5); */
     cursor: pointer;
 }
-.btn-group-sm>.btn, .btn-sm {
+
+.btn-group-sm>.btn,
+.btn-sm {
     font-size: 17px;
 }
+
 .btn svg {
     margin: 0 auto;
 }
+
 .form-group h5 {
     margin-bottom: 8px;
 }
+
 /* .btn .btn-primary{
     background-color: #d81b60;
 } */
@@ -125,10 +146,12 @@ body {
 .modal pre {
     margin-left: 3em;
 }
+
 .nav-link {
     font-weight: 700;
     font-size: 1.1rem;
 }
+
 .btn {
     font-weight: 500;
 }
