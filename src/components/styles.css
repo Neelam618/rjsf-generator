@@ -4,6 +4,14 @@ body {
     color: black;
 }
 
+/* Header */
+.title {
+    background-image: linear-gradient(to right, #11a47a, #78c2ad);
+    color: #fff;
+    padding: 35px;
+    font-size: 22px;
+}
+
 /* Formviewer */
 
 .hover-options {

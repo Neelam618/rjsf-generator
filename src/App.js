@@ -1,18 +1,13 @@
 import React from 'react';
 import FormBuilder from "./components/FormBuilder";
-import Navbar from 'navbar-innerkore'
-import 'navbar-innerkore/dist/index.css'
-import Footer from 'footer-innerkore'
-import 'footer-innerkore/dist/index.css'
-
+import Header from './components/Header'
 
 function App() {
 
   return (
     <div >
-      {/* <Navbar /> */}
+      <Header />
       <FormBuilder />
-      {/* <Footer /> */}
     </div>
   );
 }
